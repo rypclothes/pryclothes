@@ -8,7 +8,7 @@ public class Incidencia {
 	private String codEmple;
 	private String tipoIncidencia;
 	
-	public Incidencia(Date fechaError,String codEmple, String tipoIncidencia) {
+	public Incidencia(Date date, String string, String string2) {
 		super();
 		this.fechaError = fechaError;
 		this.codEmple = codEmple;

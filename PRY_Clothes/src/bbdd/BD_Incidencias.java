@@ -1,5 +1,6 @@
 package bbdd;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,7 +33,7 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 					return -1;
 				}
 			}
-	public int borrar_Incidencias(String cod_emple,LocalDate fecha_error ){
+	public int borrar_Incidencias(String cod_emple,Date fecha_error ){
 		String cadena="DELETE FROM reporte_incidencias WHERE cod_emple='" + cod_emple + "' AND fecha_error' "+ fecha_error;	
 		
 		try{
