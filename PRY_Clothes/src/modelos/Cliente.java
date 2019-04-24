@@ -2,18 +2,27 @@ package modelos;
 //Daniel Cirtog y Pablo Martin
 
 public class Cliente extends Usuario{
-	private String codCliente;
 	private long numTarjeta;
 	private String direccion;
 	
-	public Cliente(long numTarjeta, String direccion) {
+	public Cliente(String codigo,long numTarjeta, String direccion) {
+		super(codigo);
 		this.direccion = direccion;
 		this.numTarjeta = numTarjeta;
-		codCliente = super.codigo;
+		
+	}
+	
+
+	public Cliente(String contraseña, String nombre, String telefono, long numTarjeta, String direccion) {
+		super(contraseña, nombre, telefono);
+		this.direccion = direccion;
+		this.numTarjeta = numTarjeta;
+		// TODO Auto-generated constructor stub
 	}
 
+
 	public String getCodCliente() {
-		return codCliente;
+		return codigo;
 	}
 
 	public long getNumTarjeta() {

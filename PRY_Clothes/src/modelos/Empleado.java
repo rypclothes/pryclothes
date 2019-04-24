@@ -2,26 +2,41 @@ package modelos;
 //Daniel Cirtog y Pablo Martin
 
 public class Empleado extends Usuario{
-	private String codEmple;
 	private String funcion;
 	private int numAvisos;
 	private double salario;
 	private int cont;
 	private static int foto = 0;
 	
-	public Empleado(String rol, String funcion, double salario) {
+	public Empleado(String codigo, String funcion, double salario) {
+		super(codigo);
 		this.funcion = funcion;
 		this.salario = salario;
-		codEmple = super.codigo;
 		
 		foto++;
 		cont = foto;
 		
 		numAvisos = 0;
 	}
+	
+	public Empleado(String contraseña, String nombre, String telefono, String funcion, double salario) {
+		super(contraseña, nombre, telefono);
+		
+		this.funcion = funcion;
+		this.salario = salario;
+		numAvisos = 0;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Empleado [codEmple=" + codigo + ", funcion=" + funcion + ", numAvisos=" + numAvisos + ", salario="
+				+ salario + ", cont=" + cont + "]";
+	}
 
 	public String getCodEmple() {
-		return codEmple;
+		return codigo;
 	}
 
 	public String getFuncion() {

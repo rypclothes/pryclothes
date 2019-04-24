@@ -3,15 +3,24 @@ package bbdd;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
+import exceptions.DatosIntroducidosException;
 import modelos.Cliente;
+import modelos.Empleado;
+import modelos.Usuario;
 
 public class BD_Clientes extends BD_Conector{
 	private static Statement s;	
 	private static ResultSet reg;
 	private String cadenaSQL;
+	private Vector <Cliente> clientes = new <Cliente> Vector();
+	BD_Usuario bdu = new BD_Usuario();
 	
-	public int darAltaCliente(Cliente cl) {
+	public int darAltaCliente(Cliente cl) throws DatosIntroducidosException {
+		Usuario usu = new Usuario(cl.getContraseña(),cl.getNombre(),cl.getTelefono());
+		bdu.darAltaUsuario(usu);
+		
 		cadenaSQL = "INSERT INTO clientes VALUES('" + cl.getCodCliente() + "','" + cl.getDireccion() + "','" + cl.getNumTarjeta() + "')";
 		
 		try {
@@ -25,11 +34,11 @@ public class BD_Clientes extends BD_Conector{
 			return filas;
 		}catch(SQLException e) {
 			this.cerrar();
-			return -1;
+			throw new DatosIntroducidosException("Los datos introducidos son incorrectos");
 		}
 	}
 
-	public int darBajaCliente(String codCliente) {
+	public int darBajaCliente(String codCliente) throws DatosIntroducidosException {
 		cadenaSQL = "DELETE FROM clientes WHERE cod_cliente ='" + codCliente + "'";
 		
 		try {
@@ -40,10 +49,13 @@ public class BD_Clientes extends BD_Conector{
 			s.close();
 			
 			this.cerrar();
+
+			bdu.darBajaUsuario(codCliente);
 			return filas;
 		}catch(SQLException e) {
 			this.cerrar();
-			return -1;
+			throw new DatosIntroducidosException("Algun dato no esta bien introducido");
 		}
 	}
+
 }

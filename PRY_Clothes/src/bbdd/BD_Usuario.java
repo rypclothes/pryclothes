@@ -1,10 +1,13 @@
 package bbdd;
 //Daniel Cirtog y Pablo Martin
 
+//Se ha borrado exception problemas tecnicos y error en DatosIntroducidosException
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import modelos.Usuario;
+import exceptions.DatosIntroducidosException;
 
 public class BD_Usuario extends BD_Conector{
 	private static Statement s;	
@@ -15,8 +18,8 @@ public class BD_Usuario extends BD_Conector{
 		super();
 	}
 	
-	public int darAltaUsuario(Usuario usu) {
-		String cadena="INSERT INTO contactos VALUES('" + usu.getNombre() + "','" + usu.getContraseña()+"','"+ usu.getFechaAlta() +"','" + usu.getRol()+"')"; 	
+	public int darAltaUsuario(Usuario usu) throws DatosIntroducidosException {
+		String cadena="INSERT INTO usuarios VALUES('" + usu.getNombre() + "','" + usu.getContraseña()+"','"+ usu.getFechaAlta() + "','" + usu.getRol() + "','" + usu.getCodigo() + "','" + usu.getTelefono() + "')"; 	
 		int filas;
 		
 		try{
@@ -30,11 +33,11 @@ public class BD_Usuario extends BD_Conector{
 			return filas;
 		}catch (SQLException e){
 			this.cerrar();
-			return -1;
+			throw new DatosIntroducidosException("Los datos introducidos son incorrectos");
 		}
 	}
 
-	public int darBajaUsuario(String codigo) {
+	public int darBajaUsuario(String codigo) throws DatosIntroducidosException {
 		cadenaSQL = "DELETE FROM usuarios where cod = '" + codigo + "'";
 		int filas;
 		
@@ -49,7 +52,8 @@ public class BD_Usuario extends BD_Conector{
 			return filas;
 		}catch(SQLException e) {
 			this.cerrar();
-			return -1;
+			throw new DatosIntroducidosException("Algun dato no esta bien introducido");
+			
 		}
 	}
 
