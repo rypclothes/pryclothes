@@ -19,7 +19,7 @@ public class Main {
 		BD_Conector.BD_Ini("ryp_clothes");
 		BD_Empleado bde = new BD_Empleado();
 		BD_Clientes bdc = new BD_Clientes();
-		BD_Reclamaciones bdr=new BD_Reclamaciones();
+		BD_Reclamaciones bdr=new BD_Reclamaciones() ;
 		
 		System.out.println("Introduzca opcion:");
 		int op = sc.nextInt();

@@ -1,5 +1,5 @@
 /*
- * Clase relacionada con Reclamaciones
+ * Clase relacionada con Reclamacione
  * @author Roberto_Saavedra
  */
 package modelos;
