@@ -83,7 +83,7 @@ public class BD_Diseño extends BD_Conector {
 			   return -1;
 		   }
 	   }
-
+	   /*jajaj*/
 	   public Vector <Diseño> consultar_Diseños() {
 			 Vector <Diseño> mostrar = new <Diseño> Vector();
 			 String cadenaSQL = "SELECT * FROM diseños";
