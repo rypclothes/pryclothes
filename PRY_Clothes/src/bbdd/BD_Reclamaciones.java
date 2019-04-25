@@ -23,7 +23,7 @@ public class BD_Reclamaciones extends BD_Conector {
 		// TODO Auto-generated constructor stub
 	}
 	
-	//Este metodo inserta una reclamacion 
+	//Este metodo inserta una reclamaciones 
 	public int añadir_Incidencia(Reclamacion re) {
 		String cadenaSQL = "INSERT INTO reclamaciones VALUES('" + re.getCod_cliente() + "','" + re.getFecha_Rec()
 				+ "','" + re.getDescripcion() + "','" + re.getRespuesta() + "')";
