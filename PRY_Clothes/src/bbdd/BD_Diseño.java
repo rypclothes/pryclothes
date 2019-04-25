@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
-
 import modelos.Diseño;
 
 
@@ -68,5 +67,45 @@ public class BD_Diseño extends BD_Conector {
 					return -1;
 				
 				}  
-	 }	
+	 }
+	   public int modificar_datos(String modificador,String campo,String buscacod_diseño) {
+		   
+		   String cadenaSQL="UPDATE diseños set "+campo+"='"+modificador+"'where cod_diseño='"+buscacod_diseño+"'";
+		   try {
+				this.abrir();
+				s=c.createStatement();
+				int filas=s.executeUpdate(cadenaSQL);
+				s.close();
+				this.cerrar();
+				return filas;
+			   
+		   }catch(SQLException e) {
+			   return -1;
+		   }
+	   }
+
+	   public Vector <Diseño> consultar_Diseños() {
+			 Vector <Diseño> mostrar = new <Diseño> Vector();
+			 String cadenaSQL = "SELECT * FROM diseños";
+			 
+			 try {
+				 this.abrir();
+				 
+				 s = c.createStatement();
+				 reg = s.executeQuery(cadenaSQL);
+				 
+				 while(reg.next()) {
+					mostrar.add(new Diseño(reg.getDate("fecha_salida").toLocalDate(),reg.getString("descripcion"),reg.getDouble("precio"),reg.getString("categoria"),reg.getInt("cantidad"))); 
+				 }
+				 s.close();
+				
+				 this.cerrar();
+			 }catch(SQLException e) {
+				 this.cerrar();
+				 e.printStackTrace();
+			 }
+			 return mostrar;
+		 }
+		   
+	     
 }

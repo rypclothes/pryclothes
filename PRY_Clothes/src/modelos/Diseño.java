@@ -17,12 +17,13 @@ public Diseño(LocalDate fecha_salida, String descripcion, double precio, String 
 	this.descripcion = descripcion;
 	this.precio = precio;
 	this.categoria = categoria;
-	this.cont=001;
+	this.cont=1;
 	cont++;
 	this.codDiseño = categoria.substring(0,2).toUpperCase()+"-"+cont;
     
 	this.cantidad=cantidad;
 }
+
 public LocalDate getFecha_salida() {
 	return fecha_salida;
 }
