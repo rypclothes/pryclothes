@@ -7,6 +7,7 @@ import com.sun.org.apache.bcel.internal.util.Class2HTML;
 import bbdd.BD_Clientes;
 import bbdd.BD_Conector;
 import bbdd.BD_Empleado;
+import bbdd.BD_Reclamaciones;
 import exceptions.DatosIntroducidosException;
 import modelos.Cliente;
 import modelos.Empleado;
@@ -18,6 +19,7 @@ public class Main {
 		BD_Conector.BD_Ini("ryp_clothes");
 		BD_Empleado bde = new BD_Empleado();
 		BD_Clientes bdc = new BD_Clientes();
+		BD_Reclamaciones bdr=new BD_Reclamaciones();
 		
 		System.out.println("Introduzca opcion:");
 		int op = sc.nextInt();
