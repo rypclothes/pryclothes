@@ -45,7 +45,6 @@ public class Main {
 			try {
 				System.out.println(bdc.darAltaCliente(cl));
 			} catch (DatosIntroducidosException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -74,13 +73,16 @@ public class Main {
 			System.out.println("Telefono");
 			String telefono = sc.nextLine();
 			
+			System.out.println("Rol: ");
+			String rol = sc.nextLine();
+			
 			System.out.println("Funcion: ");
 			String funcion = sc.nextLine();
 			
 			System.out.println("Salario");
 			double salario = sc.nextDouble();
 			
-			Empleado em = new Empleado(contraseña, nombre, telefono, funcion, salario);
+			Empleado em = new Empleado(contraseña, nombre, telefono, rol, funcion, salario);
 			
 			try {
 				System.out.println(bde.darAltaEmpleado(em));

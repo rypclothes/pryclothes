@@ -1,6 +1,8 @@
 package modelos;
 //Daniel Cirtog y Pablo Martin
-import java.time.LocalDateTime;
+import java.time.*;
+
+import bbdd.BD_Usuario;
 
 public class Usuario {
 	protected String codigo;
@@ -9,8 +11,11 @@ public class Usuario {
 	protected String rol;
 	private String telefono;
 	
+	BD_Usuario bdu = new BD_Usuario();
+	
 	private LocalDateTime fechaAlta;
-
+	
+	/*Constructor para Clientes*/
 	public Usuario(String contraseña, String nombre, String telefono) {
 		this.contraseña = contraseña;
 		this.nombre = nombre;
@@ -20,29 +25,17 @@ public class Usuario {
 		
 		rol = "Cliente";
 		
-		if(rol.endsWith("or")) {
-			codigo = "AD";
-		}
-		if(rol.substring(0,2).equalsIgnoreCase("cl")) {
-			codigo = "CL";
-		}
-		if(rol.substring(0,2).equalsIgnoreCase("lo")) {
-			codigo = "EL";
-		}
-		if(rol.substring(0,2).equalsIgnoreCase("di")) {
-			codigo = "ED";
-		}
-		if(rol.substring(0,2).equalsIgnoreCase("ad")) {
-			codigo = "EA";
-		}			
+		codigo = "CL" + (bdu.consultaNumeroSecuencialCliente() + 1);
 	}
 	
 	public Usuario(){}
 	
+	/*Constructor para Empleados*/
 	public Usuario(String contraseña, String nombre, String telefono, String rol) {
 		this.contraseña = contraseña;
 		this.nombre = nombre;
 		this.telefono = telefono;
+		this.rol = rol;
 		
 		fechaAlta = fechaAlta.now();
 		
@@ -54,16 +47,7 @@ public class Usuario {
 		}
 		if(rol.substring(0,2).equalsIgnoreCase("ad")) {
 			codigo = "EA";
-		}	
-		
-		rol = "Cliente";
-		
-		if(rol.endsWith("or")) {
-			codigo = "AD";
 		}
-		if(rol.substring(0,2).equalsIgnoreCase("cl")) {
-			codigo = "CL";
-		}		
 	}
 	
 	public Usuario(String codigo) {

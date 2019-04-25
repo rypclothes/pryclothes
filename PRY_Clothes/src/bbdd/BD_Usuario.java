@@ -57,5 +57,25 @@ public class BD_Usuario extends BD_Conector{
 		}
 	}
 
+	public int consultaNumeroSecuencialCliente() {
+		cadenaSQL = "SELECT MAX(SUBSTRING(cod_cliente,3)) FROM clientes WHERE SUBSTRING(cod_cliente,1,1) = 'C'";
+		int filas = 0;
+		
+		try {
+			this.abrir();
+			
+			s = c.createStatement();
+			reg = s.executeQuery(cadenaSQL);
+			if(reg.next()){
+				filas = reg.getInt(1);
+			}
+			
+			return filas;
+		}catch(SQLException e) {
+			this.cerrar();
+			return -1;
+		}
+	}
+
 	
 }

@@ -24,10 +24,10 @@ public class BD_Empleado extends BD_Conector{
 	}
 	
 	public int darAltaEmpleado(Empleado em) throws DatosIntroducidosException {
-		Usuario usu = new Usuario(em.getContraseña(),em.getNombre(),em.getTelefono(), em.getFuncion());
+		Usuario usu = new Usuario(em.getContraseña(),em.getNombre(),em.getTelefono(),em.getFuncion());
 		bdu.darAltaUsuario(usu);
 		
-		cadenaSQL = "INSERT INTO empleados VALUES('" +em.getCodEmple() + "','" + em.getFuncion() + "','" + em.getSalario() + "','" + em.getNumAvisos() +"')";
+		cadenaSQL = "INSERT INTO empleados VALUES('" + em.getCodEmple() + "','" + em.getFuncion() + "','" + em.getSalario() + "','" + em.getNumAvisos() +"')";
 		int filas;
 		
 		try {

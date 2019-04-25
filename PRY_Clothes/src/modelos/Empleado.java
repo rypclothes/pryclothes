@@ -7,7 +7,7 @@ public class Empleado extends Usuario{
 	private double salario;
 	private int cont;
 	private static int foto = 0;
-	
+
 	public Empleado(String codigo, String funcion, double salario) {
 		super(codigo);
 		this.funcion = funcion;
@@ -19,15 +19,14 @@ public class Empleado extends Usuario{
 		numAvisos = 0;
 	}
 	
-	public Empleado(String contraseña, String nombre, String telefono, String funcion, double salario) {
-		super(contraseña, nombre, telefono);
+	/*Constructor para dar de alta a la vez en usuarios*/
+	public Empleado(String contraseña, String nombre, String telefono, String rol, String funcion, double salario) {
+		super(contraseña, nombre, telefono, rol);
 		
 		this.funcion = funcion;
 		this.salario = salario;
 		numAvisos = 0;
 	}
-
-
 
 	@Override
 	public String toString() {
