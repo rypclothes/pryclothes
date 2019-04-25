@@ -51,7 +51,7 @@ public class BD_Diseño extends BD_Conector {
 		return listadoCod_diseño;
 	
 	}
-	
+	/*jjaja*/
 	 public int borraDiseño(String cod_diseñoBorrar ) {
 		 String cadenaSQL="DELETE FROM diseños Where cod_diseño='"+cod_diseñoBorrar+"'";
 		 String tipo="";

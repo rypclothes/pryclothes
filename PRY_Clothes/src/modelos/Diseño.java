@@ -23,7 +23,7 @@ public Diseño(LocalDate fecha_salida, String descripcion, double precio, String 
     
 	this.cantidad=cantidad;
 }
-/*jajaj*/
+/*jajajddddd*/
 public LocalDate getFecha_salida() {
 	return fecha_salida;
 }
