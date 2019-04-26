@@ -14,13 +14,13 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 	private static Statement s;		
 	private static ResultSet reg;
 	
-	public BD_Incidencias(String file) {
-		super();
+	public BD_Incidencias(String bbdd) {
+		super(bbdd);
 		// TODO Auto-generated constructor stub
 	}
-	public  int añadir_Incidencia(Incidencia in) {
-		String cadenaSQL="INSERT INTO reporte_incidencias VALUES('" + in.getTipoIncidencia()+ "','" +
-				in.getCodEmple()+"','"+in.getFechaError()+"')"; 	
+	public  int añadir_Incidencia(Incidencia incidencia) {
+		String cadenaSQL="INSERT INTO reporte_incidencias (tipo_incidencia,cod_emple,fecha_error) VALUES('" + incidencia.getTipoIncidencia()+ "','" +
+				incidencia.getCodEmple()+"','"+incidencia.getFechaError()+"')"; 	
 				try{
 				this.abrir();
 				s=c.createStatement();
@@ -33,8 +33,8 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 					return -1;
 				}
 			}
-	public int borrar_Incidencias(String cod_emple,Date fecha_error ){
-		String cadena="DELETE FROM reporte_incidencias WHERE cod_emple='" + cod_emple + "' AND fecha_error' "+ fecha_error;	
+	public int borrar_Incidencias(String cod_emple, String num_incidencia,LocalDate fecha_error ){
+		String cadena="DELETE FROM reporte_incidencias WHERE cod_emple='" + cod_emple + "' AND fecha_error' "+ fecha_error + "' AND num_incidencia=' "+ num_incidencia;	
 		
 		try{
 		this.abrir();
@@ -51,27 +51,30 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 		}
 	}
 
-	public  Vector <Incidencia> listadoIncidencias(String cod_emple){
-		String cadenaSQL="SELECT * from reporte_incidencias WHERE cod_emple='"+cod_emple+"'";
-		Vector<Incidencia> listaIncidencias=new Vector<Incidencia>();
+	
+	public  Vector<String> listadoIncidencias(){
+		String cadenaSQL="SELECT * from reporte_incidencias";
+		Vector<String> listaIncidencias=new Vector<String>();
 		try{
 			this.abrir();
 			s=c.createStatement();
 			reg=s.executeQuery(cadenaSQL);
 			while ( reg.next()){
-				
-				listaIncidencias.add(new Incidencia(reg.getDate(3), reg.getString(2), reg.getString(1)));
-				
-			}
+				listaIncidencias.add(reg.getString(1));
+			}			
 			s.close();
 			this.cerrar();
 			return listaIncidencias;
 		}
-		catch ( SQLException e){		
-			return null;			
+		catch ( SQLException e){
+		//	System.out.println(e.getMessage());
+			return null;
+			
 		}
 	}
 	
+	
+
 }
 
 

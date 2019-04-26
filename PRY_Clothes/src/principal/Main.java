@@ -1,65 +1,73 @@
 package principal;
-
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
-
-import modelos.Alumno;
 import modelos.Incidencia;
-
-
 
 
 public class Main {
 
 	public static void main(String[] args) {
-		Scanner sLeer=new Scanner(System.in);
+		Scanner sc=new Scanner(System.in);
 		int opc=0;
-		bbdd.BD_Incidencias bd=new bbdd.BD_Incidencias("incidencia");
+		bbdd.BD_Incidencias bd=new bbdd.BD_Incidencias("proyecto2");
+		LocalDate fecha_salida = null;
+		boolean correcto=false;
+	    DateTimeFormatter fechaFormateada = DateTimeFormatter.ofPattern("yyyy-LL-dd");
 		
-		do{
-			System.out.println("\n\nGESTIÓN DE INCIDENCIAS");
-			System.out.println("***************");
-			System.out.println("1.Nueva incidencia\n"
-					+ "\n2.Borrar incidencias\n3.Listado de incidencias\n"
-					);
-			System.out.print("\tTeclea opción: ");
-			try{
-			opc=sLeer.nextInt();
-			}
-			catch(NumberFormatException e ){
-				System.out.println("Opcion incorrecta");
-				opc=0;
-			}
-			catch(InputMismatchException e ){
-				System.out.println("Debes introducir número 1-4");
-				opc=0;
-			}
-			
-			sLeer.nextLine();
-			switch (opc){
-			case 1:
-				System.out.println("\n\nALTA ALUMNO");
-				System.out.print("Introduce tipo de error\t");
-				String tipo_error=sLeer.nextLine();				
-				System.out.print("Introduce codigo de empleado\t");
-				String cod_emple=sLeer.nextLine();
-				System.out.print("Introduce fecha de error\t");
-				String fecha_error=sLeer.nextLine();	
-				
-				Vector <String> incidencias=bd.listadoIncidencias(cod_emple);
-				if (incidencias==null){
-						System.out.println("En este momento no podemos realizar la operación");
+		 do {
+	         System.out.println("1.añadir incidencia");
+	         System.out.println("2.borrar incidencia");
+	         System.out.println("3.listar incidencia");
+	         opc=sc.nextInt();    
+	        int filas;
+			switch(opc) {
+	         case 1:
+			   do{
+			    	  System.out.println("dime fecha de error");
+			      try {
+			    	  sc.nextLine();
+			    	  String fecha_error=sc.nextLine();
+			    	  fecha_salida=LocalDate.parse(fecha_error, fechaFormateada);
+			    	  correcto=true;
+			      }catch(DateTimeParseException m) {
+		    	   System.out.println("error en fecha tiene q estar en formato yyyy-LL-dd ");
+		    	   correcto=true;
+			      }
+			      System.out.println("introduce codigo de empleado");;
+			      String cod_emple=sc.nextLine();
+			      System.out.println("introduce codigo de error");
+			      String tipo_error=sc.nextLine();
+			      System.out.println("introduce el numero de incidencia");
+			      int num_incidencia=sc.nextInt();
+			      Incidencia incidencia=new Incidencia(fecha_salida,cod_emple,tipo_error,num_incidencia);			
+				filas=bd.añadir_Incidencia(incidencia);				
+					switch (opc){
+					case 1:
+						System.out.println("\nIncidencia añadida");
 						break;
-				}
-				System.out.println("Lista de incidencias");
-				for (int i=0;i<incidencias.size();i++)
-					System.out.println((i+1)+ ".- "+incidencias.get(i));				
-				System.out.print("Teclea el codigo del empleado\t");
-				cod_emple=sLeer.next();
-				Incidencia inci=new Incidencia(fecha_error,cod_emple,tipo_error);			
-				int filas=bd.añadir_Incidencia(inci);				
-				switch (filas){
+					case 0:
+						System.out.println("\nIncidencia No añadido");
+						break;
+					case -1:
+						System.out.println("\nProblemas técnicos");
+						break;
+					}
+				break;
+		   }while(correcto!=true);
+		break;
+			case 2:
+				sc.nextLine();
+				System.out.println("Introduce codigo de incidencia");
+				String cod_emple=sc.nextLine();
+				System.out.println("Introduce numero de incidencia ");
+				String num_incidencia=sc.nextLine();
+				filas=bd.borrar_Incidencias(cod_emple,num_incidencia, fecha_salida);	
+				switch (opc){
 				case 1:
-					System.out.println("\nIncidencia añadida");
+					System.out.println("\nIncidencia borrada");
 					break;
 				case 0:
 					System.out.println("\nNo añadida");
@@ -67,44 +75,23 @@ public class Main {
 				case -1:
 					System.out.println("\nProblemas técnicos");
 					break;
-				break;
-			case 2:
-				System.out.println("Introduce codigo del empleado");
-				cod_emple=sLeer.nextLine();
-				System.out.println("Introduce la fecha de error ");
-				fecha_error=sLeer.nextLine();
-				filas=bd.borrar_Incidencias(cod_emple, fecha_error);	
-				switch (filas){
-				case 1:
-					System.out.println("\nAlumno borrado");
-					break;
-				case 0:
-					System.out.println("\nNo añadido");
-					break;
-				case -1:
-					System.out.println("\nProblemas técnicos");
-					break;
-					
 				}	
+	
 				break;
 			case 3:
-				filas=bd.listadoIncidencias(cod_emple);
+				Vector <String> incidencias=bd.listadoIncidencias();
 				if (incidencias==null){
 						System.out.println("En este momento no podemos realizar la operación");
 						break;
 				}
-				System.out.println("Lista de cursos");
+				System.out.println("Lista de Incidencias");
 				for (int i=0;i<incidencias.size();i++)
-					System.out.println((i+1)+ ".- "+incidencias.get(i));				
-				System.out.print("Teclea el codigo del empleado\t");
-				cod_emple=sLeer.next();
-				Vector <Incidencia> listado=bd.listadoIncidencias(cod_emple);
-				for (int i=0;i<listado.size();i++)									
-					System.out.println(listado.get(i).toString());
-				break;
-
-			}while (opc!=4);
-
+					System.out.println(incidencias.get(i).toString());
+				break;	
+			}
+		}while (opc!=3);
+		
+		 
 	}
 
 }

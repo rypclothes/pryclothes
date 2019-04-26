@@ -1,21 +1,22 @@
 package modelos;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Incidencia {
-	private Date fechaError;
+	private LocalDate fechaError;
 	private String codEmple;
 	private String tipoIncidencia;
+	private int num_incidencia;
 	
-	public Incidencia(Date date, String string, String string2) {
+	public Incidencia(LocalDate fechaError, String codEmple, String tipoIncidencia, int num_incidencia) {
 		super();
 		this.fechaError = fechaError;
 		this.codEmple = codEmple;
 		this.tipoIncidencia = tipoIncidencia;
+		this.num_incidencia = num_incidencia;
 	}
-
-
 
 	public void setCodEmple(String codEmple) {
 		this.codEmple = codEmple;
@@ -25,22 +26,29 @@ public class Incidencia {
 		this.tipoIncidencia = tipoIncidencia;
 	}
 
-	public String getTipoIncidencia() {
-		// TODO Auto-generated method stub
-		return null;
+	public LocalDate getFechaError() {
+		return fechaError;
 	}
 
-	public String getFechaError() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setFechaError(LocalDate fechaError) {
+		this.fechaError = fechaError;
 	}
 
 	public String getCodEmple() {
-		// TODO Auto-generated method stub
-		return null;
+		return codEmple;
 	}
 
+	public String getTipoIncidencia() {
+		return tipoIncidencia;
+	}
 
+	public int getNum_incidencia() {
+		return num_incidencia;
+	}
+
+	public void setNum_incidencia(int num_incidencia) {
+		this.num_incidencia = num_incidencia;
+	}
 
 	@Override
 	public String toString() {

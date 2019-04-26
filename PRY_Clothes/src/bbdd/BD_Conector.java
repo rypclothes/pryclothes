@@ -13,13 +13,12 @@ public class BD_Conector {
 	static private String url;
 	static protected Connection c;
 	
-	public static void BD_Ini(String bbdd){		
+	public BD_Conector(String bbdd){		
 		base=bbdd;
 		usuario="root";
 		pass="";
 		url="jdbc:mysql://localhost/"+base;
 	}
-	
 	public void abrir(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
