@@ -13,6 +13,10 @@ public class BD_Conector {
 	static private String url;
 	static protected Connection c;
 	
+	public BD_Conector() {
+		
+	}
+
 	public static void BD_Ini(String bbdd){		
 		base=bbdd;
 		usuario="root";
