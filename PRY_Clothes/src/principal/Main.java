@@ -85,7 +85,7 @@ public class Main {
 						System.out.println("En este momento no podemos realizar la operación");
 						break;
 				}
-				System.out.println("Lista de Incidencia");
+				System.out.println("Lista de Incidencias");
 				for (int i=0;i<incidencias.size();i++)
 					System.out.println(incidencias.get(i));
 				break;	
