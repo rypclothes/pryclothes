@@ -19,6 +19,7 @@ public class BD_Conector {
 		pass="";
 		url="jdbc:mysql://localhost/"+base;
 	}
+	
 	public void abrir(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver");

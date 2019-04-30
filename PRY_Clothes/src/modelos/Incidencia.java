@@ -4,18 +4,28 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import bbdd.BD_Incidencias;
+
 public class Incidencia {
 	private LocalDate fechaError;
 	private String codEmple;
 	private String tipoIncidencia;
 	private int num_incidencia;
+	BD_Incidencias bdd = new BD_Incidencias("proyecto2");
 	
-	public Incidencia(LocalDate fechaError, String codEmple, String tipoIncidencia, int num_incidencia) {
+	public Incidencia(LocalDate fechaError, String codEmple, String tipoIncidencia) {
 		super();
 		this.fechaError = fechaError;
 		this.codEmple = codEmple;
 		this.tipoIncidencia = tipoIncidencia;
-		this.num_incidencia = num_incidencia;
+		this.num_incidencia = bdd.consultaNumIncidencia() + 1;
+	}
+	public Incidencia(LocalDate fechaError, String codEmple, String tipoIncidencia,int creado) {
+		super();
+		this.fechaError = fechaError;
+		this.codEmple = codEmple;
+		this.tipoIncidencia = tipoIncidencia;
+		
 	}
 
 	public void setCodEmple(String codEmple) {
@@ -42,6 +52,7 @@ public class Incidencia {
 		return tipoIncidencia;
 	}
 
+
 	public int getNum_incidencia() {
 		return num_incidencia;
 	}
@@ -52,11 +63,6 @@ public class Incidencia {
 
 	@Override
 	public String toString() {
-		return "Incidencias [fechaError=" + fechaError + ", codEmple=" + codEmple + ", tipoIncidencia=" + tipoIncidencia
-				+ ", getTipoIncidencia()=" + getTipoIncidencia() + ", getFechaError()=" + getFechaError()
-				+ ", getCodEmple()=" + getCodEmple() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+		return "Incidencia [fechaError=" + fechaError + ", codEmple=" + codEmple + ", tipoIncidencia=" + tipoIncidencia + "]";
 	}
-
-	
 }

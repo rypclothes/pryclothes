@@ -1,6 +1,5 @@
 package bbdd;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,8 +18,7 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 		// TODO Auto-generated constructor stub
 	}
 	public  int añadir_Incidencia(Incidencia incidencia) {
-		String cadenaSQL="INSERT INTO reporte_incidencias (tipo_incidencia,cod_emple,fecha_error) VALUES('" + incidencia.getTipoIncidencia()+ "','" +
-				incidencia.getCodEmple()+"','"+incidencia.getFechaError()+"')"; 	
+		String cadenaSQL="INSERT INTO reporte_incidencias VALUES('" + incidencia.getCodEmple() + "','" + incidencia.getTipoIncidencia() + "','" + incidencia.getFechaError() + "','" + incidencia.getNum_incidencia() + "')"; 	
 				try{
 				this.abrir();
 				s=c.createStatement();
@@ -33,8 +31,9 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 					return -1;
 				}
 			}
-	public int borrar_Incidencias(String cod_emple, String num_incidencia,LocalDate fecha_error ){
-		String cadena="DELETE FROM reporte_incidencias WHERE cod_emple='" + cod_emple + "' AND fecha_error' "+ fecha_error + "' AND num_incidencia=' "+ num_incidencia;	
+	
+	public int borrar_Incidencias(String cod_emple, String num_incidencia ){
+		String cadena="DELETE FROM reporte_incidencias WHERE cod_emple='" + cod_emple + "' AND num_incidencia= "+ num_incidencia;	
 		
 		try{
 		this.abrir();
@@ -50,17 +49,17 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 			return -1;
 		}
 	}
-
-	
-	public  Vector<String> listadoIncidencias(){
-		String cadenaSQL="SELECT * from reporte_incidencias";
-		Vector<String> listaIncidencias=new Vector<String>();
+	public  Vector <Incidencia> listadoIncidencias(){
+		String cadenaSQL="SELECT * FROM reporte_incidencias";
+		Vector <Incidencia> listaIncidencias=new Vector <Incidencia>();
 		try{
 			this.abrir();
 			s=c.createStatement();
 			reg=s.executeQuery(cadenaSQL);
 			while ( reg.next()){
-				listaIncidencias.add(reg.getString(1));
+				java.sql.Date f=reg.getDate("fecha_error");
+				LocalDate fBuena=f.toLocalDate();
+				listaIncidencias.add(new Incidencia(fBuena, reg.getString("cod_emple"), reg.getString("tipo_incidencia"),0));
 			}			
 			s.close();
 			this.cerrar();
@@ -73,7 +72,27 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 		}
 	}
 	
-	
+	public int consultaNumIncidencia() {
+		String cadenaSQL = "SELECT MAX(num_incidencia) FROM reporte_incidencias";
+		int resultado = 0;
+		
+		try {
+			this.abrir();
+			
+			s = c.createStatement();
+			reg = s.executeQuery(cadenaSQL);
+			if(reg.next()) {
+				resultado = reg.getInt(1);
+			}
+			s.close();
+			
+			this.cerrar();
+			return resultado;
+		}catch(SQLException e) {
+			this.cerrar();
+			return -1;
+		}
+	}
 
 }
 
