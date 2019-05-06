@@ -8,7 +8,9 @@ import bbdd.BD_Clientes;
 import bbdd.BD_Compras;
 import bbdd.BD_Conector;
 import bbdd.BD_Empleado;
+
 import bbdd.BD_Usuario;
+
 import exceptions.DatosIntroducidosException;
 import modelos.Cliente;
 import modelos.Compra;
@@ -23,8 +25,10 @@ public class Main {
 		BD_Conector.BD_Ini("ryp_clothes");
 		BD_Empleado bde = new BD_Empleado();
 		BD_Clientes bdc = new BD_Clientes();
+
 		BD_Usuario bdu = new BD_Usuario();
 		BD_Compras bdco = new BD_Compras();
+
 		
 		System.out.println("Introduzca opcion:");
 		int op = sc.nextInt();
@@ -35,8 +39,8 @@ public class Main {
 			sc.nextLine();
 			String nombre = sc.nextLine();
 			
-			System.out.println("Introduce contraseña:");
-			String contraseña = sc.nextLine();
+			System.out.println("Introduce contraseÃ±a:");
+			String contraseÃ±a = sc.nextLine();
 			
 			System.out.println("Introduce telefono:");
 			String telefono = sc.nextLine();
@@ -47,7 +51,7 @@ public class Main {
 			System.out.println("Introduce num tarjeta");
 			long numTarjeta = sc.nextLong();
 			
-			Cliente cl = new Cliente(contraseña, nombre, telefono, numTarjeta, direccion);
+			Cliente cl = new Cliente(contraseÃ±a, nombre, telefono, numTarjeta, direccion);
 			
 			try {
 				System.out.println(bdc.darAltaCliente(cl));
@@ -74,8 +78,8 @@ public class Main {
 			sc.nextLine();
 			String nombre = sc.nextLine();
 			
-			System.out.println("Contraseña");
-			String contraseña = sc.nextLine();
+			System.out.println("ContraseÃ±a");
+			String contraseÃ±a = sc.nextLine();
 			
 			System.out.println("Telefono");
 			String telefono = sc.nextLine();
@@ -89,7 +93,7 @@ public class Main {
 			System.out.println("Salario");
 			double salario = sc.nextDouble();
 			
-			Empleado em = new Empleado(contraseña, nombre, telefono, rol, funcion, salario);
+			Empleado em = new Empleado(contraseÃ±a, nombre, telefono, rol, funcion, salario);
 			
 			try {
 				System.out.println(bde.darAltaEmpleado(em));
