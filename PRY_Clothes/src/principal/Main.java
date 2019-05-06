@@ -40,7 +40,7 @@ public class Main {
 			String nombre = sc.nextLine();
 			
 			System.out.println("Introduce contraseña:");
-			String contraseña = sc.nextLine();
+			String contrase�a = sc.nextLine();
 			
 			System.out.println("Introduce telefono:");
 			String telefono = sc.nextLine();
@@ -51,7 +51,7 @@ public class Main {
 			System.out.println("Introduce num tarjeta");
 			long numTarjeta = sc.nextLong();
 			
-			Cliente cl = new Cliente(contraseña, nombre, telefono, numTarjeta, direccion);
+			Cliente cl = new Cliente(contrase�a, nombre, telefono, numTarjeta, direccion);
 			
 			try {
 				System.out.println(bdc.darAltaCliente(cl));
@@ -79,7 +79,7 @@ public class Main {
 			String nombre = sc.nextLine();
 			
 			System.out.println("Contraseña");
-			String contraseña = sc.nextLine();
+			String contrase�a = sc.nextLine();
 			
 			System.out.println("Telefono");
 			String telefono = sc.nextLine();
@@ -93,7 +93,7 @@ public class Main {
 			System.out.println("Salario");
 			double salario = sc.nextDouble();
 			
-			Empleado em = new Empleado(contraseña, nombre, telefono, rol, funcion, salario);
+			Empleado em = new Empleado(contrase�a, nombre, telefono, rol, funcion, salario);
 			
 			try {
 				System.out.println(bde.darAltaEmpleado(em));
