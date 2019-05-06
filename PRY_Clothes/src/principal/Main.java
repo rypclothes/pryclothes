@@ -5,11 +5,16 @@ import java.util.*;
 import com.sun.org.apache.bcel.internal.util.Class2HTML;
 
 import bbdd.BD_Clientes;
+import bbdd.BD_Compras;
 import bbdd.BD_Conector;
 import bbdd.BD_Empleado;
+import bbdd.BD_Usuario;
 import exceptions.DatosIntroducidosException;
 import modelos.Cliente;
+import modelos.Compra;
 import modelos.Empleado;
+import modelos.Usuario;
+import sun.text.CompactByteArray;
 
 public class Main {
 
@@ -18,6 +23,8 @@ public class Main {
 		BD_Conector.BD_Ini("ryp_clothes");
 		BD_Empleado bde = new BD_Empleado();
 		BD_Clientes bdc = new BD_Clientes();
+		BD_Usuario bdu = new BD_Usuario();
+		BD_Compras bdco = new BD_Compras();
 		
 		System.out.println("Introduzca opcion:");
 		int op = sc.nextInt();
@@ -86,6 +93,76 @@ public class Main {
 			
 			try {
 				System.out.println(bde.darAltaEmpleado(em));
+			}catch(DatosIntroducidosException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(op == 4) {
+			System.out.println("Introduce el codigo del empleado para borrarlo");
+			sc.nextLine();
+			String codEmple = sc.nextLine();
+			
+			try {
+				System.out.println(bde.darBajaEmpleado(codEmple));
+			}catch(DatosIntroducidosException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(op == 5) {
+			try {
+				Vector <Empleado> empleados = bde.mostrarEmpleados();
+				
+				for(int i = 0; i < empleados.size(); i++) {
+					System.out.println(empleados.get(i));
+				}
+			} catch (DatosIntroducidosException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		if(op == 6) {
+			Vector <Cliente> clientes = new <Cliente> Vector();
+			try {
+				clientes = bdc.mostrarClientes();
+				
+				for(int i = 0; i < clientes.size(); i++) {
+					System.out.println(clientes.get(i));
+				}	
+			}catch (DatosIntroducidosException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		if(op == 7) {
+			System.out.println("precio");
+			int precio = sc.nextInt();
+			
+			System.out.println("numero prendas");
+			int prendas = sc.nextInt();
+			
+			System.out.println("codCliente");
+			sc.nextLine();
+			String codCliente = sc.nextLine();
+			
+			Compra cl = new Compra(precio, prendas, codCliente);
+			
+			try {
+				System.out.println(bdco.darAltaCompra(cl));
+			} catch (DatosIntroducidosException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(op == 8) {
+			System.out.println("factura");
+			sc.nextLine();
+			String factura = sc.nextLine();
+			
+			try {
+				System.out.println(bdco.darBajaCompra(factura));
 			}catch(DatosIntroducidosException e) {
 				e.printStackTrace();
 			}
