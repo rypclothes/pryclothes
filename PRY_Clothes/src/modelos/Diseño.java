@@ -2,6 +2,8 @@ package modelos;
 
 import java.time.LocalDate;
 
+import bbdd.BD_Diseño;
+
 public class Diseño {
 private LocalDate fecha_salida ;
 private String descripcion;
@@ -17,9 +19,26 @@ public Diseño(LocalDate fecha_salida, String descripcion, double precio, String 
 	this.descripcion = descripcion;
 	this.precio = precio;
 	this.categoria = categoria;
-	this.cont=1;
-	cont++;
-	this.codDiseño = categoria.substring(0,2).toUpperCase()+"-"+cont;
+	BD_Diseño bd=new BD_Diseño();
+	cont=bd.buscaNumero(categoria.substring(0,2).toUpperCase());
+	String contS="";
+	if (cont<10)
+		contS = "00" + cont;
+	if(cont>10 && cont<100)
+		contS="0"+cont;
+		
+	this.codDiseño = categoria.substring(0,2).toUpperCase()+"-"+contS;
+    
+	this.cantidad=cantidad;
+}
+
+public Diseño(LocalDate fecha_salida, String descripcion, double precio, String categoria,int cantidad, String cod) {
+	super();
+	this.fecha_salida = fecha_salida;
+	this.descripcion = descripcion;
+	this.precio = precio;
+	this.categoria = categoria;
+	this.codDiseño = cod;
     
 	this.cantidad=cantidad;
 }
@@ -51,7 +70,7 @@ public String getCodDiseño() {
 @Override
 public String toString() {
 	return "Diseño [fecha_salida=" + fecha_salida + ", descripcion=" + descripcion + ", precio=" + precio
-			+ ", numDiseño=" + numDiseño + ", cantidad=" + cantidad + ", categoria=" + categoria + ", codDiseño="
+			+ ", cantidad=" + cantidad + ", categoria=" + categoria + ", codDiseño="
 			+ codDiseño + "]";
 }
 
