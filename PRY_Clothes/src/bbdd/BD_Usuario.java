@@ -6,6 +6,10 @@ package bbdd;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Vector;
+
 import modelos.Usuario;
 import exceptions.DatosIntroducidosException;
 
@@ -59,6 +63,26 @@ public class BD_Usuario extends BD_Conector{
 
 	public int consultaNumeroSecuencialCliente() {
 		cadenaSQL = "SELECT MAX(SUBSTRING(cod_cliente,3)) FROM clientes WHERE SUBSTRING(cod_cliente,1,1) = 'C'";
+		int filas = 0;
+		
+		try {
+			this.abrir();
+			
+			s = c.createStatement();
+			reg = s.executeQuery(cadenaSQL);
+			if(reg.next()){
+				filas = reg.getInt(1);
+			}
+			
+			return filas;
+		}catch(SQLException e) {
+			this.cerrar();
+			return -1;
+		}
+	}
+
+	public int consultaNumeroSecuencialEmpleado() {
+		cadenaSQL = "SELECT MAX(SUBSTRING(cod_emple,3)) FROM empleados WHERE SUBSTRING(cod_emple,1,1) = 'E'";
 		int filas = 0;
 		
 		try {
