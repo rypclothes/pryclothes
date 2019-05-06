@@ -5,12 +5,18 @@ import java.util.*;
 import com.sun.org.apache.bcel.internal.util.Class2HTML;
 
 import bbdd.BD_Clientes;
+import bbdd.BD_Compras;
 import bbdd.BD_Conector;
 import bbdd.BD_Empleado;
-import bbdd.BD_Reclamaciones;
+
+import bbdd.BD_Usuario;
+
 import exceptions.DatosIntroducidosException;
 import modelos.Cliente;
+import modelos.Compra;
 import modelos.Empleado;
+import modelos.Usuario;
+import sun.text.CompactByteArray;
 
 public class Main {
 
@@ -19,7 +25,10 @@ public class Main {
 		BD_Conector.BD_Ini("ryp_clothes");
 		BD_Empleado bde = new BD_Empleado();
 		BD_Clientes bdc = new BD_Clientes();
-		BD_Reclamaciones bdr=new BD_Reclamaciones() ;
+
+		BD_Usuario bdu = new BD_Usuario();
+		BD_Compras bdco = new BD_Compras();
+
 		
 		System.out.println("Introduzca opcion:");
 		int op = sc.nextInt();
@@ -30,8 +39,8 @@ public class Main {
 			sc.nextLine();
 			String nombre = sc.nextLine();
 			
-			System.out.println("Introduce contraseña:");
-			String contraseña = sc.nextLine();
+			System.out.println("Introduce contraseÃ±a:");
+			String contraseÃ±a = sc.nextLine();
 			
 			System.out.println("Introduce telefono:");
 			String telefono = sc.nextLine();
@@ -42,7 +51,7 @@ public class Main {
 			System.out.println("Introduce num tarjeta");
 			long numTarjeta = sc.nextLong();
 			
-			Cliente cl = new Cliente(contraseña, nombre, telefono, numTarjeta, direccion);
+			Cliente cl = new Cliente(contraseÃ±a, nombre, telefono, numTarjeta, direccion);
 			
 			try {
 				System.out.println(bdc.darAltaCliente(cl));
@@ -69,8 +78,8 @@ public class Main {
 			sc.nextLine();
 			String nombre = sc.nextLine();
 			
-			System.out.println("Contraseña");
-			String contraseña = sc.nextLine();
+			System.out.println("ContraseÃ±a");
+			String contraseÃ±a = sc.nextLine();
 			
 			System.out.println("Telefono");
 			String telefono = sc.nextLine();
@@ -84,10 +93,80 @@ public class Main {
 			System.out.println("Salario");
 			double salario = sc.nextDouble();
 			
-			Empleado em = new Empleado(contraseña, nombre, telefono, rol, funcion, salario);
+			Empleado em = new Empleado(contraseÃ±a, nombre, telefono, rol, funcion, salario);
 			
 			try {
 				System.out.println(bde.darAltaEmpleado(em));
+			}catch(DatosIntroducidosException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(op == 4) {
+			System.out.println("Introduce el codigo del empleado para borrarlo");
+			sc.nextLine();
+			String codEmple = sc.nextLine();
+			
+			try {
+				System.out.println(bde.darBajaEmpleado(codEmple));
+			}catch(DatosIntroducidosException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(op == 5) {
+			try {
+				Vector <Empleado> empleados = bde.mostrarEmpleados();
+				
+				for(int i = 0; i < empleados.size(); i++) {
+					System.out.println(empleados.get(i));
+				}
+			} catch (DatosIntroducidosException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		if(op == 6) {
+			Vector <Cliente> clientes = new <Cliente> Vector();
+			try {
+				clientes = bdc.mostrarClientes();
+				
+				for(int i = 0; i < clientes.size(); i++) {
+					System.out.println(clientes.get(i));
+				}	
+			}catch (DatosIntroducidosException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		if(op == 7) {
+			System.out.println("precio");
+			int precio = sc.nextInt();
+			
+			System.out.println("numero prendas");
+			int prendas = sc.nextInt();
+			
+			System.out.println("codCliente");
+			sc.nextLine();
+			String codCliente = sc.nextLine();
+			
+			Compra cl = new Compra(precio, prendas, codCliente);
+			
+			try {
+				System.out.println(bdco.darAltaCompra(cl));
+			} catch (DatosIntroducidosException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(op == 8) {
+			System.out.println("factura");
+			sc.nextLine();
+			String factura = sc.nextLine();
+			
+			try {
+				System.out.println(bdco.darBajaCompra(factura));
 			}catch(DatosIntroducidosException e) {
 				e.printStackTrace();
 			}

@@ -13,7 +13,7 @@ public class Usuario {
 	
 	BD_Usuario bdu = new BD_Usuario();
 	
-	private LocalDateTime fechaAlta;
+	private LocalDate fechaAlta;
 	
 	/*Constructor para Clientes*/
 	public Usuario(String contraseña, String nombre, String telefono) {
@@ -28,6 +28,12 @@ public class Usuario {
 		codigo = "CL" + (bdu.consultaNumeroSecuencialCliente() + 1);
 	}
 	
+	@Override
+	public String toString() {
+		return "Usuario [codigo=" + codigo + ", contraseña=" + contraseña + ", nombre=" + nombre + ", rol=" + rol
+				+ ", telefono=" + telefono + ", fechaAlta=" + fechaAlta + "]";
+	}
+
 	public Usuario(){}
 	
 	/*Constructor para Empleados*/
@@ -40,14 +46,26 @@ public class Usuario {
 		fechaAlta = fechaAlta.now();
 		
 		if(rol.substring(0,2).equalsIgnoreCase("lo")) {
-			codigo = "EL";
+			codigo = "EL" + (bdu.consultaNumeroSecuencialEmpleado() + 1);
 		}
 		if(rol.substring(0,2).equalsIgnoreCase("di")) {
-			codigo = "ED";
+			codigo = "ED" + (bdu.consultaNumeroSecuencialEmpleado() + 1);
 		}
 		if(rol.substring(0,2).equalsIgnoreCase("ad")) {
-			codigo = "EA";
+			codigo = "EA" + (bdu.consultaNumeroSecuencialEmpleado() + 1);
 		}
+	}
+	
+	/*Constructor para todo*/
+	public Usuario(String codigo, String contraseña, String nombre, String rol, String telefono,
+			LocalDate fechaAlta) {
+		super();
+		this.codigo = codigo;
+		this.contraseña = contraseña;
+		this.nombre = nombre;
+		this.rol = rol;
+		this.telefono = telefono;
+		this.fechaAlta = fechaAlta;
 	}
 	
 	public Usuario(String codigo) {
@@ -75,7 +93,7 @@ public class Usuario {
 		return telefono;
 	}
 
-	public LocalDateTime getFechaAlta() {
+	public LocalDate getFechaAlta() {
 		return fechaAlta;
 	}
 

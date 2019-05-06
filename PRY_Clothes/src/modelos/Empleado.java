@@ -5,16 +5,11 @@ public class Empleado extends Usuario{
 	private String funcion;
 	private int numAvisos;
 	private double salario;
-	private int cont;
-	private static int foto = 0;
 
 	public Empleado(String codigo, String funcion, double salario) {
 		super(codigo);
 		this.funcion = funcion;
 		this.salario = salario;
-		
-		foto++;
-		cont = foto;
 		
 		numAvisos = 0;
 	}
@@ -31,7 +26,7 @@ public class Empleado extends Usuario{
 	@Override
 	public String toString() {
 		return "Empleado [codEmple=" + codigo + ", funcion=" + funcion + ", numAvisos=" + numAvisos + ", salario="
-				+ salario + ", cont=" + cont + "]";
+				+ salario + "]";
 	}
 
 	public String getCodEmple() {
@@ -48,14 +43,6 @@ public class Empleado extends Usuario{
 
 	public double getSalario() {
 		return salario;
-	}
-
-	public int getCont() {
-		return cont;
-	}
-
-	public static int getFoto() {
-		return foto;
 	}
 	
 }

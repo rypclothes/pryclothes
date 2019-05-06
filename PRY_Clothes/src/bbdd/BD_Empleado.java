@@ -3,6 +3,7 @@ package bbdd;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.Vector;
 
 import com.sun.xml.internal.ws.spi.db.DatabindingException;
@@ -47,7 +48,7 @@ public class BD_Empleado extends BD_Conector{
 	}
 
 	public int darBajaEmpleado(String codigo) throws DatosIntroducidosException {
-		cadenaSQL = "DELETE FROM empleados WHERE codigo ='" + codigo + "'";
+		cadenaSQL = "DELETE FROM empleados WHERE cod_emple ='" + codigo + "'";
 		int filas;
 		
 		try {
@@ -58,6 +59,8 @@ public class BD_Empleado extends BD_Conector{
 			s.close();
 			
 			this.cerrar();
+			
+			bdu.darBajaUsuario(codigo);
 			return filas;
 		}catch(SQLException e) {
 			this.cerrar();
@@ -86,5 +89,25 @@ public class BD_Empleado extends BD_Conector{
 		}
 	}
 
-	
+	public Vector <Empleado> mostrarEmpleados() throws DatosIntroducidosException{
+		Vector <Empleado> empleados = new <Empleado> Vector();
+		cadenaSQL = "SELECT * FROM empleados";
+		
+		try {
+			this.abrir();
+			
+			s = c.createStatement();
+			reg = s.executeQuery(cadenaSQL);
+			while(reg.next()) {
+				empleados.add(new Empleado(reg.getString("cod_emple"),reg.getString("funcion"),reg.getDouble("salario")));
+			}
+			s.close();
+			
+			this.cerrar();
+			return empleados;
+		}catch(SQLException e) {
+			this.cerrar();
+			throw new DatosIntroducidosException("Ha habido problemas con la BBDD");
+		}
+	}
 }

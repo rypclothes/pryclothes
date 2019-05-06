@@ -2,6 +2,7 @@ package modelos;
 //Daniel Cirtog y Pablo Martin
 
 public class Cliente extends Usuario{
+
 	private long numTarjeta;
 	private String direccion;
 	
@@ -17,7 +18,6 @@ public class Cliente extends Usuario{
 		super(contraseña, nombre, telefono);
 		this.direccion = direccion;
 		this.numTarjeta = numTarjeta;
-		// TODO Auto-generated constructor stub
 	}
 
 
@@ -32,6 +32,9 @@ public class Cliente extends Usuario{
 	public String getDireccion() {
 		return direccion;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Cliente [numTarjeta=" + numTarjeta + ", direccion=" + direccion + ", codigo=" + codigo + "]";
+	}
 }

@@ -58,4 +58,25 @@ public class BD_Clientes extends BD_Conector{
 		}
 	}
 
+	public Vector <Cliente> mostrarClientes() throws DatosIntroducidosException{
+		Vector <Cliente> clientes = new <Cliente> Vector();
+		cadenaSQL = "SELECT * FROM clientes";
+		
+		try {
+			this.abrir();
+			
+			s = c.createStatement();
+			reg = s.executeQuery(cadenaSQL);
+			while(reg.next()) {
+				clientes.add(new Cliente(reg.getString("cod_cliente"), reg.getLong("num_tarjeta"), reg.getString("direccion")));
+			}
+			s.close();
+			
+			this.cerrar();
+			return clientes;
+		}catch(SQLException e) {
+			this.cerrar();
+			throw new DatosIntroducidosException("Ha habido problemas con la BBDD");
+		}
+	}
 }
