@@ -39,6 +39,7 @@ public class BD_Empleado extends BD_Conector{
 			
 			this.cerrar();
 			return filas;
+			
 		}catch(SQLException e) {
 			this.cerrar();
 			throw new DatosIntroducidosException("Algun dato no esta bien introducido");
@@ -83,7 +84,7 @@ public class BD_Empleado extends BD_Conector{
 			return emp;
 		}catch(SQLException e) {
 			return null;
-		}
+		} 
 	}
 
 	
