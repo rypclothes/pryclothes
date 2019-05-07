@@ -1,6 +1,6 @@
 package modelos;
 
-public class Venta {
+public class Venta  {
 	
 	private String cod_diseño,factura;
 	private int cantidad,precio_venta;

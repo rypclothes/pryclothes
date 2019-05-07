@@ -20,7 +20,7 @@ public class BD_Ventas extends BD_Conector{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public String crearFactura(String cod_cliente) {
+	public String crearFactura(String cod_cliente)  {
 		int num=0;
 		String cadenaSQL="SELECT MAX(SUBSTRING(factura,4) FROM COMPRAS)";	
 		
