@@ -111,7 +111,7 @@ public class BD_Diseño extends BD_Conector {
 	   }
 	   /*jajaj*/
 	   public Vector <Diseño> consultar_Diseños() {
-			 Vector <Diseño> mostrar = new <Diseño> Vector();
+			 Vector <Diseño> diseñito = new <Diseño> Vector();
 			 String cadenaSQL = "SELECT * FROM diseños";
 			 
 			 try {
@@ -121,21 +121,20 @@ public class BD_Diseño extends BD_Conector {
 				 reg = s.executeQuery(cadenaSQL);
 				 
 				 while(reg.next()) {
-					mostrar.add(new Diseño(reg.getDate("fecha_salida").toLocalDate(),reg.getString("descripcion"),reg.getDouble("precio"),reg.getString("categoria"),reg.getInt("cantidad"))); 
+					diseñito.add(new Diseño(reg.getDate("fecha_salida").toLocalDate(),reg.getString("descripcion"),reg.getDouble("precio"),reg.getString("categoria"),reg.getInt("cantidad"),reg.getString("cod_diseño"))); 
 				 }
 				 s.close();
-				
 				 this.cerrar();
 			 }catch(SQLException e) {
 				 this.cerrar();
 				 e.printStackTrace();
 			 }
-			 return mostrar;
+			 return diseñito;
 		 }
 	  public Vector <Diseño> mostrar_Diseño(String buscado,String campoBuscar ){
-			 Vector <Diseño> mostrar = new <Diseño> Vector();
+			 Vector <Diseño> diseñopropio = new <Diseño> Vector();
 			   
-			   String cadenaSQL="SELECT * FROM diseños  where "+campoBuscar+"='"+buscado+"'";
+			   String cadenaSQL="SELECT * FROM diseños  where "+campoBuscar+"='"+buscado+"' ";
 			 try {
 				 this.abrir();
 				 
@@ -143,7 +142,7 @@ public class BD_Diseño extends BD_Conector {
 				 reg = s.executeQuery(cadenaSQL);
 				 
 				 while(reg.next()) {
-					mostrar.add(new Diseño(reg.getDate("fecha_salida").toLocalDate(),reg.getString("descripcion"),reg.getDouble("precio"),reg.getString("categoria"),reg.getInt("cantidad"),reg.getString("cod_diseño"))); 
+					diseñopropio.add(new Diseño(reg.getDate("fecha_salida").toLocalDate(),reg.getString("descripcion"),reg.getDouble("precio"),reg.getString("categoria"),reg.getInt("cantidad"),reg.getString("cod_diseño"))); 
 				 }
 				 s.close();
 				
@@ -152,7 +151,7 @@ public class BD_Diseño extends BD_Conector {
 				 this.cerrar();
 				 e.printStackTrace();
 			 }
-			 return mostrar;
+			 return diseñopropio;
 	  }
 	 
 	 public  Vector <Diseño> mostrar_diseñofecha(LocalDate fechaIni) {
@@ -175,10 +174,29 @@ public class BD_Diseño extends BD_Conector {
 		 		return mostrarDiseñofecha;
 		 		
 		 		}
-	 
+	 public  Vector <Diseño> mostrar_diseñosiete() {
+		 Vector <Diseño> mostrarDiseñosiete = new <Diseño> Vector();
+		 String cadenaSQL="SELECT * FROM diseños where fecha_salida between '"+LocalDate.now().minusDays(7)+"' and  '"+LocalDate.now()+"'";
+		 		try {
+		 			this.abrir();
+		 			 s = c.createStatement();
+					 reg = s.executeQuery(cadenaSQL);
+					 while(reg.next()) {
+							mostrarDiseñosiete.add(new Diseño(reg.getDate("fecha_salida").toLocalDate(),reg.getString("descripcion"),reg.getDouble("precio"),reg.getString("categoria"),reg.getInt("cantidad"),reg.getString("cod_diseño"))); 
+						 }
+						 s.close();
+						
+						 this.cerrar();
+					 }catch(SQLException e) {
+						 this.cerrar();
+						 e.printStackTrace();
+					 }
+		 		return mostrarDiseñosiete;
 	 
 	 
 		 
 	 }
+	 
+}
 	     
 
