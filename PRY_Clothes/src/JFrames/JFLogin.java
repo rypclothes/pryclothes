@@ -20,6 +20,7 @@ public class JFLogin extends JFrame{
 		initialize();
 	}
 	
+	
 	private void initialize() {
 		panelLogin = new PNLDatosUsuLogin();
 		getContentPane().add(panelLogin);
