@@ -31,7 +31,6 @@ public class PNLDatosUsuLogin extends JPanel {
 		setBounds(0, 0, 304, 180);
 		initialize();
 	}
-	
 	private void initialize() {
 		/*Login de usuario*/
 		/*Etiqueta y JTF nombre usuario*/
