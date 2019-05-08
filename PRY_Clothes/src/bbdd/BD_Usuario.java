@@ -101,5 +101,25 @@ public class BD_Usuario extends BD_Conector{
 		}
 	}
 
-	
+	public String inicioSesion(String nombreUsu, String contraseña) throws DatosIntroducidosException {
+		cadenaSQL = "SELECT rol FROM usuarios WHERE nombre ='" + nombreUsu + "' AND contraseña ='" + contraseña + "'";
+		String resultado = null;
+		
+		try {
+			this.abrir();
+			
+			s = c.createStatement();
+			reg = s.executeQuery(cadenaSQL);
+			while(reg.next()) {
+				resultado = reg.getString("rol");
+			}
+			s.close();
+			
+			this.cerrar();
+			return resultado;
+		}catch(SQLException e) {
+			this.cerrar();
+			throw new DatosIntroducidosException("Ha habido un error en la bbdd");
+		}
+	}
 }
