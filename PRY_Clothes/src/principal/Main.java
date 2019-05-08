@@ -12,6 +12,7 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
 		int opc=0;
+		
 		BD_Incidencias bd=new BD_Incidencias("proyecto2");
 		LocalDate fecha_salida = null;
 		boolean correcto=false;
@@ -27,6 +28,7 @@ public class Main {
 			switch(opc) {
 	         case 1:
 			   do{
+				   System.out.println("-----------------------------------------------------*Añadir incidencia *-----------------------------------------------------------");
 			    	  System.out.println("dime fecha de error");
 			      try {
 			    	  sc.nextLine();
@@ -54,10 +56,12 @@ public class Main {
 						System.out.println("\nProblemas técnicos");
 						break;
 					}
+					System.out.println("----------------------------------------------------------------------------------------");
 				break;
 		   }while(correcto!=true);
 		break;
 			case 2:
+				System.out.println("-----------------------------------------------------* Borrar incidencia *-----------------------------------------------------------");
 				sc.nextLine();
 				System.out.println("Introduce codigo de empleado");
 				String cod_emple=sc.nextLine();
@@ -77,9 +81,10 @@ public class Main {
 					System.out.println("\nProblemas técnicos");
 					break;
 				}	
-	
+				System.out.println("----------------------------------------------------------------------------------------");
 				break;
 			case 3:
+				System.out.println("-----------------------------------------------------* Listar incidencia *-----------------------------------------------------------");
 				Vector <Incidencia> incidencias=bd.listadoIncidencias();
 				if (incidencias==null){
 						System.out.println("En este momento no podemos realizar la operación");
@@ -88,7 +93,8 @@ public class Main {
 				System.out.println("Lista de Incidencias");
 				for (int i=0;i<incidencias.size();i++)
 					System.out.println(incidencias.get(i));
-				break;	
+				System.out.println("----------------------------------------------------------------------------------------");
+				break;
 			}
 		}while (opc!=4);
 		
