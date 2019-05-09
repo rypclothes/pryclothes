@@ -9,12 +9,12 @@ import javax.swing.border.TitledBorder;
 import modelos.Usuario;
 import java.awt.Color;
 
-public class JPDatos extends JPanel {
+public class JPLogin extends JPanel {
 	private JTextField JTFNombreUsuario;
 	private JTextField txtTelefono;
 	private JPasswordField JTFContraseña;
 	
-	public JPDatos() {
+	public JPLogin() {
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Login", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		setLayout(null);
 		setBounds(0, 0, 305, 116);
@@ -50,6 +50,7 @@ public class JPDatos extends JPanel {
 	public Usuario getDatos() {
 		return new Usuario(JTFContraseña.getText(),JTFNombreUsuario.getText());
 	}
+	
 	public void setInhabilitado() {
 		for (Component c :this.getComponents()) 
 			c.setEnabled(false);

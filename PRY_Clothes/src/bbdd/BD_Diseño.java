@@ -16,7 +16,7 @@ public class BD_Diseño extends BD_Conector {
 		super();
 	}
 	
-	public  int añadir_Diseño( Diseño diseños) {
+	public  int añadir_Diseño(Diseño diseños) {
 		String cadenaSQL="INSERT INTO diseños VALUES('"+diseños.getFecha_salida()+"','"+
 			   diseños.getDescripcion()+"','"+diseños.getPrecio()+"','"+diseños.getCategoria()+"','"+diseños.getCodDiseño()+"','"+diseños.getCantidad()+"')";
 		try {
@@ -95,7 +95,7 @@ public class BD_Diseño extends BD_Conector {
 				 reg = s.executeQuery(cadenaSQL);
 				 
 				 while(reg.next()) {
-					mostrar.add(new Diseño(reg.getDate("fecha_salida").toLocalDate(),reg.getString("descripcion"),reg.getDouble("precio"),reg.getString("categoria"),reg.getInt("cantidad"))); 
+					mostrar.add(new Diseño(reg.getString("descripcion"),reg.getDouble("precio"),reg.getString("categoria"),reg.getInt("cantidad"))); 
 				 }
 				 s.close();
 				
@@ -106,6 +106,25 @@ public class BD_Diseño extends BD_Conector {
 			 }
 			 return mostrar;
 		 }
-		   
-	     
+	   public int buscaNumero(String bus) {
+			String cadenaSQL="SELECT MAX(SUBSTRING(cod_diseño,1,2)='"+bus+"') from diseños";
+			int num=0;
+			try {
+				this.abrir();
+				 s = c.createStatement();
+				 reg=s.executeQuery(cadenaSQL);
+				 if ( reg.next()){
+					num=reg.getInt(1);
+					}	
+				 s.close();
+				 this.cerrar();
+				 return num;
+			}catch(SQLException e) {
+				this.cerrar();
+				System.out.println(e.getMessage());
+				return -1;
+			}
+			
+			
+		}
 }

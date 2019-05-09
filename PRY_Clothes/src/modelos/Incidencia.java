@@ -1,21 +1,19 @@
 package modelos;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
+import java.time.*;
 
 public class Incidencia {
-	private Date fechaError;
+	private LocalDate fechaError;
 	private String codEmple;
 	private String tipoIncidencia;
 	
-	public Incidencia(Date fechaError,String codEmple, String tipoIncidencia) {
+	public Incidencia(String codEmple, String tipoIncidencia) {
 		super();
-		this.fechaError = fechaError;
+		this.fechaError = LocalDate.now();
 		this.codEmple = codEmple;
 		this.tipoIncidencia = tipoIncidencia;
 	}
-
-
 
 	public void setCodEmple(String codEmple) {
 		this.codEmple = codEmple;
@@ -46,8 +44,7 @@ public class Incidencia {
 	public String toString() {
 		return "Incidencias [fechaError=" + fechaError + ", codEmple=" + codEmple + ", tipoIncidencia=" + tipoIncidencia
 				+ ", getTipoIncidencia()=" + getTipoIncidencia() + ", getFechaError()=" + getFechaError()
-				+ ", getCodEmple()=" + getCodEmple() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ ", getCodEmple()=" + getCodEmple() + super.toString() + "]";
 	}
 
 	

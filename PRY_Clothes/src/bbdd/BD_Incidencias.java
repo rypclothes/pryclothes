@@ -58,9 +58,7 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 			s=c.createStatement();
 			reg=s.executeQuery(cadenaSQL);
 			while ( reg.next()){
-				
-				listaIncidencias.add(new Incidencia(reg.getDate(3), reg.getString(2), reg.getString(1)));
-				
+				listaIncidencias.add(new Incidencia(reg.getString(2), reg.getString(1)));
 			}
 			s.close();
 			this.cerrar();
