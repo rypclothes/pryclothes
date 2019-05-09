@@ -28,6 +28,14 @@ public class Usuario {
 		codigo = "CL" + (bdu.consultaNumeroSecuencialCliente() + 1);
 	}
 	
+	
+	public Usuario(String contraseña, String nombre) {
+		super();
+		this.contraseña = contraseña;
+		this.nombre = nombre;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Usuario [codigo=" + codigo + ", contraseña=" + contraseña + ", nombre=" + nombre + ", rol=" + rol
