@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.Toolkit;
 
 public class JFAdmin extends JFrame {
 
@@ -13,6 +14,7 @@ public class JFAdmin extends JFrame {
 
 	
 	public JFAdmin() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JFAdmin.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Perfil Administrador");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

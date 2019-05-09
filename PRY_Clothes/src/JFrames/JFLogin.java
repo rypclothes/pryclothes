@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import JPanels.JPBotones;
-import JPanels.JPDatos;
+import JPanels.JPLogin;
 import bbdd.BD_Conector;
 import bbdd.BD_Usuario;
 import exceptions.DatosIntroducidosException;
@@ -13,13 +13,15 @@ import modelos.Usuario;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 public class JFLogin extends JFrame{
-	private JPDatos panelAlumnos;
+	private JPLogin panelAlumnos;
 	private JPBotones panelBotones;
 	private BD_Usuario bdu = new BD_Usuario();
 	
 	public JFLogin() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JFLogin.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("PRY CLOTHES");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -31,7 +33,7 @@ public class JFLogin extends JFrame{
 	
 	public void initialize() {
 		//Panel introduccion de datos
-		panelAlumnos = new JPDatos();
+		panelAlumnos = new JPLogin();
 		getContentPane().add(panelAlumnos);
 		
 		//Panel botones
