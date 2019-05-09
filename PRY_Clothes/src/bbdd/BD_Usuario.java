@@ -101,8 +101,8 @@ public class BD_Usuario extends BD_Conector{
 		}
 	}
 
-	public String inicioSesion(String nombreUsu, String contraseña) throws DatosIntroducidosException {
-		cadenaSQL = "SELECT rol FROM usuarios WHERE nombre ='" + nombreUsu + "' AND contraseña ='" + contraseña + "'";
+	public String inicioSesion(Usuario usu) throws DatosIntroducidosException {
+		cadenaSQL = "SELECT rol FROM usuarios WHERE nombre ='" + usu.getNombre() + "' AND contraseña ='" + usu.getContraseña() + "'";
 		String resultado = null;
 		
 		try {
