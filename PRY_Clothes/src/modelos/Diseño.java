@@ -2,6 +2,8 @@ package modelos;
 
 import java.time.LocalDate;
 
+import bbdd.BD_Diseño;
+
 public class Diseño {
 private LocalDate fecha_salida ;
 private String descripcion;
@@ -11,15 +13,25 @@ private  int numDiseño;
 private int cantidad;
 private String categoria;
 private String codDiseño;
-public Diseño(LocalDate fecha_salida, String descripcion, double precio, String categoria,int cantidad) {
+public Diseño(String descripcion, double precio, String categoria,int cantidad) {
 	super();
 	this.fecha_salida = fecha_salida;
 	this.descripcion = descripcion;
 	this.precio = precio;
 	this.categoria = categoria;
-	this.cont=1;
+
+	BD_Diseño bd=new BD_Diseño();
+	cont=bd.buscaNumero(categoria.substring(0,2).toUpperCase());
 	cont++;
-	this.codDiseño = categoria.substring(0,2).toUpperCase()+"-"+cont;
+	String contS="";
+	if (cont<10)
+		contS = "00" + cont;
+	if(cont>10 && cont<100)
+		contS="0"+cont;
+		
+	this.codDiseño = categoria.substring(0,2).toUpperCase()+"-"+contS;
+	
+	this.fecha_salida = LocalDate.now();
     
 	this.cantidad=cantidad;
 }

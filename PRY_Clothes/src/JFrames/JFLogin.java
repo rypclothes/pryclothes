@@ -58,8 +58,20 @@ public class JFLogin extends JFrame{
 								JFadmin.setVisible(true);
 							}
 							else {
-								JFEmpleado JFemple=new JFEmpleado();
-								JFemple.setVisible(true);
+								if(tipo.equals("Administrativo")) {
+									JFEmpleadoAdministrativo jempleA = new JFEmpleadoAdministrativo();
+									jempleA.setVisible(true);
+								}else {
+									if(tipo.equals("Diseño")) {
+										JFEmpleadoDiseño jempleD = new JFEmpleadoDiseño();
+										jempleD.setVisible(true);
+									}else {
+										if(tipo.equals("Logistica")) {
+											JFEmpleadoLogistica jempleL = new JFEmpleadoLogistica();
+											jempleL.setVisible(true);
+										}
+									}
+								}
 							}
 						dispose();			
 					}		
