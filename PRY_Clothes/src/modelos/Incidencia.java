@@ -25,20 +25,16 @@ public class Incidencia {
 
 	public String getTipoIncidencia() {
 		// TODO Auto-generated method stub
-		return null;
+		return tipoIncidencia;
 	}
 
-	public String getFechaError() {
-		// TODO Auto-generated method stub
-		return null;
+	public LocalDate getFechaError() {
+		return fechaError;
 	}
 
 	public String getCodEmple() {
-		// TODO Auto-generated method stub
-		return null;
+		return codEmple;
 	}
-
-
 
 	@Override
 	public String toString() {

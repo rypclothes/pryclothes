@@ -17,7 +17,7 @@ public class JPLogin extends JPanel {
 	public JPLogin() {
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Login", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		setLayout(null);
-		setBounds(0, 0, 305, 116);
+		setBounds(0, 0, 294, 94);
 		initialize();
 	}
 	

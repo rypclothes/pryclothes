@@ -13,12 +13,12 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 	private static Statement s;		
 	private static ResultSet reg;
 	
-	public BD_Incidencias(String file) {
+	public BD_Incidencias() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public  int añadir_Incidencia(Incidencia in) {
-		String cadenaSQL="INSERT INTO reporte_incidencias VALUES('" + in.getTipoIncidencia()+ "','" +
+		String cadenaSQL="INSERT INTO reporte_incidencias (tipo_incidencia, cod_emple, fecha_error)VALUES('" + in.getTipoIncidencia()+ "','" +
 				in.getCodEmple()+"','"+in.getFechaError()+"')"; 	
 				try{
 				this.abrir();
@@ -26,7 +26,7 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 				int filas=s.executeUpdate(cadenaSQL);
 				s.close();
 				this.cerrar();
-				return filas;
+				return filas; 
 				}
 				catch ( SQLException e){			
 					return -1;

@@ -20,9 +20,11 @@ import java.awt.event.MouseEvent;
 public class JFCrearDiseño extends JFrame {
 	private JPanel contentPane;
 	private BD_Diseño bdd = new BD_Diseño();
+	String tipo;
 
-	public JFCrearDiseño() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(JFEmpleadoAdministrativo.class.getResource("/imagenes/rypclothes.png")));
+	public JFCrearDiseño(String tipo) {
+		this.tipo = tipo;
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Creacion de diseños");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 255, 281);
@@ -45,7 +47,7 @@ public class JFCrearDiseño extends JFrame {
 		btnCrear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				JFEmpleadoDiseño crear = new JFEmpleadoDiseño();
+				JFEmpleadoDiseño crear = new JFEmpleadoDiseño(tipo);
 				
 				if(!jpc.validarDatos()) {
 					JOptionPane.showMessageDialog(null, "Tienen que estar rellenos todos los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
