@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -20,13 +21,15 @@ import java.awt.event.MouseEvent;
 public class JFCrearIncidencia extends JFrame {
 
 	private JPanel contentPane;
-	private BD_Incidencias bdi;
+	private BD_Incidencias bdi=new BD_Incidencias();
+	String tipo;
 
-	public JFCrearIncidencia() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(JFEmpleadoAdministrativo.class.getResource("/imagenes/rypclothes.png")));
+	public JFCrearIncidencia(String tipo) {
+		this.tipo = tipo;
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Crear incidencia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 266, 180);
+		setBounds(100, 100, 266, 183);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -46,10 +49,21 @@ public class JFCrearIncidencia extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				Incidencia in = jpci.getDatos();
-				bdi.añadir_Incidencia(in);
+				int res = bdi.añadir_Incidencia(in);
+				
+				if(res == 1) {
+					JOptionPane.showMessageDialog(null, "Incidencia dada de alta correctamente", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
+					dispose();
+				}else {
+					if(res == 0) {
+						JOptionPane.showMessageDialog(null, "Algun dato no es correcto", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+					}else {
+						JOptionPane.showMessageDialog(null, "Error en la BBDD", "ERROR", JOptionPane.ERROR_MESSAGE);
+					}
+				}
 			}
 		});
-		btnAceptar.setBounds(73, 112, 97, 25);
+		btnAceptar.setBounds(72, 102, 97, 25);
 		jpci.add(btnAceptar);
 	}
 }

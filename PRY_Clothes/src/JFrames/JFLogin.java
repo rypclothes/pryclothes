@@ -24,8 +24,8 @@ public class JFLogin extends JFrame{
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFLogin.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("PRY CLOTHES");
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 314, 183);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 296, 172);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		initialize();
@@ -59,15 +59,15 @@ public class JFLogin extends JFrame{
 							}
 							else {
 								if(tipo.equals("Administrativo")) {
-									JFEmpleadoAdministrativo jempleA = new JFEmpleadoAdministrativo();
+									JFEmpleadoAdministracion jempleA = new JFEmpleadoAdministracion(tipo);
 									jempleA.setVisible(true);
 								}else {
 									if(tipo.equals("Diseño")) {
-										JFEmpleadoDiseño jempleD = new JFEmpleadoDiseño();
+										JFEmpleadoDiseño jempleD = new JFEmpleadoDiseño(tipo);
 										jempleD.setVisible(true);
 									}else {
 										if(tipo.equals("Logistica")) {
-											JFEmpleadoLogistica jempleL = new JFEmpleadoLogistica();
+											JFEmpleadoLogistica jempleL = new JFEmpleadoLogistica(tipo);
 											jempleL.setVisible(true);
 										}
 									}
@@ -80,7 +80,7 @@ public class JFLogin extends JFrame{
 				}
 			}
 		});
-		BTNAceptar.setBounds(28, 116, 120, 23);
+		BTNAceptar.setBounds(25, 107, 120, 23);
 		getContentPane().add(BTNAceptar);
 		
 		JButton BTNRegistrarse = new JButton("Reg\u00EDstrate");
@@ -92,7 +92,7 @@ public class JFLogin extends JFrame{
 				dispose();
 			}
 		});
-		BTNRegistrarse.setBounds(160, 116, 120, 23);
+		BTNRegistrarse.setBounds(160, 107, 120, 23);
 		getContentPane().add(BTNRegistrarse);
 	}
 }

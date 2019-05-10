@@ -18,13 +18,12 @@ public class JPCrearIncidencia extends JPanel {
 
 	public JPCrearIncidencia() {
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Crear Incidencia", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		setBounds(0, 0, 266, 110);
+		setBounds(0, 0, 257, 100);
 		setLayout(null);
 		initialize();
 	}
 	
 	public void initialize() {
-		
 		JLabel LBLCodEmple = new JLabel("Codigo empleado");
 		LBLCodEmple.setBounds(12, 31, 108, 16);
 		add(LBLCodEmple);
