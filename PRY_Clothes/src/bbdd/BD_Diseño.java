@@ -4,10 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
+import exceptions.DatosIntroducidosException;
 import modelos.Diseño;
 
-
-
+/**
+ * 
+ * @author Yandry
+ *
+ */
 public class BD_Diseño extends BD_Conector {
 	private static Statement s;	
 	private static ResultSet reg;
@@ -17,8 +21,8 @@ public class BD_Diseño extends BD_Conector {
 	}
 	
 	public  int añadir_Diseño(Diseño diseños) {
-		String cadenaSQL="INSERT INTO diseños VALUES('"+diseños.getFecha_salida()+"','"+
-			   diseños.getDescripcion()+"','"+diseños.getPrecio()+"','"+diseños.getCategoria()+"','"+diseños.getCodDiseño()+"','"+diseños.getCantidad()+"')";
+		String cadenaSQL="INSERT INTO diseños (fecha_salida,descripcion,precio,categoria,cod_diseño) VALUES('"+diseños.getFecha_salida()+"','"+
+			   diseños.getDescripcion()+"','"+diseños.getPrecio()+"','"+diseños.getCategoria()+"','"+diseños.getCodDiseño()+"')";
 		try {
 			this.abrir();
 			s=c.createStatement();
@@ -32,15 +36,15 @@ public class BD_Diseño extends BD_Conector {
 		}
 	}
 	
-	public Vector<String> listadoCod_diseño(){
-		String cadenaSQL="SELECT cod_diseño from diseños";
-		Vector<String> listadoCod_diseño=new Vector<String>();
+	public Vector <String> listadoCod_diseño(){
+		String cadenaSQL="SELECT cod_diseño FROM diseños";
+		Vector <String> listadoCod_diseño = new Vector <String>();
 		try {
 			this.abrir();
 			 s = c.createStatement();
 			 reg=s.executeQuery(cadenaSQL);
 			 while ( reg.next()){
-					listadoCod_diseño.add(reg.getString(1));
+					listadoCod_diseño.add(reg.getString("cod_diseño"));
 				}	
 		}catch(SQLException e) {
 			this.cerrar();
@@ -49,6 +53,26 @@ public class BD_Diseño extends BD_Conector {
 		}
 		
 		return listadoCod_diseño;
+	
+	}
+	
+	public Vector <Diseño> listado(){
+		String cadenaSQL="SELECT * FROM diseños";
+		Vector <Diseño> listadoDiseños = new Vector <Diseño>();
+		try {
+			this.abrir();
+			 s = c.createStatement();
+			 reg=s.executeQuery(cadenaSQL);
+			 while ( reg.next()){
+				 listadoDiseños.add(new Diseño(reg.getInt("cantidad"),reg.getString("cod_diseño")));
+				}	
+		}catch(SQLException e) {
+			this.cerrar();
+			System.out.println(e.getMessage());
+			return null;
+		}
+		
+		return listadoDiseños;
 	
 	}
 	/*jj*/
@@ -68,7 +92,8 @@ public class BD_Diseño extends BD_Conector {
 				
 				}  
 	 }
-	   public int modificar_datos(String modificador,String campo,String buscacod_diseño) {
+	 
+	 public int modificar_datos(String modificador,String campo,String buscacod_diseño) {
 		   
 		   String cadenaSQL="UPDATE diseños set "+campo+"='"+modificador+"'where cod_diseño='"+buscacod_diseño+"'";
 		   try {
@@ -84,7 +109,7 @@ public class BD_Diseño extends BD_Conector {
 		   }
 	   }
 	   /*jajaj*/
-	   public Vector <Diseño> consultar_Diseños() {
+	 public Vector <Diseño> consultar_Diseños() {
 			 Vector <Diseño> mostrar = new <Diseño> Vector();
 			 String cadenaSQL = "SELECT * FROM diseños";
 			 
@@ -95,7 +120,7 @@ public class BD_Diseño extends BD_Conector {
 				 reg = s.executeQuery(cadenaSQL);
 				 
 				 while(reg.next()) {
-					mostrar.add(new Diseño(reg.getString("descripcion"),reg.getDouble("precio"),reg.getString("categoria"),reg.getInt("cantidad"))); 
+					mostrar.add(new Diseño(reg.getInt("cantidad"),reg.getString("cod_diseño"))); 
 				 }
 				 s.close();
 				
@@ -106,25 +131,42 @@ public class BD_Diseño extends BD_Conector {
 			 }
 			 return mostrar;
 		 }
-	   public int buscaNumero(String bus) {
-			String cadenaSQL="SELECT MAX(SUBSTRING(cod_diseño,1,2)='"+bus+"') from diseños";
-			int num=0;
+	   
+		public int consultaNumeroSecuencialDiseño() {
+			String cadenaSQL = "SELECT MAX(SUBSTRING(cod_diseño,4)) FROM diseños";
+			int filas = 0;
+			
 			try {
 				this.abrir();
-				 s = c.createStatement();
-				 reg=s.executeQuery(cadenaSQL);
-				 if ( reg.next()){
-					num=reg.getInt(1);
-					}	
-				 s.close();
-				 this.cerrar();
-				 return num;
+				
+				s = c.createStatement();
+				reg = s.executeQuery(cadenaSQL);
+				if(reg.next()){
+					filas = reg.getInt(1);
+				}
+				
+				return filas;
 			}catch(SQLException e) {
 				this.cerrar();
-				System.out.println(e.getMessage());
 				return -1;
 			}
+		}
+		
+		public int hacerPedido(String codDis, int cantidad) throws DatosIntroducidosException {
+			String cadenaSQL = "UPDATE diseños SET cantidad =(cantidad + '" + cantidad + "') WHERE cod_diseño ='" + codDis + "'";
 			
-			
+			try {
+				this.abrir();
+				
+				s = c.createStatement();
+				int filas = s.executeUpdate(cadenaSQL);
+				s.close();
+				
+				this.cerrar();
+				return filas;
+			}catch(SQLException e) {
+				this.cerrar();
+				throw new DatosIntroducidosException("Ha habido un problema con la base de datos");
+			}
 		}
 }

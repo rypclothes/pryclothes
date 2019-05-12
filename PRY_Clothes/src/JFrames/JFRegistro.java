@@ -17,6 +17,14 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+/**
+ * 
+ * @author Pablo
+ *
+ */
 
 public class JFRegistro extends JFrame {
 
@@ -24,12 +32,14 @@ public class JFRegistro extends JFrame {
 	private JPRegistro panelRegistro;
 	private BD_Clientes bdc = new BD_Clientes();
 	private JFLogin login = new JFLogin();
+	private JButton btnLimpiar;
+	private JButton btnSalir;
 
 	public JFRegistro() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFRegistro.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Men\u00FA Registro");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 268, 292);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 268, 317);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -52,6 +62,10 @@ public class JFRegistro extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				Cliente cl = panelRegistro.getDatos();
 				try {
+					if(!panelRegistro.validarDatos()) {
+						JOptionPane.showMessageDialog(null, "No estan introducidos todos los datos", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+						return;
+					}
 					if(bdc.darAltaCliente(cl) == 1) {
 						JOptionPane.showMessageDialog(null, "Dado de alta correctamente", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
 						login.setVisible(true);
@@ -64,7 +78,30 @@ public class JFRegistro extends JFrame {
 				}
 			}
 		});
-		BTNAceptar.setBounds(82, 221, 97, 25);
+		BTNAceptar.setBounds(27, 219, 97, 25);
 		contentPane.add(BTNAceptar);
+		
+		btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				panelRegistro.limpiarDatos();
+			}
+		});
+		btnLimpiar.setBounds(134, 219, 97, 25);
+		contentPane.add(btnLimpiar);
+		
+		btnSalir = new JButton("Salir");
+		btnSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				JFLogin jfl = new JFLogin();
+				jfl.setVisible(true);
+				dispose();
+			}
+		});
+		
+		btnSalir.setBounds(80, 255, 97, 25);
+		contentPane.add(btnSalir);
 	}
 }

@@ -5,6 +5,11 @@ import java.time.*;
 import bbdd.BD_Compras;
 import exceptions.DatosIntroducidosException;
 
+/**
+ * 
+ * @author Pablo
+ *
+ */
 public class Compra {
 	private String factura;
 	private int precio;

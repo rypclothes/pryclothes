@@ -12,7 +12,11 @@ import exceptions.DatosIntroducidosException;
 import modelos.Empleado;
 import modelos.Usuario;
 
-//Daniel Cirtog y Pablo Martin
+/**
+ * 
+ * @author Pablo y Dani
+ *
+ */
 public class BD_Empleado extends BD_Conector{
 	private static Statement s;	
 	private static ResultSet reg;

@@ -1,7 +1,4 @@
 package bbdd;
-//Daniel Cirtog y Pablo Martin
-
-//Se ha borrado exception problemas tecnicos y error en DatosIntroducidosException
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +10,11 @@ import java.util.Vector;
 import modelos.Usuario;
 import exceptions.DatosIntroducidosException;
 
+/**
+ * 
+ * @author Pablo y Daniel
+ *
+ */
 public class BD_Usuario extends BD_Conector{
 	private static Statement s;	
 	private static ResultSet reg;

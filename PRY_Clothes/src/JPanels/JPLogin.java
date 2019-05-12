@@ -9,6 +9,12 @@ import javax.swing.border.TitledBorder;
 import modelos.Usuario;
 import java.awt.Color;
 
+/**
+ * 
+ * @author Pablo
+ *
+ */
+
 public class JPLogin extends JPanel {
 	private JTextField JTFNombreUsuario;
 	private JTextField txtTelefono;

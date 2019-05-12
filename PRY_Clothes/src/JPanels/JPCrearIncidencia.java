@@ -12,6 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 
+/**
+ * 
+ * @author Pablo
+ *
+ */
+
 public class JPCrearIncidencia extends JPanel {
 	private JTextField JTFCodEmple;
 	private JTextField JTFTipo;

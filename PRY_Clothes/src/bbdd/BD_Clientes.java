@@ -9,7 +9,11 @@ import exceptions.DatosIntroducidosException;
 import modelos.Cliente;
 import modelos.Empleado;
 import modelos.Usuario;
-
+/**
+ * 
+ * @author Pablo y Dani
+ *
+ */
 public class BD_Clientes extends BD_Conector{
 	private static Statement s;	
 	private static ResultSet reg;

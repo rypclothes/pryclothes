@@ -19,16 +19,20 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * 
+ * @author Pablo
+ *
+ */
+
 public class JFDespedirEmple extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private BD_Empleado bde = new BD_Empleado();
-	String tipo;
 
-	public JFDespedirEmple(String tipo) {
-		this.tipo = tipo;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public JFDespedirEmple() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFDespedirEmple.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Despedir Empleado");
 		setBounds(100, 100, 314, 177);
@@ -55,7 +59,7 @@ public class JFDespedirEmple extends JFrame {
 				try {
 					if(bde.darBajaEmpleado(codigo) == 1) {
 						JOptionPane.showMessageDialog(null, "Empleado borrado con exito", "EXITO", JOptionPane.INFORMATION_MESSAGE);
-						JFEmpleadoAdministracion jfe = new JFEmpleadoAdministracion(tipo);
+						JFEmpleadoAdministracion jfe = new JFEmpleadoAdministracion();
 						jfe.setVisible(true);
 						dispose();
 					}
@@ -64,7 +68,19 @@ public class JFDespedirEmple extends JFrame {
 				}
 			}
 		});
-		BTNAceptar.setBounds(99, 107, 97, 25);
+		BTNAceptar.setBounds(50, 105, 97, 25);
 		contentPane.add(BTNAceptar);
+		
+		JButton btnSali = new JButton("Salir");
+		btnSali.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				JFEmpleadoAdministracion jfe = new JFEmpleadoAdministracion();
+				jfe.setVisible(true);
+				dispose();
+			}
+		});
+		btnSali.setBounds(157, 105, 97, 25);
+		contentPane.add(btnSali);
 	}
 }

@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Vector;
 
+import exceptions.DatosIntroducidosException;
 import modelos.Incidencia;
 import modelos.Reclamacion;
 
@@ -57,21 +58,21 @@ public class BD_Reclamaciones extends BD_Conector {
 		}
 	}
 	
-	public boolean responderReclamacion(String cod, LocalDate fechaHora,String respuesta) {
+	public int responderReclamacion(Reclamacion re) throws DatosIntroducidosException {
 		
-		String cadenaSQL="update reclamaciones set respuesta='" + respuesta + "'";
-		
+		String cadenaSQL="UPDATE reclamaciones SET respuesta ='" + re.getRespuesta() + "' WHERE cod_cliente='" + re.getCod_cliente() + "' AND fecha_reclamacion='" + re.getFecha_Rec() + "' AND descripcion ='" + re.getDescripcion() + "'";
+		int filas;
 		try {
 			this.abrir();
 			s = c.createStatement();
-			s.executeUpdate(cadenaSQL);
+			filas = s.executeUpdate(cadenaSQL);
 			s.close();
+			
 			this.cerrar();
-			return true;
-
+			return filas;
 		} catch (SQLException e) {
 			this.cerrar();
-			return false;
+			throw new DatosIntroducidosException("Ha habido un error en la BBDD");
 		}
 		
 	}
@@ -125,9 +126,9 @@ public class BD_Reclamaciones extends BD_Conector {
 
 	// Devuelve un vector con todas las reclamaciones para luego en el date utilizar
 	// dicho vector
-	public Vector<Reclamacion> listadoReclamaciones(String cod) {
+	public Vector<Reclamacion> listadoReclamaciones() {
 
-		String cadenaSQL = "SELECT * from reclamaciones where cod_emple ='" + cod + "'";
+		String cadenaSQL = "SELECT * FROM reclamaciones WHERE respuesta is null";
 		Vector<Reclamacion> listaReclamaciones = new Vector<Reclamacion>();
 
 		try {
@@ -136,9 +137,7 @@ public class BD_Reclamaciones extends BD_Conector {
 			s = c.createStatement();
 			reg = s.executeQuery(cadenaSQL);
 			while (reg.next()) {
-
-				listaReclamaciones.add(new Reclamacion(reg.getString(1), reg.getString(3), reg.getString(4)));
-
+				listaReclamaciones.add(new Reclamacion(reg.getString("cod_cliente"), reg.getString("descripcion"), reg.getString("respuesta")));
 			}
 
 			s.close();
