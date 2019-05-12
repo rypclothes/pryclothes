@@ -1,5 +1,10 @@
 package modelos;
-//Daniel Cirtog y Pablo Martin
+
+/**
+ * 
+ * @author Pablo y Dani
+ *
+ */
 
 public class Empleado extends Usuario{
 	private String funcion;

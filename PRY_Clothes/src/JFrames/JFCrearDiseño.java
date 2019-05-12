@@ -17,6 +17,12 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * 
+ * @author Pablo
+ *
+ */
+
 public class JFCrearDiseño extends JFrame {
 	private JPanel contentPane;
 	private BD_Diseño bdd = new BD_Diseño();
@@ -26,8 +32,8 @@ public class JFCrearDiseño extends JFrame {
 		this.tipo = tipo;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Creacion de diseños");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 255, 281);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 255, 258);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -43,11 +49,11 @@ public class JFCrearDiseño extends JFrame {
 		getContentPane().add(jpc);
 		
 		//Añadimos el boton
-		JButton btnCrear = new JButton("CREAR");
+		JButton btnCrear = new JButton("Crear");
 		btnCrear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				JFEmpleadoDiseño crear = new JFEmpleadoDiseño(tipo);
+				JFEmpleadoDiseño crear = new JFEmpleadoDiseño();
 				
 				if(!jpc.validarDatos()) {
 					JOptionPane.showMessageDialog(null, "Tienen que estar rellenos todos los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -64,17 +70,29 @@ public class JFCrearDiseño extends JFrame {
 				}
 			}
 		});
-		btnCrear.setBounds(12, 200, 97, 25);
+		btnCrear.setBounds(10, 148, 97, 25);
 		jpc.add(btnCrear);
 		
-		JButton btnLimpiar = new JButton("LIMPIAR");
+		JButton btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				jpc.limpiarDatos();
 			}
 		});
-		btnLimpiar.setBounds(130, 200, 97, 25);
+		btnLimpiar.setBounds(128, 148, 97, 25);
 		jpc.add(btnLimpiar);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				JFEmpleadoDiseño jfed = new JFEmpleadoDiseño();
+				jfed.setVisible(true);
+				dispose();
+			}
+		});
+		btnSalir.setBounds(70, 184, 97, 25);
+		jpc.add(btnSalir);
 	}
 }

@@ -1,8 +1,14 @@
 package modelos;
-//Daniel Cirtog y Pablo Martin
+
 import java.time.*;
 
 import bbdd.BD_Usuario;
+
+/**
+ * 
+ * @author Pablo y Dani
+ *
+ */
 
 public class Usuario {
 	protected String codigo;

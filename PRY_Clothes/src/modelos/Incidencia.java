@@ -2,7 +2,11 @@ package modelos;
 
 import java.sql.Date;
 import java.time.*;
-
+/**
+ * 
+ * @author Mario, corregido por Pablo
+ *
+ */
 public class Incidencia {
 	private LocalDate fechaError;
 	private String codEmple;

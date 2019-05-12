@@ -1,5 +1,4 @@
 /*
- * Clase relacionada con Reclamacione
  * @author Roberto_Saavedra
  */
 package modelos;
@@ -8,12 +7,17 @@ import java.time.LocalDate;
 
 public class Reclamacion {
 
+	@Override
+	public String toString() {
+		return cod_cliente;
+	}
+
 	private LocalDate Fecha_Rec;
 	private String cod_cliente, descripcion, respuesta;
 
 	public Reclamacion(String cod_cliente, String descripcion) {
 		super();
-		Fecha_Rec = LocalDate.now();
+		this.Fecha_Rec = LocalDate.now();
 		this.cod_cliente = cod_cliente;
 		this.descripcion = descripcion;
 	}
@@ -24,6 +28,15 @@ public class Reclamacion {
 		this.cod_cliente = cod_cliente;
 		this.descripcion = descripcion;
 		this.respuesta = respuesta;
+	}
+
+	//Constructor para responder reclamaciones
+	public Reclamacion(LocalDate fecha_Rec, String cod_cliente, String respuesta, String descripcion) {
+		super();
+		this.Fecha_Rec = fecha_Rec;
+		this.cod_cliente = cod_cliente;
+		this.respuesta = respuesta;
+		this.descripcion = descripcion;
 	}
 
 	public LocalDate getFecha_Rec() {

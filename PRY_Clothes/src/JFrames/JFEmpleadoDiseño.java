@@ -15,18 +15,24 @@ import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * 
+ * @author Pablo
+ *
+ */
+
 public class JFEmpleadoDiseño extends JFrame {
 
 	private JPanel contentPane;
 	JFLogin jfl = new JFLogin();
 	String tipo;
 
-	public JFEmpleadoDiseño(String tipo) {
+	public JFEmpleadoDiseño() {
 		this.tipo = tipo;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Diseño");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 247, 224);
+		setBounds(100, 100, 225, 199);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -37,7 +43,7 @@ public class JFEmpleadoDiseño extends JFrame {
 	}
 	
 	public void initialize() {		
-		JButton BTNCrearDiseño = new JButton("CREAR DISE\u00D1O");
+		JButton BTNCrearDiseño = new JButton("Crear dise\u00F1o");
 		BTNCrearDiseño.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
@@ -46,10 +52,10 @@ public class JFEmpleadoDiseño extends JFrame {
 				dispose();
 			}
 		});
-		BTNCrearDiseño.setBounds(41, 56, 142, 25);
+		BTNCrearDiseño.setBounds(41, 49, 142, 25);
 		contentPane.add(BTNCrearDiseño);
 		
-		JButton BTNCrearIncidencia = new JButton("CREAR INCIDENCIA");
+		JButton BTNCrearIncidencia = new JButton("Crear incidencia");
 		BTNCrearIncidencia.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -57,14 +63,14 @@ public class JFEmpleadoDiseño extends JFrame {
 				jfci.setVisible(true);
 			}
 		});
-		BTNCrearIncidencia.setBounds(41, 94, 142, 25);
+		BTNCrearIncidencia.setBounds(41, 86, 142, 25);
 		contentPane.add(BTNCrearIncidencia);
 		
-		JLabel LBLSaludo = new JLabel("Hola dise\u00F1ador!");
+		JLabel LBLSaludo = new JLabel("Bienvenido!");
 		LBLSaludo.setBounds(12, 13, 142, 25);
 		contentPane.add(LBLSaludo);
 		
-		JButton btnSalir = new JButton("SALIR");
+		JButton btnSalir = new JButton("Salir");
 		btnSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -72,7 +78,7 @@ public class JFEmpleadoDiseño extends JFrame {
 				dispose();
 			}
 		});
-		btnSalir.setBounds(41, 132, 142, 25);
+		btnSalir.setBounds(41, 126, 142, 25);
 		contentPane.add(btnSalir);
 	}
 }

@@ -13,6 +13,12 @@ import modelos.Cliente;
 
 import javax.swing.JPasswordField;
 
+/**
+ * 
+ * @author Pablo
+ *
+ */
+
 public class JPRegistro extends JPanel {
 	private JTextField JTFNombreUsuario;
 	private JPasswordField JTFContraseña;
@@ -76,5 +82,20 @@ public class JPRegistro extends JPanel {
 	
 	public Cliente getDatos() {
 		return new Cliente(JTFContraseña.getText(), JTFNombreUsuario.getText(), JTFTelefono.getText(), Long.parseLong(JTFNumTarjeta.getText()), JTFDireccion.getText());
+	}
+	
+	public void limpiarDatos() {
+		JTFContraseña.setText("");
+		JTFDireccion.setText("");
+		JTFNombreUsuario.setText("");
+		JTFNumTarjeta.setText("");
+		JTFTelefono.setText("");
+	}
+	
+	
+	public boolean validarDatos() {
+		if (JTFContraseña.getText().equals("") || JTFDireccion.getText().equals("") || JTFNombreUsuario.getText().equals("") || JTFNumTarjeta.getText().equals("") || JTFTelefono.getText().equals(""))
+			return false;
+		return true;
 	}
 }

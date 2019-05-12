@@ -9,16 +9,22 @@ import javax.swing.border.TitledBorder;
 
 import modelos.Empleado;
 
+/**
+ * 
+ * @author Pablo
+ *
+ */
+
 public class JPContratarEmple extends JPanel {
 	private JTextField JTFNombre;
 	private JTextField JTFTelefono;
 	private JTextField JTFFuncion;
 	private JLabel lblContrasena;
-	private JTextField JTFContrasena;
 	private JLabel lblRol;
 	private JTextField JTFRol;
 	private JLabel lblSalario;
 	private JTextField JTFSalario;
+	private JPasswordField JTFContrasena;
 
 
 	public JPContratarEmple() {
@@ -41,11 +47,6 @@ public class JPContratarEmple extends JPanel {
 					lblContrasena = new JLabel("Contrase\u00F1a");
 					lblContrasena.setBounds(30, 60, 100, 25);
 					add(lblContrasena);
-					
-					JTFContrasena = new JTextField();
-					JTFContrasena.setBounds(150, 60, 147, 25);
-					add(JTFContrasena);
-					JTFContrasena.setColumns(10);
 					
 					JLabel lblTelfono = new JLabel("Tel\u00E9fono");
 					lblTelfono.setBounds(30, 90, 100, 25);
@@ -82,9 +83,28 @@ public class JPContratarEmple extends JPanel {
 					JTFSalario.setBounds(150, 180, 147, 25);
 					add(JTFSalario);
 			JTFSalario.setColumns(10);
+			
+			JTFContrasena = new JPasswordField();
+			JTFContrasena.setBounds(150, 60, 147, 25);
+			add(JTFContrasena);
 	}
 			
 	public Empleado getDatos() {
 		return new Empleado(JTFContrasena.getText(), JTFNombre.getText(), JTFTelefono.getText(), JTFRol.getText(), JTFFuncion.getText(), Double.parseDouble(JTFSalario.getText()));
+	}
+	
+	public void limpiarDatos() {
+		JTFContrasena.setText("");
+		JTFTelefono.setText("");
+		JTFFuncion.setText("");
+		JTFNombre.setText("");
+		JTFRol.setText("");
+		JTFSalario.setText("");
+	}
+	
+	public boolean validarDatos() {
+		if (JTFContrasena.getText().equals("") || JTFFuncion.getText().equals("") || JTFNombre.getText().equals("") || JTFRol.getText().equals("") || JTFSalario.getText().equals("") || JTFTelefono.getText().equals(""))
+			return false;
+		return true;
 	}
 }

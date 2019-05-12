@@ -11,6 +11,12 @@ import modelos.Diseño;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+/**
+ * 
+ * @author Pablo
+ *
+ */
+
 public class JPCrearDiseño extends JPanel {
 	private JTextField JTFDescripcion;
 	private JTextField JTFPrecio;
@@ -19,7 +25,7 @@ public class JPCrearDiseño extends JPanel {
 
 	public JPCrearDiseño() {
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Crear diseño", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		setBounds(0, 0, 233, 187);
+		setBounds(0, 0, 204, 140);
 		setLayout(null);
 		initialize();
 	}
@@ -30,7 +36,7 @@ public class JPCrearDiseño extends JPanel {
 		add(LBLDescripcion);
 		
 		JTFDescripcion = new JTextField();
-		JTFDescripcion.setBounds(104, 24, 116, 22);
+		JTFDescripcion.setBounds(77, 24, 116, 22);
 		add(JTFDescripcion);
 		JTFDescripcion.setColumns(10);
 		
@@ -42,39 +48,31 @@ public class JPCrearDiseño extends JPanel {
 		LBLCategoria.setBounds(12, 110, 56, 16);
 		add(LBLCategoria);
 		
-		JLabel LBLCantidad = new JLabel("Cantidad");
-		LBLCantidad.setBounds(12, 156, 56, 16);
-		add(LBLCantidad);
-		
 		JTFPrecio = new JTextField();
-		JTFPrecio.setBounds(104, 66, 116, 22);
+		JTFPrecio.setBounds(77, 66, 116, 22);
 		add(JTFPrecio);
 		JTFPrecio.setColumns(10);
 		
 		JTFCategoria = new JTextField();
-		JTFCategoria.setBounds(104, 107, 116, 22);
+		JTFCategoria.setBounds(77, 107, 116, 22);
 		add(JTFCategoria);
 		JTFCategoria.setColumns(10);
 		
-		JTFCantidad = new JTextField();
-		JTFCantidad.setBounds(104, 153, 116, 22);
-		add(JTFCantidad);
-		JTFCantidad.setColumns(10);
+
 	}
 	
 	public Diseño getDatos() {
-		return new Diseño(JTFDescripcion.getText(), Double.parseDouble(JTFPrecio.getText()), JTFCategoria.getText(), Integer.parseInt(JTFCantidad.getText()));
+		return new Diseño(JTFDescripcion.getText(), Double.parseDouble(JTFPrecio.getText()), JTFCategoria.getText());
 	}
 	
 	public void limpiarDatos() {
 		JTFDescripcion.setText("");
 		JTFPrecio.setText("");
 		JTFCategoria.setText("");
-		JTFCantidad.setText("");
 	}
 	
 	public boolean validarDatos() {
-		if (JTFDescripcion.getText().equals("") || JTFPrecio.getText().equals("") || JTFCategoria.getText().equals("") || JTFCantidad.getText().equals(""))
+		if (JTFDescripcion.getText().equals("") || JTFPrecio.getText().equals("") || JTFCategoria.getText().equals(""))
 			return false;
 		return true;
 	}

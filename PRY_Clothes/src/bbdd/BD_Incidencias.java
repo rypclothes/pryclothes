@@ -8,7 +8,11 @@ import java.util.Vector;
 
 import modelos.Incidencia;
 
-
+/**
+ * 
+ * @author Mario, corregido por Pablo
+ *
+ */
 public class BD_Incidencias<incidencia> extends BD_Conector {
 	private static Statement s;		
 	private static ResultSet reg;

@@ -9,6 +9,12 @@ import java.awt.Color;
 
 import javax.swing.JLabel;
 
+/**
+ * 
+ * @author Pablo
+ *
+ */
+
 public class JPDespedirEmple extends JPanel {
 	private JTextField JTFCodEmple;
 

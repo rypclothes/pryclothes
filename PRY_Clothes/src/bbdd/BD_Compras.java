@@ -5,6 +5,11 @@ import java.sql.*;
 import exceptions.DatosIntroducidosException;
 import modelos.Compra;
 
+/**
+ * 
+ * @author Pablo
+ *
+ */
 public class BD_Compras extends BD_Conector{
 	private static Statement s;	
 	private static ResultSet reg;

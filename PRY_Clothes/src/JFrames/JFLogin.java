@@ -15,6 +15,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
 
+/**
+ * 
+ * @author Pablo
+ *
+ */
+
 public class JFLogin extends JFrame{
 	private JPLogin panelAlumnos;
 	private JPBotones panelBotones;
@@ -25,7 +31,7 @@ public class JFLogin extends JFrame{
 		setTitle("PRY CLOTHES");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 296, 172);
+		setBounds(100, 100, 296, 207);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		initialize();
@@ -34,6 +40,7 @@ public class JFLogin extends JFrame{
 	public void initialize() {
 		//Panel introduccion de datos
 		panelAlumnos = new JPLogin();
+		panelAlumnos.setLocation(0, 11);
 		getContentPane().add(panelAlumnos);
 		
 		//Panel botones
@@ -59,15 +66,15 @@ public class JFLogin extends JFrame{
 							}
 							else {
 								if(tipo.equals("Administrativo")) {
-									JFEmpleadoAdministracion jempleA = new JFEmpleadoAdministracion(tipo);
+									JFEmpleadoAdministracion jempleA = new JFEmpleadoAdministracion();
 									jempleA.setVisible(true);
 								}else {
 									if(tipo.equals("Diseño")) {
-										JFEmpleadoDiseño jempleD = new JFEmpleadoDiseño(tipo);
+										JFEmpleadoDiseño jempleD = new JFEmpleadoDiseño();
 										jempleD.setVisible(true);
 									}else {
 										if(tipo.equals("Logistica")) {
-											JFEmpleadoLogistica jempleL = new JFEmpleadoLogistica(tipo);
+											JFEmpleadoLogistica jempleL = new JFEmpleadoLogistica();
 											jempleL.setVisible(true);
 										}
 									}
@@ -80,7 +87,7 @@ public class JFLogin extends JFrame{
 				}
 			}
 		});
-		BTNAceptar.setBounds(25, 107, 120, 23);
+		BTNAceptar.setBounds(10, 116, 120, 23);
 		getContentPane().add(BTNAceptar);
 		
 		JButton BTNRegistrarse = new JButton("Reg\u00EDstrate");
@@ -92,8 +99,19 @@ public class JFLogin extends JFrame{
 				dispose();
 			}
 		});
-		BTNRegistrarse.setBounds(160, 107, 120, 23);
+		BTNRegistrarse.setBounds(160, 116, 120, 23);
 		getContentPane().add(BTNRegistrarse);
+		
+		JButton BTNInformacion = new JButton("Informaci\u00F3n");
+		BTNInformacion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				JFInformacion jfi = new JFInformacion();
+				jfi.setVisible(true);
+				dispose();
+			}
+		});
+		BTNInformacion.setBounds(82, 150, 120, 23);
+		getContentPane().add(BTNInformacion);
 	}
 }
-

@@ -18,6 +18,12 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * 
+ * @author Pablo
+ *
+ */
+
 public class JFCrearIncidencia extends JFrame {
 
 	private JPanel contentPane;
@@ -28,7 +34,7 @@ public class JFCrearIncidencia extends JFrame {
 		this.tipo = tipo;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Crear incidencia");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 266, 183);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -63,7 +69,18 @@ public class JFCrearIncidencia extends JFrame {
 				}
 			}
 		});
-		btnAceptar.setBounds(72, 102, 97, 25);
+		btnAceptar.setBounds(24, 108, 97, 25);
 		jpci.add(btnAceptar);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				JFEmpleadoAdministracion jfea = new JFEmpleadoAdministracion();
+				dispose();
+			}
+		});
+		btnSalir.setBounds(134, 108, 97, 25);
+		jpci.add(btnSalir);
 	}
 }

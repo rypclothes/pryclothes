@@ -16,6 +16,12 @@ import java.awt.Window;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * 
+ * @author Pablo
+ *
+ */
+
 public class JFContratarEmple extends JFrame {
 	
 	private BD_Empleado bdea=new BD_Empleado();
@@ -24,7 +30,7 @@ public class JFContratarEmple extends JFrame {
 	public JFContratarEmple() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Registro Empleado");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 334, 308);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -47,6 +53,11 @@ public class JFContratarEmple extends JFrame {
 		public void mousePressed(MouseEvent arg0)  {
 			Empleado em = jpmea.getDatos();
 			try {
+				if(!jpmea.validarDatos()) {
+					JOptionPane.showMessageDialog(null, "No estan introducidos todos los datos", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
+				
 				if(bdea.darAltaEmpleado(em) == 1) {
 					JOptionPane.showMessageDialog(null, "Dado de alta correctamente", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
 					jpmea.setVisible(true);
@@ -59,7 +70,29 @@ public class JFContratarEmple extends JFrame {
 			}
 			}
 		});
-		btnEnviar.setBounds(122, 233, 89, 23);
+		btnEnviar.setBounds(10, 231, 89, 23);
 		contentPane.add(btnEnviar);	
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				JFEmpleadoAdministracion jfe = new JFEmpleadoAdministracion();
+				jfe.setVisible(true);
+				dispose();
+			}
+		});
+		btnSalir.setBounds(119, 231, 89, 23);
+		contentPane.add(btnSalir);
+		
+		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				jpmea.limpiarDatos();
+			}
+		});
+		btnLimpiar.setBounds(227, 231, 89, 23);
+		contentPane.add(btnLimpiar);
 	}
 }
