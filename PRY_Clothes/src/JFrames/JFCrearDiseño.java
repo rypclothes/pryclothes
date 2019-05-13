@@ -16,6 +16,8 @@ import modelos.Diseño;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * 
@@ -31,12 +33,11 @@ public class JFCrearDiseño extends JFrame {
 	public JFCrearDiseño(String tipo) {
 		this.tipo = tipo;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
-		setTitle("Creacion de diseños");
+		setTitle("Creación diseño");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 255, 258);
+		setBounds(100, 100, 272, 257);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		setResizable(false);
@@ -44,8 +45,10 @@ public class JFCrearDiseño extends JFrame {
 	}
 	
 	public void initialize() {
+		contentPane.setLayout(null);
 		//Añadimos el panel
 		JPCrearDiseño jpc = new JPCrearDiseño();
+		jpc.setBounds(0, 0, 266, 225);
 		getContentPane().add(jpc);
 		
 		//Añadimos el boton
@@ -70,7 +73,7 @@ public class JFCrearDiseño extends JFrame {
 				}
 			}
 		});
-		btnCrear.setBounds(10, 148, 97, 25);
+		btnCrear.setBounds(24, 151, 97, 25);
 		jpc.add(btnCrear);
 		
 		JButton btnLimpiar = new JButton("Limpiar");
@@ -80,10 +83,14 @@ public class JFCrearDiseño extends JFrame {
 				jpc.limpiarDatos();
 			}
 		});
-		btnLimpiar.setBounds(128, 148, 97, 25);
+		btnLimpiar.setBounds(142, 151, 97, 25);
 		jpc.add(btnLimpiar);
 		
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
@@ -92,7 +99,7 @@ public class JFCrearDiseño extends JFrame {
 				dispose();
 			}
 		});
-		btnSalir.setBounds(70, 184, 97, 25);
+		btnSalir.setBounds(84, 187, 97, 25);
 		jpc.add(btnSalir);
 	}
 }

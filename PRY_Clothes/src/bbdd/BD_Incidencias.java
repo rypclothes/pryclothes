@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Vector;
 
+import exceptions.DatosIntroducidosException;
 import modelos.Incidencia;
 
 /**
@@ -70,6 +71,25 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 		}
 		catch ( SQLException e){		
 			return null;			
+		}
+	}
+	
+	public int solucionarIncidencia(int numIncidencia) throws DatosIntroducidosException {
+		String cadenaSQL = "UPDATE reporte_incidencias SET solucionado = 1 WHERE num_incidencia='" + numIncidencia +"'";
+		int filas = 0;
+		
+		try {
+			this.abrir();
+			
+			s = c.createStatement();
+			filas = s.executeUpdate(cadenaSQL);
+			s.close();
+			
+			this.cerrar();
+			return filas;
+		}catch(SQLException e) {
+			this.cerrar();
+			throw new DatosIntroducidosException("Problemas con la BBDD");
 		}
 	}
 	

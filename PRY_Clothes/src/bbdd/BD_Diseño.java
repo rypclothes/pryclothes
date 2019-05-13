@@ -76,7 +76,7 @@ public class BD_Diseño extends BD_Conector {
 	
 	}
 	/*jj*/
-	 public int borraDiseño(String cod_diseñoBorrar ) {
+	 public int borraDiseño(String cod_diseñoBorrar) {
 		 String cadenaSQL="DELETE FROM diseños Where cod_diseño='"+cod_diseñoBorrar+"'";
 		 String tipo="";
 			try{
@@ -87,7 +87,8 @@ public class BD_Diseño extends BD_Conector {
 				this.cerrar();
 				return filas;
 				}
-				catch ( SQLException e){			
+				catch ( SQLException e){	
+					this.cerrar();
 					return -1;
 				
 				}  

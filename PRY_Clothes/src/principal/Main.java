@@ -17,7 +17,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BD_Conector.BD_Ini("pry_clothes");
+					BD_Conector.BD_Ini("ryp_clothes");
 					JFLogin window = new JFLogin();
 					window.setVisible(true);
 				} catch (Exception e) {

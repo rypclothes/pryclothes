@@ -68,7 +68,7 @@ public class JFEmpleadoLogistica extends JFrame {
 		BTNIncidencia.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				JFCrearIncidencia jfci = new JFCrearIncidencia(tipo);
+				JFCrearIncidencia jfci = new JFCrearIncidencia();
 				jfci.setVisible(true);
 			}
 		});
