@@ -21,6 +21,24 @@ public class BD_Clientes extends BD_Conector{
 	private Vector <Cliente> clientes = new <Cliente> Vector();
 	BD_Usuario bdu = new BD_Usuario();
 	
+	//@author Rober
+	public boolean modificarCampoCliente(String cod, String campo, String valor) {
+		cadenaSQL="UPDATE clientes SET '" + campo + "' = '" + valor + "' where cod ='" + cod + "'";
+		
+		try {
+			this.abrir();
+			s = c.createStatement();
+			s.executeUpdate(cadenaSQL);
+			s.close();
+			this.cerrar();
+			return true;
+
+		} catch (SQLException e) {
+			this.cerrar();
+			return false;
+		}
+	}
+	
 	public int darAltaCliente(Cliente cl) throws DatosIntroducidosException {
 		Usuario usu = new Usuario(cl.getContraseña(),cl.getNombre(),cl.getTelefono());
 		bdu.darAltaUsuario(usu);

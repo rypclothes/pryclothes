@@ -57,6 +57,10 @@ public class JFRegistro extends JFrame {
 		
 		//Boton de aceptar
 		JButton BTNAceptar = new JButton("Aceptar");
+		BTNAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		BTNAceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {

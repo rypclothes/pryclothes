@@ -57,7 +57,7 @@ public class JFLogin extends JFrame{
 						JOptionPane.showMessageDialog(null, "Credenciales inválidas", "ERROR", JOptionPane.ERROR_MESSAGE);			
 					}else {
 						if (tipo.equals("Cliente")) {
-							JFCliente JFcliente=new JFCliente();
+							JFCliente JFcliente=new JFCliente(u);
 							JFcliente.setVisible(true);
 						}else
 							if (tipo.equals("Administrador")) {
@@ -80,7 +80,8 @@ public class JFLogin extends JFrame{
 									}
 								}
 							}
-						dispose();			
+						setVisible(false);
+						panelAlumnos.clearText();
 					}		
 				}catch(DatosIntroducidosException ex) {
 					JOptionPane.showMessageDialog(null, ex.getMessage(), "AVISO", JOptionPane.INFORMATION_MESSAGE);

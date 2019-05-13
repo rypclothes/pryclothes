@@ -35,6 +35,17 @@ public class Usuario {
 	}
 	
 	
+	
+	public Usuario(String contraseña, String nombre, String telefono, LocalDate fechaAlta) {
+		super();
+		this.contraseña = contraseña;
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.fechaAlta = fechaAlta;
+	}
+
+
+
 	public Usuario(String contraseña, String nombre) {
 		super();
 		this.contraseña = contraseña;
