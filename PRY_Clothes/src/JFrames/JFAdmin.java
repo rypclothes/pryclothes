@@ -38,6 +38,12 @@ public class JFAdmin extends JFrame {
 	
 	public void initialize() {
 		JButton BTNSolIncid = new JButton("Solucionar incidencia");
+		BTNSolIncid.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+		});
 		BTNSolIncid.setBounds(35, 24, 168, 25);
 		contentPane.add(BTNSolIncid);
 		
