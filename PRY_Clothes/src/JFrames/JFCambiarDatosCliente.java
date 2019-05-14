@@ -7,6 +7,7 @@ import javax.swing.JTextPane;
 
 import bbdd.BD_Clientes;
 import bbdd.BD_Usuario;
+import exceptions.DatosIntroducidosException;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -25,7 +26,7 @@ public class JFCambiarDatosCliente extends JFrame{
 	public JFCambiarDatosCliente() {
 		// TODO Auto-generated constructor stub
 	}
-	public JFCambiarDatosCliente(String cod,String campo) {
+	public JFCambiarDatosCliente(String cod,String campo,String nombre) {
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFCliente.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Cambiar "+campo);
@@ -61,7 +62,16 @@ public class JFCambiarDatosCliente extends JFrame{
 					
 					
 				}
-				dispose();	
+				JFInfoCliente jfinf;
+				try {
+					jfinf = new JFInfoCliente(nombre);
+					jfinf.setVisible(true);
+					dispose();
+				} catch (DatosIntroducidosException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+					
 				
 			}
 		});

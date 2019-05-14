@@ -12,7 +12,7 @@ import exceptions.DatosIntroducidosException;
  */
 public class Compra {
 	private String factura;
-	private int precio;
+	private double precio;
 	private int numPrendas;
 	private String codCliente;
 	private LocalDate fechaCompra;
@@ -32,12 +32,22 @@ public class Compra {
 			e.printStackTrace();
 		}
 	}
+	
+
+	public Compra(String factura, int precio, String codCliente, LocalDate fechaCompra) {
+		super();
+		this.factura = factura;
+		this.precio = precio;
+		this.codCliente = codCliente;
+		this.fechaCompra = fechaCompra;
+	}
+
 
 	public String getFactura() {
 		return factura;
 	}
 
-	public int getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 

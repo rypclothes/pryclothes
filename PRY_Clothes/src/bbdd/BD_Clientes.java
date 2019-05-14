@@ -23,7 +23,7 @@ public class BD_Clientes extends BD_Conector{
 	
 	//@author Rober
 	public boolean modificarCampoCliente(String cod, String campo, String valor) {
-		cadenaSQL="UPDATE clientes SET '" + campo + "' = '" + valor + "' where cod ='" + cod + "'";
+		cadenaSQL="UPDATE clientes SET " + campo + " = '" + valor + "' where cod_cliente ='" + cod + "'";
 		
 		try {
 			this.abrir();

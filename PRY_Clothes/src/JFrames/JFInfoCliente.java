@@ -16,13 +16,11 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
 
 public class JFInfoCliente extends JFrame{
 	private BD_Usuario bdu = new BD_Usuario();
 	private BD_Clientes bdc = new BD_Clientes();
-	private JTextField txtNombre;
-	private JTextField txtContrasea;
-	private JTextField txtTelefono;
 	private Cliente cli;
 	
 	public JFInfoCliente(String nombre) throws DatosIntroducidosException {
@@ -31,52 +29,35 @@ public class JFInfoCliente extends JFrame{
 		setBounds(506, 100, 338, 316);
 		getContentPane().setLayout(null);
 		
+		
+		
 		cli=bdu.buscarClienteDatos(nombre);
 		
-		txtNombre = new JTextField();
-		txtNombre.setText("Nombre: "+cli.getNombre());
-		txtNombre.setBounds(12, 13, 153, 22);
-		getContentPane().add(txtNombre);
-		txtNombre.setColumns(10);
+		JLabel lblNombre = new JLabel("Nombre: "+cli.getNombre());
+		lblNombre.setBounds(12, 22, 173, 16);
+		getContentPane().add(lblNombre);
 		
-		txtContrasea = new JTextField();
-		txtContrasea.setText("Contrase\u00F1a: "+cli.getContraseña());
-		txtContrasea.setBounds(12, 51, 153, 22);
-		getContentPane().add(txtContrasea);
-		txtContrasea.setColumns(10);
+		JLabel lblContrasea = new JLabel("Contrase\u00F1a: "+cli.getContraseña());
+		lblContrasea.setBounds(12, 57, 173, 16);
+		getContentPane().add(lblContrasea);
 		
-		txtTelefono = new JTextField();
-		txtTelefono.setText("Telefono: "+cli.getTelefono());
-		txtTelefono.setBounds(12, 86, 153, 22);
-		getContentPane().add(txtTelefono);
-		txtTelefono.setColumns(10);
+		JLabel lblTelfono = new JLabel("Tel\u00E9fono: "+cli.getTelefono());
+		lblTelfono.setBounds(12, 92, 173, 16);
+		getContentPane().add(lblTelfono);
 		
-		JTextPane txtpnFechaDeAlta = new JTextPane();
-		txtpnFechaDeAlta.setText("Fecha de Alta: "+cli.getFechaAlta());
-		txtpnFechaDeAlta.setBounds(12, 121, 153, 22);
-		getContentPane().add(txtpnFechaDeAlta);
+		JLabel lblFechaDeAlta = new JLabel("Fecha de alta:"+cli.getFechaAlta());
+		lblFechaDeAlta.setBounds(12, 127, 194, 16);
+		getContentPane().add(lblFechaDeAlta);
 		
-		JTextPane txtpnNumeroDeTarjeta = new JTextPane();
-		txtpnNumeroDeTarjeta.setText("Numero de Tarjeta: "+cli.getNumTarjeta());
-		txtpnNumeroDeTarjeta.setBounds(12, 156, 153, 22);
-		getContentPane().add(txtpnNumeroDeTarjeta);
+		JLabel lblNumeroDeTarjeta = new JLabel("Numero de Tarjeta:"+cli.getNumTarjeta());
+		lblNumeroDeTarjeta.setBounds(8, 160, 194, 16);
+		getContentPane().add(lblNumeroDeTarjeta);
 		
-		JTextPane txtpnDireccion = new JTextPane();
-		txtpnDireccion.setText("Direccion: "+cli.getDireccion());
-		txtpnDireccion.setBounds(12, 191, 153, 22);
-		getContentPane().add(txtpnDireccion);
+		JLabel lblDireccion = new JLabel("Direccion: "+cli.getDireccion());
+		lblDireccion.setBounds(8, 195, 173, 16);
+		getContentPane().add(lblDireccion);
+	
 		
-		JButton btnNewButton = new JButton("Cambiar");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				
-				clickCambiar(cli.getCodigo(),"nombre");
-				
-			}
-		});
-		btnNewButton.setBounds(197, 12, 97, 25);
-		getContentPane().add(btnNewButton);
 		
 		JButton button = new JButton("Cambiar");
 		button.addMouseListener(new MouseAdapter() {
@@ -120,7 +101,7 @@ public class JFInfoCliente extends JFrame{
 			public void mousePressed(MouseEvent e) {
 				
 				clickCambiar(cli.getCodigo(),"direccion");
-				
+				repaint();
 			}
 		});
 		button_4.setBounds(197, 191, 97, 25);
@@ -132,17 +113,26 @@ public class JFInfoCliente extends JFrame{
 			public void mousePressed(MouseEvent e) {
 				
 				dispose();
+				
 			}
 		});
 		btnSalir.setBounds(105, 231, 97, 25);
 		getContentPane().add(btnSalir);
 		
-	}
-	
-	public static void clickCambiar(String cod, String campo) {
 		
-		JFCambiarDatosCliente JFCmbDClientes=new JFCambiarDatosCliente(cod,campo);
 		
 	}
 	
+	public JFInfoCliente() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void clickCambiar(String cod, String campo) {
+		
+		
+		JFCambiarDatosCliente JFCmbDClientes=new JFCambiarDatosCliente(cod,campo,cli.getNombre());
+		JFCmbDClientes.setVisible(true);
+		dispose();
+		
+	}
 }

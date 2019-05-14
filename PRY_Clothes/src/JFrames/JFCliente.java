@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import JPanels.JPMenuCliente;
+import bbdd.BD_Clientes;
+import bbdd.BD_Usuario;
 import exceptions.DatosIntroducidosException;
 import modelos.Cliente;
 import modelos.Usuario;
@@ -24,12 +26,15 @@ public class JFCliente extends JFrame {
 	private JPanel contentPane;
 	private JPMenuCliente pMenuCliente;
 	private Usuario u;
+	private Cliente cli;
+	private BD_Usuario bdu = new BD_Usuario();
+	private BD_Clientes bdc = new BD_Clientes();
 	
-	public JFCliente(Usuario u) {
+	public JFCliente(Usuario u) throws DatosIntroducidosException {
 		
 		this.u=u;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFCliente.class.getResource("/imagenes/rypclothes.png")));
-		setTitle("Perfil "+u.getNombre());
+		setTitle("Perfil Cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 406, 280);
 		contentPane = new JPanel();
@@ -42,7 +47,9 @@ public class JFCliente extends JFrame {
 		
 	}
 	
-	public void initialize() {
+	public void initialize() throws DatosIntroducidosException {
+		
+		cli=bdu.buscarClienteDatos(u.getNombre());
 		
 		pMenuCliente= new JPMenuCliente();
 		pMenuCliente.setSize(388, 210);
@@ -63,7 +70,7 @@ public class JFCliente extends JFrame {
 				
 				JFInfoCliente JFInfocliente = null;
 				try {
-					JFInfocliente = new JFInfoCliente(u.getNombre());
+					JFInfocliente = new JFInfoCliente(cli.getNombre());
 				} catch (DatosIntroducidosException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

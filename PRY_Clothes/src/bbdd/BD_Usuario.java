@@ -26,7 +26,7 @@ public class BD_Usuario extends BD_Conector{
 	}
 	//@author Rober
 	public boolean modificarCampoUsuario(String cod, String campo, String valor) {
-		cadenaSQL="UPDATE USUARIOS SET '" + campo + "' = '" + valor + "' where cod ='" + cod + "'";
+		cadenaSQL="UPDATE USUARIOS SET " + campo + " = '" + valor + "' where cod ='" + cod + "'";
 		
 		try {
 			this.abrir();
@@ -132,7 +132,7 @@ public class BD_Usuario extends BD_Conector{
 			while(reg.next()) {
 				java.sql.Date f=reg.getDate("fecha_alt");
 				LocalDate fBuena=f.toLocalDate();
-				u =new Usuario(reg.getString("contraseña"),reg.getString("nombre"),reg.getString("telefono"),fBuena);
+				u =new Usuario(reg.getString("cod"),reg.getString("contraseña"),reg.getString("nombre"),reg.getString("telefono"),fBuena);
 			}
 			s.close();
 			
@@ -152,7 +152,7 @@ public class BD_Usuario extends BD_Conector{
 			reg = s.executeQuery(cadenaSQL);
 			while(reg.next()) {
 				
-				cli =new Cliente(u.getContraseña(),u.getNombre(),u.getTelefono(),u.getFechaAlta(),reg.getLong("num_tarjeta"),reg.getString("direccion"));
+				cli =new Cliente(u.getCodigo(),u.getContraseña(),u.getNombre(),u.getTelefono(),u.getFechaAlta(),reg.getLong("num_tarjeta"),reg.getString("direccion"));
 			}
 			s.close();
 			

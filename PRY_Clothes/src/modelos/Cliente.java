@@ -22,8 +22,8 @@ public class Cliente extends Usuario{
 	}
 	
 
-	public Cliente(String contraseña, String nombre, String telefono,LocalDate fBuena, long numTarjeta, String direccion) {
-		super(contraseña, nombre, telefono,fBuena);
+	public Cliente(String codigo,String contraseña, String nombre, String telefono,LocalDate fBuena, long numTarjeta, String direccion) {
+		super(codigo,contraseña, nombre, telefono,fBuena);
 		this.numTarjeta = numTarjeta;
 		this.direccion = direccion;
 	}

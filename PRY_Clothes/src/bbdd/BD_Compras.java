@@ -1,9 +1,12 @@
 package bbdd;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.Vector;
 
 import exceptions.DatosIntroducidosException;
 import modelos.Compra;
+import modelos.Venta;
 
 /**
  * 
@@ -14,6 +17,32 @@ public class BD_Compras extends BD_Conector{
 	private static Statement s;	
 	private static ResultSet reg;
 	private String cadenaSQL;
+	
+	
+	public Vector<Compra> listadoCompras(String cod){
+		
+		String cadenaSQL="SELECT * FROM Compras WHERE cod_cliente = '"+cod+"'";
+		Vector<Compra> lista=new Vector<Compra>();
+		
+		try {
+
+			this.abrir();
+			s = c.createStatement();
+			reg = s.executeQuery(cadenaSQL);
+
+			while (reg.next()) {
+				java.sql.Date f=reg.getDate("fecha_alt");
+				LocalDate fBuena=f.toLocalDate();
+				lista.add(new Compra(reg.getString("factura"),reg.getInt("precio"),reg.getString("cod_cliente"),fBuena));
+			}
+			s.close();
+			this.cerrar();
+			return lista;
+		} catch (SQLException e) {
+			return null;
+		}
+		
+	}
 	
 	public int devolverNumFactura() throws DatosIntroducidosException {
 		cadenaSQL = "SELECT MAX(SUBSTRING(factura,4)) FROM compras";
