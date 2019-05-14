@@ -54,10 +54,10 @@ public class JFLogin extends JFrame{
 				try {
 					tipo=bdu.inicioSesion(u);
 					if (tipo==null) {
-						JOptionPane.showMessageDialog(null, "Credenciales inválidas", "ERROR", JOptionPane.ERROR_MESSAGE);			
+						JOptionPane.showMessageDialog(null, "Credenciales invÃ¡lidas", "ERROR", JOptionPane.ERROR_MESSAGE);			
 					}else {
 						if (tipo.equals("Cliente")) {
-							JFCliente JFcliente=new JFCliente();
+							JFCliente JFcliente=new JFCliente(u);
 							JFcliente.setVisible(true);
 						}else
 							if (tipo.equals("Administrador")) {
@@ -69,8 +69,8 @@ public class JFLogin extends JFrame{
 									JFEmpleadoAdministracion jempleA = new JFEmpleadoAdministracion();
 									jempleA.setVisible(true);
 								}else {
-									if(tipo.equals("Diseño")) {
-										JFEmpleadoDiseño jempleD = new JFEmpleadoDiseño();
+									if(tipo.equals("DiseÃ±o")) {
+										JFEmpleadoDiseÃ±o jempleD = new JFEmpleadoDiseÃ±o();
 										jempleD.setVisible(true);
 									}else {
 										if(tipo.equals("Logistica")) {
@@ -80,7 +80,7 @@ public class JFLogin extends JFrame{
 									}
 								}
 							}
-						setVisible(false);		
+						setVisible(false);
 					}		
 				}catch(DatosIntroducidosException ex) {
 					JOptionPane.showMessageDialog(null, ex.getMessage(), "AVISO", JOptionPane.INFORMATION_MESSAGE);

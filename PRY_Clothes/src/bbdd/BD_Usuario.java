@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Vector;
 
+import modelos.Cliente;
 import modelos.Usuario;
 import exceptions.DatosIntroducidosException;
 
@@ -22,6 +23,23 @@ public class BD_Usuario extends BD_Conector{
 	
 	public BD_Usuario() {
 		super();
+	}
+	//@author Rober
+	public boolean modificarCampoUsuario(String cod, String campo, String valor) {
+		cadenaSQL="UPDATE USUARIOS SET '" + campo + "' = '" + valor + "' where cod ='" + cod + "'";
+		
+		try {
+			this.abrir();
+			s = c.createStatement();
+			s.executeUpdate(cadenaSQL);
+			s.close();
+			this.cerrar();
+			return true;
+
+		} catch (SQLException e) {
+			this.cerrar();
+			return false;
+		}
 	}
 	
 	public int darAltaUsuario(Usuario usu) throws DatosIntroducidosException {
@@ -101,6 +119,51 @@ public class BD_Usuario extends BD_Conector{
 			this.cerrar();
 			return -1;
 		}
+	}
+	
+	public Cliente buscarClienteDatos(String nombre) throws DatosIntroducidosException {
+		cadenaSQL="SELECT * FROM USUARIOS WHERE nombre ='" + nombre + "'";
+		Usuario u=null;
+		try {
+			this.abrir();
+			
+			s = c.createStatement();
+			reg = s.executeQuery(cadenaSQL);
+			while(reg.next()) {
+				java.sql.Date f=reg.getDate("fecha_alt");
+				LocalDate fBuena=f.toLocalDate();
+				u =new Usuario(reg.getString("contraseña"),reg.getString("nombre"),reg.getString("telefono"),fBuena);
+			}
+			s.close();
+			
+			this.cerrar();
+			
+		}catch(SQLException e) {
+			this.cerrar();
+			throw new DatosIntroducidosException("Ha habido un error en la bbdd");
+		}
+		
+		cadenaSQL="SELECT * FROM Clientes WHERE cod_cliente ='" + u.getCodigo() + "'";
+		Cliente cli=null;
+		try {
+			this.abrir();
+			
+			s = c.createStatement();
+			reg = s.executeQuery(cadenaSQL);
+			while(reg.next()) {
+				
+				cli =new Cliente(u.getContraseña(),u.getNombre(),u.getTelefono(),u.getFechaAlta(),reg.getLong("num_tarjeta"),reg.getString("direccion"));
+			}
+			s.close();
+			
+			this.cerrar();
+			return cli;
+		}catch(SQLException e) {
+			this.cerrar();
+			throw new DatosIntroducidosException("Ha habido un error en la bbdd");
+		}
+		
+		
 	}
 
 	public String inicioSesion(Usuario usu) throws DatosIntroducidosException {

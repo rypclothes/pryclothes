@@ -61,4 +61,12 @@ public class JPLogin extends JPanel {
 		for (Component c :this.getComponents()) 
 			c.setEnabled(false);
 	}
+	
+	public void clearText() {
+		
+		JTFNombreUsuario.setText("");
+		JTFContraseña.setText("");
+		
+	}
+	
 }
