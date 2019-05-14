@@ -23,15 +23,22 @@ public class JPDatosCompra extends JPanel{
 		
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion Compra", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		setLayout(null);
-		setBounds(0, 0, 263, 244);
+		setBounds(0, 0, 451, 244); 
 		
 		TXFInfo = new JTextField();
-		TXFInfo.setBounds(12, 23, 239, 208);
+		TXFInfo.setBounds(12, 23, 427, 208);
 		add(TXFInfo);
 		TXFInfo.setColumns(10);
 	}
 	public void setDatos(Compra co) {
 		Vector<Venta>listaventas=bdv.listadoVentas(co.getFactura());
-		TXFInfo.setText(String.valueOf(listaventas.toString()));
+		String lista ="";
+		for(int i=0;i<listaventas.size();i++) {
+			
+			lista+="Venta "+i+": "+listaventas.get(i).toString()+"\n";
+			
+		}
+		
+		TXFInfo.setText(lista);
 	}
 }

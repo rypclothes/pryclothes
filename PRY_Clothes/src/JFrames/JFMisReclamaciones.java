@@ -40,12 +40,13 @@ public class JFMisReclamaciones extends JFrame{
 		initialize();
 	}
 	public void initialize() {
+				
 		//Panel con datos
 				JPDatosReclamacion jpd = new JPDatosReclamacion();
 				jpd.setBounds(5, 11, 262, 255);
 				getContentPane().add(jpd);
 				
-				//Panel lista
+		//Panel lista
 				JPListaReclamaciones jpl = new JPListaReclamaciones();
 				jpl.setSize(176, 255);
 				jpl.setLocation(271, 11);

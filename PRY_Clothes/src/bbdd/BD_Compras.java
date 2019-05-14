@@ -31,7 +31,7 @@ public class BD_Compras extends BD_Conector{
 			reg = s.executeQuery(cadenaSQL);
 
 			while (reg.next()) {
-				java.sql.Date f=reg.getDate("fecha_alt");
+				java.sql.Date f=reg.getDate("fecha_compra");
 				LocalDate fBuena=f.toLocalDate();
 				lista.add(new Compra(reg.getString("factura"),reg.getInt("precio"),reg.getString("cod_cliente"),fBuena));
 			}
