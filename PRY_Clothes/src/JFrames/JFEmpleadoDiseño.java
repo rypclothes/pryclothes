@@ -32,7 +32,7 @@ public class JFEmpleadoDiseño extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Diseño");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 225, 199);
+		setBounds(100, 100, 225, 231);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -49,21 +49,21 @@ public class JFEmpleadoDiseño extends JFrame {
 			public void mousePressed(MouseEvent arg0) {
 				JFCrearDiseño newDiseño = new JFCrearDiseño(tipo);
 				newDiseño.setVisible(true);
-				dispose();
+				setVisible(false);
 			}
 		});
-		BTNCrearDiseño.setBounds(41, 49, 142, 25);
+		BTNCrearDiseño.setBounds(41, 46, 142, 25);
 		contentPane.add(BTNCrearDiseño);
 		
 		JButton BTNCrearIncidencia = new JButton("Crear incidencia");
 		BTNCrearIncidencia.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				JFCrearIncidencia jfci = new JFCrearIncidencia(tipo);
+				JFCrearIncidencia jfci = new JFCrearIncidencia();
 				jfci.setVisible(true);
 			}
 		});
-		BTNCrearIncidencia.setBounds(41, 86, 142, 25);
+		BTNCrearIncidencia.setBounds(41, 122, 142, 25);
 		contentPane.add(BTNCrearIncidencia);
 		
 		JLabel LBLSaludo = new JLabel("Bienvenido!");
@@ -78,7 +78,19 @@ public class JFEmpleadoDiseño extends JFrame {
 				dispose();
 			}
 		});
-		btnSalir.setBounds(41, 126, 142, 25);
+		btnSalir.setBounds(41, 160, 142, 25);
 		contentPane.add(btnSalir);
+		
+		JButton btnBorrarDiseo = new JButton("Borrar dise\u00F1o");
+		btnBorrarDiseo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				JFBorrarDiseño jfb = new JFBorrarDiseño();
+				jfb.setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnBorrarDiseo.setBounds(41, 84, 142, 25);
+		contentPane.add(btnBorrarDiseo);
 	}
 }

@@ -25,36 +25,36 @@ public class JPCrearDiseño extends JPanel {
 
 	public JPCrearDiseño() {
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Crear diseño", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		setBounds(0, 0, 204, 140);
+		setBounds(0, 0, 259, 146);
 		setLayout(null);
 		initialize();
 	}
 	
 	public void initialize() {
 		JLabel LBLDescripcion = new JLabel("Descripcion");
-		LBLDescripcion.setBounds(12, 27, 72, 16);
+		LBLDescripcion.setBounds(23, 27, 72, 16);
 		add(LBLDescripcion);
 		
 		JTFDescripcion = new JTextField();
-		JTFDescripcion.setBounds(77, 24, 116, 22);
+		JTFDescripcion.setBounds(131, 24, 116, 22);
 		add(JTFDescripcion);
 		JTFDescripcion.setColumns(10);
 		
 		JLabel LBLPrecio = new JLabel("Precio");
-		LBLPrecio.setBounds(12, 69, 56, 16);
+		LBLPrecio.setBounds(23, 69, 56, 16);
 		add(LBLPrecio);
 		
 		JLabel LBLCategoria = new JLabel("Categoria");
-		LBLCategoria.setBounds(12, 110, 56, 16);
+		LBLCategoria.setBounds(23, 111, 56, 16);
 		add(LBLCategoria);
 		
 		JTFPrecio = new JTextField();
-		JTFPrecio.setBounds(77, 66, 116, 22);
+		JTFPrecio.setBounds(131, 66, 116, 22);
 		add(JTFPrecio);
 		JTFPrecio.setColumns(10);
 		
 		JTFCategoria = new JTextField();
-		JTFCategoria.setBounds(77, 107, 116, 22);
+		JTFCategoria.setBounds(131, 108, 116, 22);
 		add(JTFCategoria);
 		JTFCategoria.setColumns(10);
 		

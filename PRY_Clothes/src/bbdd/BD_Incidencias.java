@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Vector;
 
+import exceptions.DatosIntroducidosException;
 import modelos.Incidencia;
 
 /**
@@ -54,15 +55,17 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 		}
 	}
 
-	public  Vector <Incidencia> listadoIncidencias(String cod_emple){
-		String cadenaSQL="SELECT * from reporte_incidencias WHERE cod_emple='"+cod_emple+"'";
+	public  Vector <Incidencia> listadoIncidencias(){
+		String cadenaSQL="SELECT * from reporte_incidencias WHERE solucionado = 0";
 		Vector<Incidencia> listaIncidencias=new Vector<Incidencia>();
 		try{
 			this.abrir();
 			s=c.createStatement();
 			reg=s.executeQuery(cadenaSQL);
 			while ( reg.next()){
-				listaIncidencias.add(new Incidencia(reg.getString(2), reg.getString(1)));
+				java.sql.Date fecha = reg.getDate("fecha_error");
+				LocalDate fechaBuena = fecha.toLocalDate();
+				listaIncidencias.add(new Incidencia(fechaBuena, reg.getString("cod_emple"), reg.getString("tipo_incidencia"), reg.getInt("num_incidencia")));
 			}
 			s.close();
 			this.cerrar();
@@ -70,6 +73,25 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 		}
 		catch ( SQLException e){		
 			return null;			
+		}
+	}
+	
+	public int solucionarIncidencia(int numIncidencia) throws DatosIntroducidosException {
+		String cadenaSQL = "UPDATE reporte_incidencias SET solucionado = 1 WHERE num_incidencia='" + numIncidencia +"'";
+		int filas = 0;
+		
+		try {
+			this.abrir();
+			
+			s = c.createStatement();
+			filas = s.executeUpdate(cadenaSQL);
+			s.close();
+			
+			this.cerrar();
+			return filas;
+		}catch(SQLException e) {
+			this.cerrar();
+			throw new DatosIntroducidosException("Problemas con la BBDD");
 		}
 	}
 	

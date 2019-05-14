@@ -8,6 +8,8 @@ import java.net.URISyntaxException;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * 
@@ -24,7 +26,7 @@ public class JFInformacion extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFInformacion.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Información");
-		setBounds(100, 100, 511, 198);
+		setBounds(100, 100, 511, 181);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -52,26 +54,29 @@ public class JFInformacion extends JFrame {
 		contentPane.add(lblPinchandoEnEl);
 		
 		JButton BTNInformacion = new JButton("Juacas Jaus");
-		//BTNInformacion.setIcon(new ImageIcon(JFInformacion.class.getResource("/imagenes/logo.png")));
+		BTNInformacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		BTNInformacion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				goTo_navegador("https://juacasjaus.000webhostapp.com/");
 			}
 		});
-		BTNInformacion.setBounds(10, 102, 109, 23);
+		BTNInformacion.setBounds(10, 122, 109, 23);
 		contentPane.add(BTNInformacion);
 		
 		JLabel lblAutoresYandryPablo = new JLabel("Autores: Yandry, Pablo, Roberto, Daniel, Mario");
-		lblAutoresYandryPablo.setBounds(236, 115, 320, 14);
+		lblAutoresYandryPablo.setBounds(232, 104, 320, 14);
 		contentPane.add(lblAutoresYandryPablo);
 		
 		JLabel lblCopyright = new JLabel("Copyright \u00A9 2019  Version Beta");
-		lblCopyright.setBounds(316, 140, 272, 14);
+		lblCopyright.setBounds(318, 125, 272, 14);
 		contentPane.add(lblCopyright);
 		
 		JButton BTNSalir = new JButton("Salir");
-		BTNSalir.setBounds(10, 136, 109, 23);
+		BTNSalir.setBounds(131, 122, 109, 23);
 		BTNSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {

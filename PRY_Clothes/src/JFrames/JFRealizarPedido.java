@@ -2,6 +2,7 @@ package JFrames;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -31,7 +32,9 @@ public class JFRealizarPedido extends JFrame {
 	private JFEmpleadoLogistica jfl = new JFEmpleadoLogistica();
 	
 	public JFRealizarPedido() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JFResponderReclamacion.class.getResource("/imagenes/rypclothes.png")));
+		setTitle("Pedidos");
 		setBounds(100, 100, 243, 175);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
