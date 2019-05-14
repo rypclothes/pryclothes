@@ -28,6 +28,14 @@ public class Venta  {
 	public int getPrecio_venta() {
 		return precio_venta;
 	}
+
+	@Override
+	public String toString() {
+		return "Venta [cod_diseño=" + cod_diseño + ", cantidad=" + cantidad + ", precio_venta=" + precio_venta + "]";
+	}
+
+	
+	
 	
 	
 

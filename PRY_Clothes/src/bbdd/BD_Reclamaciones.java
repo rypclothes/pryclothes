@@ -123,6 +123,29 @@ public class BD_Reclamaciones extends BD_Conector {
 			return null;
 		}
 	}
+	
+	public Vector<Reclamacion> listadoMisReclamaciones(String cod) {
+
+		String cadenaSQL = "SELECT * FROM reclamaciones WHERE cod_cliente ='"+cod+"'";
+		Vector<Reclamacion> listaReclamaciones = new Vector<Reclamacion>();
+
+		try {
+
+			this.abrir();
+			s = c.createStatement();
+			reg = s.executeQuery(cadenaSQL);
+			while (reg.next()) {
+				listaReclamaciones.add(new Reclamacion(reg.getString("cod_cliente"), reg.getString("descripcion"), reg.getString("respuesta")));
+			}
+
+			s.close();
+			this.cerrar();
+			return listaReclamaciones;
+
+		} catch (SQLException e) {
+			return null;
+		}
+	}
 
 	// Devuelve un vector con todas las reclamaciones para luego en el date utilizar
 	// dicho vector

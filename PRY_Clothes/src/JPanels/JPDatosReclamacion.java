@@ -65,6 +65,14 @@ public class JPDatosReclamacion extends JPanel {
 		TXFFecha.setText(String.valueOf(re.getFecha_Rec()));
 		TXTADescripcion.setText(re.getDescripcion());
 	}
+	public void setDatos1(Reclamacion re) {
+		TXFFecha.setText(String.valueOf(re.getFecha_Rec()));
+		TXTADescripcion.setText(re.getDescripcion());
+		if(re.getRespuesta()==null)
+		TXTARespuesta.setText("No hay Respuesta");
+		else
+			TXTARespuesta.setText(re.getRespuesta());
+	}
 	
 	public void setInhabilitado() {
 		TXFFecha.setEnabled(false);

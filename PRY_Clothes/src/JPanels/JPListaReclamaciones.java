@@ -15,7 +15,7 @@ import javax.swing.border.TitledBorder;
 public class JPListaReclamaciones extends JPanel {
 
 	public JPListaReclamaciones() {
-		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Compras", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Reclamaciones", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		setLayout(null);
 		setBounds(0, 0, 263, 244);
 		

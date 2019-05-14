@@ -86,9 +86,23 @@ public class JFCliente extends JFrame {
 		mnNewMenu.add(mntmNewMenuItem);
 		
 		JMenuItem mntmMisCompras = new JMenuItem("Mis Compras");
+		mntmMisCompras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				JFMisCompras jfm=new JFMisCompras(cli.getCodigo());
+				jfm.setVisible(true);
+			}
+		});
 		mnNewMenu.add(mntmMisCompras);
 		
 		JMenuItem mntmMisReclamaciones = new JMenuItem("Mis Reclamaciones");
+		mntmMisReclamaciones.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				JFMisReclamaciones jfmis=new JFMisReclamaciones(cli.getCodigo());
+				jfmis.setVisible(true);
+			}
+		});
 		mnNewMenu.add(mntmMisReclamaciones);
 		
 		JMenuItem mntmCerrarSesion = new JMenuItem("Cerrar Sesion");
