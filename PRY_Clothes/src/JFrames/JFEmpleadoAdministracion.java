@@ -100,7 +100,7 @@ public class JFEmpleadoAdministracion extends JFrame {
 		BTNReportarIncidencia.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				JFCrearIncidencia jfc = new JFCrearIncidencia(tipo);
+				JFCrearIncidencia jfc = new JFCrearIncidencia();
 				jfc.setVisible(true);
 			}
 		});

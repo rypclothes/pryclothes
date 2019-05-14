@@ -10,6 +10,7 @@ import JPanels.JPContratarEmple;
 import bbdd.BD_Empleado;
 import exceptions.DatosIntroducidosException;
 import modelos.Empleado;
+import modelos.Usuario;
 
 import java.awt.Toolkit;
 import java.awt.Window;
@@ -26,8 +27,10 @@ public class JFContratarEmple extends JFrame {
 	
 	private BD_Empleado bdea=new BD_Empleado();
 	private JPanel contentPane;
+	private Usuario u;
 
 	public JFContratarEmple() {
+		this.u = u;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Registro Empleado");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

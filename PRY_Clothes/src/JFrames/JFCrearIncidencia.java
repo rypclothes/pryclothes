@@ -28,10 +28,8 @@ public class JFCrearIncidencia extends JFrame {
 
 	private JPanel contentPane;
 	private BD_Incidencias bdi=new BD_Incidencias();
-	String tipo;
 
-	public JFCrearIncidencia(String tipo) {
-		this.tipo = tipo;
+	public JFCrearIncidencia() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Crear incidencia");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
