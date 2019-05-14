@@ -41,6 +41,13 @@ public Diseño(String descripcion, double precio, String categoria, int cantidad)
 	this.categoria = categoria;
 }
 
+public Diseño(String descripcion, double precio, String categoria, String codDiseño) {
+	super();
+	this.descripcion = descripcion;
+	this.precio = precio;
+	this.categoria = categoria;
+	this.codDiseño = codDiseño;
+}
 public Diseño(int cantidad, String codDiseño) {
 	super();
 	this.cantidad = cantidad;
@@ -68,9 +75,10 @@ public String getCategoria() {
 public String getCodDiseño() {
 	return codDiseño;
 }
+
 @Override
 public String toString() {
-	return codDiseño;
+	return codDiseño+"   "+descripcion+"   "+precio+" euros";
 }
 	
 

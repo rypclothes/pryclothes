@@ -1,11 +1,11 @@
 package JFrames;
 
 import java.awt.Toolkit;
-
+import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
+import modelos.Venta;
 import java.awt.Font;
 import javax.swing.JTextField;
 

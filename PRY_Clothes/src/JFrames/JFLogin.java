@@ -69,7 +69,7 @@ public class JFLogin extends JFrame{
 									JFEmpleadoAdministracion jempleA = new JFEmpleadoAdministracion();
 									jempleA.setVisible(true);
 								}else {
-									if(tipo.equals("DiseÃ±o")) {
+									if(tipo.equals("Diseño")) {
 										JFEmpleadoDiseño jempleD = new JFEmpleadoDiseño();
 										jempleD.setVisible(true);
 									}else {

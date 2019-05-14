@@ -7,8 +7,11 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import JFrames.JFEscribirReclamacion;
-
+import JFrames.JFMenuCatalogo;
+import modelos.Venta;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import java.util.Vector;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -45,10 +48,27 @@ public class JPMenuCliente extends JPanel{
 		add(btnNewButton);
 		
 		JButton btnVerCatalogo = new JButton("Ver Catalogo");
+		btnVerCatalogo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				Vector<Venta>carrito=null;
+				JFMenuCatalogo jmenu=new JFMenuCatalogo(cod_cliente,carrito);
+				jmenu.setVisible(true);
+				
+			}
+		});
 		btnVerCatalogo.setBounds(128, 84, 150, 50);
 		add(btnVerCatalogo);
 		
 		JButton btnHacerDevolucion = new JButton("Hacer Devolucion");
+		btnHacerDevolucion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				JOptionPane.showMessageDialog(null, "Proximamente funcion disponible", "RYPCLOTHES", JOptionPane.INFORMATION_MESSAGE);
+				
+			}
+		});
 		btnHacerDevolucion.setBounds(128,147, 150, 50);
 		add(btnHacerDevolucion);
 		

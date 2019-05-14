@@ -56,6 +56,26 @@ public class BD_Diseño extends BD_Conector {
 	
 	}
 	
+	public Vector <Diseño> listadoPrendasCat(String cat){
+		String cadenaSQL="SELECT * FROM diseños where categoria = '"+ cat +"' ";
+		Vector <Diseño> listadoDiseños = new Vector <Diseño>();
+		try {
+			this.abrir();
+			 s = c.createStatement();
+			 reg=s.executeQuery(cadenaSQL);
+			 while ( reg.next()){
+				 listadoDiseños.add(new Diseño(reg.getString("descripcion"),reg.getDouble("precio"),reg.getString("categoria"),reg.getString("cod_diseño")));
+				}	
+		}catch(SQLException e) {
+			this.cerrar();
+			System.out.println(e.getMessage());
+			return null;
+		}
+		
+		return listadoDiseños;
+	
+	}
+	
 	public Vector <Diseño> listado(){
 		String cadenaSQL="SELECT * FROM diseños";
 		Vector <Diseño> listadoDiseños = new Vector <Diseño>();
