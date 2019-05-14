@@ -70,7 +70,7 @@ public class JFLogin extends JFrame{
 									jempleA.setVisible(true);
 								}else {
 									if(tipo.equals("Dise√±o")) {
-										JFEmpleadoDise√±o jempleD = new JFEmpleadoDise√±o();
+										JFEmpleadoDiseÒo jempleD = new JFEmpleadoDiseÒo();
 										jempleD.setVisible(true);
 									}else {
 										if(tipo.equals("Logistica")) {
