@@ -15,6 +15,12 @@ public class Aviso {
 		fecha= fecha.now();
 	}
 	
+	public Aviso(String codEmple, LocalDate fecha, String motivo) {
+		this.codEmple = codEmple;
+		this.fecha = fecha;
+		this.motivo = motivo;
+	}
+	
 	public String getCodEmple() {
 		return codEmple;
 	}
@@ -37,7 +43,7 @@ public class Aviso {
 	
 	@Override
 	public String toString() {
-		return "Aviso \n**Codigo de Empleado: " + codEmple + ", Fecha=" + fecha + ", Motivo: " + motivo;
+		return codEmple + ",    " + fecha + "    " + motivo;
 	}
 	
 }

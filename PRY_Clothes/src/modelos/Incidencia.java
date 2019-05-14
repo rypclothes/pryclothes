@@ -11,12 +11,19 @@ public class Incidencia {
 	private LocalDate fechaError;
 	private String codEmple;
 	private String tipoIncidencia;
+	private int numIncidencia;
 	
 	public Incidencia(String codEmple, String tipoIncidencia) {
-		super();
 		this.fechaError = LocalDate.now();
 		this.codEmple = codEmple;
 		this.tipoIncidencia = tipoIncidencia;
+	}
+	
+	public Incidencia(LocalDate fechaError, String codEmple, String tipoIncidencia, int numIncidencia) {
+		this.fechaError = fechaError;
+		this.codEmple = codEmple;
+		this.tipoIncidencia = tipoIncidencia;
+		this.numIncidencia = numIncidencia;
 	}
 
 	public void setCodEmple(String codEmple) {
@@ -39,12 +46,14 @@ public class Incidencia {
 	public String getCodEmple() {
 		return codEmple;
 	}
+	
+	public int getNumIncidencia() {
+		return numIncidencia;
+	}
 
 	@Override
 	public String toString() {
-		return "Incidencias [fechaError=" + fechaError + ", codEmple=" + codEmple + ", tipoIncidencia=" + tipoIncidencia
-				+ ", getTipoIncidencia()=" + getTipoIncidencia() + ", getFechaError()=" + getFechaError()
-				+ ", getCodEmple()=" + getCodEmple() + super.toString() + "]";
+		return String.valueOf(numIncidencia);
 	}
 
 	

@@ -33,7 +33,7 @@ public class BD_Aviso extends BD_Conector{
 		}
 	}
 	
-	public Vector<Aviso> mostrarAvisos(Aviso av) throws DatosIntroducidosException{
+	public Vector<Aviso> mostrarAvisos() throws DatosIntroducidosException{
 		String cadenaSQL = "SELECT * FROM avisos";
 		Vector<Aviso> avisos=new Vector<Aviso>();
 		
@@ -43,7 +43,9 @@ public class BD_Aviso extends BD_Conector{
 			s=c.createStatement();
 			reg = s.executeQuery(cadenaSQL);
 			while(reg.next()) {
-				avisos.add(new Aviso(reg.getString("cod_emple"), reg.getString("motivo")));
+				java.sql.Date fecha = reg.getDate("fecha_aviso");
+				LocalDate fechaBuena = fecha.toLocalDate();
+				avisos.add(new Aviso(reg.getString("cod_emple"), fechaBuena, reg.getString("motivo")));
 			}
 			s.close();
 			return avisos;

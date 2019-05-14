@@ -55,15 +55,17 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 		}
 	}
 
-	public  Vector <Incidencia> listadoIncidencias(String cod_emple){
-		String cadenaSQL="SELECT * from reporte_incidencias WHERE cod_emple='"+cod_emple+"'";
+	public  Vector <Incidencia> listadoIncidencias(){
+		String cadenaSQL="SELECT * from reporte_incidencias WHERE solucionado = 0";
 		Vector<Incidencia> listaIncidencias=new Vector<Incidencia>();
 		try{
 			this.abrir();
 			s=c.createStatement();
 			reg=s.executeQuery(cadenaSQL);
 			while ( reg.next()){
-				listaIncidencias.add(new Incidencia(reg.getString(2), reg.getString(1)));
+				java.sql.Date fecha = reg.getDate("fecha_error");
+				LocalDate fechaBuena = fecha.toLocalDate();
+				listaIncidencias.add(new Incidencia(fechaBuena, reg.getString("cod_emple"), reg.getString("tipo_incidencia"), reg.getInt("num_incidencia")));
 			}
 			s.close();
 			this.cerrar();

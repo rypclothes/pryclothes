@@ -20,13 +20,14 @@ import java.awt.event.MouseEvent;
 public class JFAdmin extends JFrame {
 
 	private JPanel contentPane;
-
+	private JFLogin jfl = new JFLogin();
+	private JFMostrarAvisos jfm = new JFMostrarAvisos();
 	
 	public JFAdmin() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFAdmin.class.getResource("/imagenes/rypclothes.png")));
-		setTitle("Perfil Administrador");
+		setTitle("Administrador");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 253, 185);
+		setBounds(100, 100, 253, 191);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setResizable(false);
@@ -41,10 +42,12 @@ public class JFAdmin extends JFrame {
 		BTNSolIncid.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+				JFSolucionarIncidencias jfs = new JFSolucionarIncidencias();
+				jfs.setVisible(true);
+				dispose();
 			}
 		});
-		BTNSolIncid.setBounds(35, 24, 168, 25);
+		BTNSolIncid.setBounds(41, 13, 168, 25);
 		contentPane.add(BTNSolIncid);
 		
 		JButton btnNewButton = new JButton("Poner aviso");
@@ -56,11 +59,29 @@ public class JFAdmin extends JFrame {
 				setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(35, 60, 168, 25);
+		btnNewButton.setBounds(41, 49, 168, 25);
 		contentPane.add(btnNewButton);
 		
 		JButton btnMostrarAvisos = new JButton("Mostrar avisos");
-		btnMostrarAvisos.setBounds(35, 98, 168, 25);
+		btnMostrarAvisos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				jfm.setVisible(true);
+				dispose();
+			}
+		});
+		btnMostrarAvisos.setBounds(41, 87, 168, 25);
 		contentPane.add(btnMostrarAvisos);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				jfl.setVisible(true);
+				dispose();
+			}
+		});
+		btnSalir.setBounds(41, 125, 168, 25);
+		contentPane.add(btnSalir);
 	}
 }

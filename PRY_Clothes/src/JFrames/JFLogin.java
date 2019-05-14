@@ -31,7 +31,7 @@ public class JFLogin extends JFrame{
 		setTitle("PRY CLOTHES");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 296, 207);
+		setBounds(100, 100, 296, 190);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		initialize();
@@ -40,7 +40,7 @@ public class JFLogin extends JFrame{
 	public void initialize() {
 		//Panel introduccion de datos
 		panelAlumnos = new JPLogin();
-		panelAlumnos.setLocation(0, 11);
+		panelAlumnos.setLocation(0, 0);
 		getContentPane().add(panelAlumnos);
 		
 		//Panel botones
@@ -80,14 +80,14 @@ public class JFLogin extends JFrame{
 									}
 								}
 							}
-						dispose();			
+						setVisible(false);		
 					}		
 				}catch(DatosIntroducidosException ex) {
 					JOptionPane.showMessageDialog(null, ex.getMessage(), "AVISO", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
-		BTNAceptar.setBounds(10, 116, 120, 23);
+		BTNAceptar.setBounds(10, 98, 120, 23);
 		getContentPane().add(BTNAceptar);
 		
 		JButton BTNRegistrarse = new JButton("Reg\u00EDstrate");
@@ -99,7 +99,7 @@ public class JFLogin extends JFrame{
 				dispose();
 			}
 		});
-		BTNRegistrarse.setBounds(160, 116, 120, 23);
+		BTNRegistrarse.setBounds(160, 98, 120, 23);
 		getContentPane().add(BTNRegistrarse);
 		
 		JButton BTNInformacion = new JButton("Informaci\u00F3n");
@@ -111,7 +111,7 @@ public class JFLogin extends JFrame{
 				dispose();
 			}
 		});
-		BTNInformacion.setBounds(82, 150, 120, 23);
+		BTNInformacion.setBounds(82, 127, 120, 23);
 		getContentPane().add(BTNInformacion);
 	}
 }

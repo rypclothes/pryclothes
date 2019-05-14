@@ -17,6 +17,12 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * 
+ * @author Pablo
+ *
+ */
+
 public class JFPonerAviso extends JFrame {
 
 	private JPanel contentPane;
@@ -68,6 +74,7 @@ public class JFPonerAviso extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				jfa.setVisible(true);
+				dispose();
 			}
 		});
 		btnSalir.setBounds(134, 205, 97, 25);

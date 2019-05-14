@@ -18,10 +18,5 @@ public class JPListaReclamaciones extends JPanel {
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Numero incidencia", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		setLayout(null);
 		setBounds(0, 0, 263, 244);
-		initialize();
-	}
-
-	public void initialize() {
-		
 	}
 }
