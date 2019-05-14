@@ -38,6 +38,11 @@ public class JFCambiarDatosCliente extends JFrame{
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
+		JLabel lblInserteElNuevo = new JLabel("Inserte el nuevo dato para modificar su "+campo);
+		lblInserteElNuevo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblInserteElNuevo.setBounds(29, 13, 378, 26);
+		getContentPane().add(lblInserteElNuevo);
+		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -88,10 +93,7 @@ public class JFCambiarDatosCliente extends JFrame{
 		btnCancelar.setBounds(258, 87, 97, 25);
 		getContentPane().add(btnCancelar);
 		
-		JLabel lblInserteElNuevo = new JLabel("Inserte el nuevo dato para modificar su "+campo);
-		lblInserteElNuevo.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblInserteElNuevo.setBounds(29, 13, 378, 26);
-		getContentPane().add(lblInserteElNuevo);
+		
 		
 	}
 	

@@ -100,7 +100,7 @@ public class BD_Reclamaciones extends BD_Conector {
 		}
 	}
 
-	// Pendiente
+	
 	// Crea un vector en el que se lista todos los campos de la tabla reclamaciones
 	public Vector<String> listadoCamposReclamaciones() {
 

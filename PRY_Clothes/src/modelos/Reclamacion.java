@@ -11,10 +11,12 @@ public class Reclamacion {
 	public String toString() {
 		return cod_cliente;
 	}
+	
 
 	private LocalDate Fecha_Rec;
 	private String cod_cliente, descripcion, respuesta;
-
+	
+	//constructor para añadir incidencias
 	public Reclamacion(String cod_cliente, String descripcion) {
 		super();
 		this.Fecha_Rec = LocalDate.now();

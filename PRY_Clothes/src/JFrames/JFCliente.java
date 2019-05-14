@@ -55,7 +55,7 @@ public class JFCliente extends JFrame {
 		
 		cli=bdu.buscarClienteDatos(u.getNombre());
 		
-		pMenuCliente= new JPMenuCliente();
+		pMenuCliente= new JPMenuCliente(cli.getCodigo());
 		pMenuCliente.setSize(388, 210);
 		pMenuCliente.setLocation(0, 25);
 		getContentPane().add(pMenuCliente);
