@@ -22,7 +22,7 @@ public class BD_Ventas extends BD_Conector{
 	
 	public String crearFactura(String cod_cliente)  {
 		int num=0;
-		String cadenaSQL="SELECT MAX(SUBSTRING(factura,4) FROM COMPRAS)";	
+		String cadenaSQL="SELECT MAX(SUBSTRING(factura,4)) FROM COMPRAS";	
 		
 		try {
 			

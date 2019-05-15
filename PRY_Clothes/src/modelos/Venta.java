@@ -31,7 +31,7 @@ public class Venta  {
 
 	@Override
 	public String toString() {
-		return "cod_diseño=" + cod_diseño + ", cantidad=" + cantidad + ", precio=" + precio_venta;
+		return cod_diseño +cantidad + ", precio=" + precio_venta;
 	}
 
 	

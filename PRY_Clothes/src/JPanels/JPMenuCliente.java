@@ -8,6 +8,7 @@ import javax.swing.border.TitledBorder;
 
 import JFrames.JFEscribirReclamacion;
 import JFrames.JFMenuCatalogo;
+import bbdd.BD_Ventas;
 import modelos.Venta;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -18,6 +19,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class JPMenuCliente extends JPanel{
+	private BD_Ventas bdv=new BD_Ventas();
 	private String cod_cliente;
 	public JPMenuCliente(String cod_cliente) {
 		this.cod_cliente=cod_cliente;
@@ -52,7 +54,8 @@ public class JPMenuCliente extends JPanel{
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				Vector<Venta>carrito=null;
-				JFMenuCatalogo jmenu=new JFMenuCatalogo(cod_cliente,carrito);
+				String factura=bdv.crearFactura(cod_cliente);
+				JFMenuCatalogo jmenu=new JFMenuCatalogo(cod_cliente,factura);
 				jmenu.setVisible(true);
 				
 			}

@@ -11,6 +11,7 @@ import modelos.Venta;
 
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Vector;
@@ -18,19 +19,17 @@ import java.util.Vector;
 public class JFMenuCatalogo extends JFrame{
 	private String factura;
 	private String cod_cliente;
-	private Vector<Venta> carrito;
-	private BD_Ventas bdv=new BD_Ventas();
-	public JFMenuCatalogo(String cod_cliente,Vector<Venta> carrito) {
+	private Vector<Venta> carrito=null;
+	
+
+	public JFMenuCatalogo(String cod_cliente,String factura) {
 		this.cod_cliente=cod_cliente;
-		this.carrito=carrito;
+		this.factura=factura;
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFCliente.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Catalogo");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 406, 280);
 		getContentPane().setLayout(null);
-		
-		factura=bdv.crearFactura(cod_cliente);
 		
 		JButton btnCamisetas = new JButton("CAMISETAS");
 		btnCamisetas.addMouseListener(new MouseAdapter() {
@@ -85,16 +84,35 @@ public class JFMenuCatalogo extends JFrame{
 		getContentPane().add(button_2);
 		
 		JButton btnAtras = new JButton("Salir");
+		btnAtras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				dispose();
+				
+			}
+		});
 		btnAtras.setBounds(143, 195, 97, 25);
 		getContentPane().add(btnAtras);
 		
 		
 	}
 	
+	public JFMenuCatalogo() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void menuclick(String categoria) {
 		
 		JFMenuCatalogoCompras jfcom=new JFMenuCatalogoCompras(factura,cod_cliente,categoria,carrito);
 		jfcom.setVisible(true);
+		dispose();
+		
+	}
+	
+	public void actualizarCarrito(Vector <Venta>ncarrito) {
+		
+		carrito=ncarrito;
 		
 	}
 	
