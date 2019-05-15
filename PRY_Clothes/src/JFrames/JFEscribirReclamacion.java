@@ -51,7 +51,7 @@ public class JFEscribirReclamacion extends JFrame{
 					
 				}
 				else
-					JOptionPane.showMessageDialog(null, "Algún dato no se ha introducido correctamente!", "AVISO", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Solo puede hacer una reclamacion por dia.Gracias!", "AVISO", JOptionPane.ERROR_MESSAGE);
 				dispose();
 			}
 		});
