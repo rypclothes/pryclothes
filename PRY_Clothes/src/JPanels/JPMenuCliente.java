@@ -8,6 +8,7 @@ import javax.swing.border.TitledBorder;
 
 import JFrames.JFEscribirReclamacion;
 import JFrames.JFMenuCatalogo;
+import JFrames.JFMenuDevoluciones;
 import bbdd.BD_Ventas;
 import modelos.Venta;
 import javax.swing.JButton;
@@ -68,7 +69,8 @@ public class JPMenuCliente extends JPanel{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				
-				JOptionPane.showMessageDialog(null, "Proximamente funcion disponible", "RYPCLOTHES", JOptionPane.INFORMATION_MESSAGE);
+				JFMenuDevoluciones jfdev=new JFMenuDevoluciones(cod_cliente);
+				jfdev.setVisible(true);
 				
 			}
 		});

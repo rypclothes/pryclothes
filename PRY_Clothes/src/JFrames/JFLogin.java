@@ -25,7 +25,7 @@ public class JFLogin extends JFrame{
 	private JPLogin panelAlumnos;
 	private JPBotones panelBotones;
 	private BD_Usuario bdu = new BD_Usuario();
-	
+	private int cont=3;
 	public JFLogin() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFLogin.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("PRY CLOTHES");
@@ -54,7 +54,12 @@ public class JFLogin extends JFrame{
 				try {
 					tipo=bdu.inicioSesion(u);
 					if (tipo==null) {
-						JOptionPane.showMessageDialog(null, "Credenciales inválidas", "ERROR", JOptionPane.ERROR_MESSAGE);			
+						cont--;
+						JOptionPane.showMessageDialog(null, "Credenciales invalidas, te quedan "+cont+" intentos", "ERROR", JOptionPane.ERROR_MESSAGE);
+						if(cont==0) {
+							JOptionPane.showMessageDialog(null, "Superado el numero de intentos. Adios", "ERROR", JOptionPane.ERROR_MESSAGE);
+							dispose();
+						}
 					}else {
 						if (tipo.equals("Cliente")) {
 							JFCliente JFcliente=new JFCliente(u);

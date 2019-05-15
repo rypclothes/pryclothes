@@ -84,6 +84,26 @@ public class BD_Ventas extends BD_Conector{
 		}
 		
 	}
+	
+	public int darBajaVenta(String factura) throws DatosIntroducidosException {
+		String cadenaSQL = "DELETE FROM ventas WHERE factura='" + factura + "'";
+		int filas;
+		
+		try {
+			this.abrir();
+			
+			s = c.createStatement();
+			filas = s.executeUpdate(cadenaSQL);
+			s.close();
+			
+			this.cerrar();
+			return filas;
+		}catch(SQLException e) {
+			this.cerrar();
+			throw new DatosIntroducidosException("Ha habido un problema con la BBDD");
+		}
+	}
+	
 	public Vector<String> listadoCamposVnetas() {
 
 		String cadenaSQL = "SHOW COLUMNS FROM VENTAS";

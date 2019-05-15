@@ -1,18 +1,14 @@
 package JPanels;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+
 import javax.swing.JTextField;
 
 import bbdd.BD_Ventas;
 import modelos.Compra;
 import modelos.Venta;
-import modelos.Reclamacion;
 
 import java.awt.Color;
 import java.util.Vector;
-
-import javax.swing.JList;
-import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import java.awt.Font;

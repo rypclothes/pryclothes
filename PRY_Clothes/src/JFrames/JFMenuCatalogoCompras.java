@@ -89,10 +89,17 @@ public class JFMenuCatalogoCompras extends JFrame{
 		btnAadirAlCarrito.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				producto=new Venta(list.getSelectedValue().getCodDiseño(),factura,Integer.parseInt((String) comboBox.getSelectedItem()),(int)list.getSelectedValue().getPrecio());
-				modelo.addElement(producto);
-				precioT+=producto.getPrecio_venta();
-				textPane.setText(precioT+" euros");
+				
+				if(modelo.size()>9) {
+					JOptionPane.showMessageDialog(null, "No puede introducir mas productos", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					producto=new Venta(list.getSelectedValue().getCodDiseño(),factura,Integer.parseInt((String) comboBox.getSelectedItem()),(int)list.getSelectedValue().getPrecio());
+					modelo.addElement(producto);
+					precioT+=producto.getPrecio_venta();
+					textPane.setText(precioT+" euros");
+				}
+				
+				
 			
 			}
 		});
