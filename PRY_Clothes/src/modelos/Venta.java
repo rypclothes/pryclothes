@@ -10,7 +10,7 @@ public class Venta  {
 		this.cod_diseño = cod_diseño;
 		this.factura = factura;
 		this.cantidad = cantidad;
-		this.precio_venta = precio_venta;
+		this.precio_venta = cantidad*precio_venta;
 	}
 
 	public String getCod_diseño() {
@@ -31,7 +31,7 @@ public class Venta  {
 
 	@Override
 	public String toString() {
-		return cod_diseño +cantidad + ", precio=" + precio_venta;
+		return cod_diseño +" "+cantidad+" und" + ", precio=" + precio_venta;
 	}
 
 	

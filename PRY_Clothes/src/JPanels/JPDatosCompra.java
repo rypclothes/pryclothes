@@ -15,6 +15,7 @@ import javax.swing.JList;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+import java.awt.Font;
 public class JPDatosCompra extends JPanel{
 	private BD_Ventas bdv = new BD_Ventas();
 	private JTextField TXFInfo;
@@ -26,6 +27,7 @@ public class JPDatosCompra extends JPanel{
 		setBounds(0, 0, 451, 244); 
 		
 		TXFInfo = new JTextField();
+		TXFInfo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		TXFInfo.setBounds(12, 23, 427, 208);
 		add(TXFInfo);
 		TXFInfo.setColumns(10);
