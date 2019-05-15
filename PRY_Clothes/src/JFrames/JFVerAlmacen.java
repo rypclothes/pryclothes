@@ -63,7 +63,7 @@ public class JFVerAlmacen extends JFrame {
 		jpl.setLocation(216, 11);
 		jpl.setSize(102, 141);
 		//DefaultListModel modelo = new DefaultListModel();
-		Vector<Diseño> v=bdd.consultar_Diseños();
+		Vector<Diseño> v=bdd.listado();
 		
 		//for(Diseño s: v ) {
            // modelo.addElement(s);
@@ -71,7 +71,7 @@ public class JFVerAlmacen extends JFrame {
 		getContentPane().add(jpl);
 		
 		//Lista
-		list = new JList <Diseño>(bdd.consultar_Diseños());
+		list = new JList <Diseño>(bdd.listado());
 		//list.setModel(modelo);
 		list.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent arg0) {

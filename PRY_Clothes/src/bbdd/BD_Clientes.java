@@ -9,11 +9,13 @@ import exceptions.DatosIntroducidosException;
 import modelos.Cliente;
 import modelos.Empleado;
 import modelos.Usuario;
+
 /**
  * 
  * @author Pablo y Dani
  *
  */
+
 public class BD_Clientes extends BD_Conector{
 	private static Statement s;	
 	private static ResultSet reg;
@@ -21,7 +23,13 @@ public class BD_Clientes extends BD_Conector{
 	private Vector <Cliente> clientes = new <Cliente> Vector();
 	BD_Usuario bdu = new BD_Usuario();
 	
-	//@author Rober
+	/**
+	 * Modifica cualquier dato del cliente
+	 * @param cod
+	 * @param campo
+	 * @param valor
+	 * @return retorna verdadero si se ha conseguido modificar
+	 */
 	public boolean modificarCampoCliente(String cod, String campo, String valor) {
 		cadenaSQL="UPDATE clientes SET " + campo + " = '" + valor + "' where cod_cliente ='" + cod + "'";
 		
@@ -39,6 +47,12 @@ public class BD_Clientes extends BD_Conector{
 		}
 	}
 	
+	/**
+	 * Añade un cliente a la base de datos
+	 * @param cl
+	 * @return 1 si se ha añadido con exito, 0 si hay algun dato mal introducido o una excepcion
+	 * @throws DatosIntroducidosException
+	 */
 	public int darAltaCliente(Cliente cl) throws DatosIntroducidosException {
 		Usuario usu = new Usuario(cl.getContraseña(),cl.getNombre(),cl.getTelefono());
 		bdu.darAltaUsuario(usu);
@@ -60,6 +74,12 @@ public class BD_Clientes extends BD_Conector{
 		}
 	}
 
+	/**
+	 * Elimina a un cliente de la base de datos
+	 * @param codCliente
+	 * @return 1 si se ha eliminado con exito, 0 si hay algun dato mal introducido o una excepcion
+	 * @throws DatosIntroducidosException
+	 */
 	public int darBajaCliente(String codCliente) throws DatosIntroducidosException {
 		cadenaSQL = "DELETE FROM clientes WHERE cod_cliente ='" + codCliente + "'";
 		
@@ -80,6 +100,11 @@ public class BD_Clientes extends BD_Conector{
 		}
 	}
 
+	/**
+	 * Muestra todos los clientes que hay en la base de datos
+	 * @return Vector de clientes
+	 * @throws DatosIntroducidosException
+	 */
 	public Vector <Cliente> mostrarClientes() throws DatosIntroducidosException{
 		Vector <Cliente> clientes = new <Cliente> Vector();
 		cadenaSQL = "SELECT * FROM clientes";

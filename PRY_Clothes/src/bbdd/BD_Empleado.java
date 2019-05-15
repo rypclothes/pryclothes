@@ -28,6 +28,12 @@ public class BD_Empleado extends BD_Conector{
 		super();
 	}
 	
+	/**
+	 * Metodo para agregar un empleado a la base de datos
+	 * @param em
+	 * @return 1 si se ha añadido con exito, 0 si hay algun dato mal introducido o una excepcion
+	 * @throws DatosIntroducidosException
+	 */
 	public int darAltaEmpleado(Empleado em) throws DatosIntroducidosException {
 		Usuario usu = new Usuario(em.getContraseña(),em.getNombre(),em.getTelefono(),em.getFuncion());
 		bdu.darAltaUsuario(usu);
@@ -52,6 +58,12 @@ public class BD_Empleado extends BD_Conector{
 			
 	}
 
+	/**
+	 * Elimina a un empleado
+	 * @param codigo
+	 * @return 1 si se ha eliminado con exito, 0 si hay algun dato mal introducido o una excepcion
+	 * @throws DatosIntroducidosException
+	 */
 	public int darBajaEmpleado(String codigo) throws DatosIntroducidosException {
 		cadenaSQL = "DELETE FROM empleados WHERE cod_emple ='" + codigo + "'";
 		int filas;
@@ -73,6 +85,11 @@ public class BD_Empleado extends BD_Conector{
 		}
 	}
 
+	/**
+	 * Busca a un empleado por su codigo
+	 * @param codEmple
+	 * @return el empleado encontrado
+	 */
 	public Empleado buscarEmpleado(String codEmple){
 		Empleado emp=null;
 		
@@ -94,6 +111,11 @@ public class BD_Empleado extends BD_Conector{
 		} 
 	}
 
+	/**
+	 * Muestra todos los empleados de la base de datos
+	 * @return Vector de Empleados
+	 * @throws DatosIntroducidosException
+	 */
 	public Vector <Empleado> mostrarEmpleados() throws DatosIntroducidosException{
 		Vector <Empleado> empleados = new <Empleado> Vector();
 		cadenaSQL = "SELECT * FROM empleados";

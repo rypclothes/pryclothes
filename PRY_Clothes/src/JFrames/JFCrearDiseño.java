@@ -60,12 +60,7 @@ public class JFCrearDiseño extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				JFEmpleadoDiseño crear = null;
-				try {
-					crear = new JFEmpleadoDiseño(cod_emple);
-				} catch (DatosIntroducidosException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				crear = new JFEmpleadoDiseño();
 				
 				if(!jpc.validarDatos()) {
 					JOptionPane.showMessageDialog(null, "Tienen que estar rellenos todos los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -104,12 +99,7 @@ public class JFCrearDiseño extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				JFEmpleadoDiseño jfed = null;
-				try {
-					jfed = new JFEmpleadoDiseño(cod_emple);
-				} catch (DatosIntroducidosException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				jfed = new JFEmpleadoDiseño();
 				jfed.setVisible(true);
 				dispose();
 			}

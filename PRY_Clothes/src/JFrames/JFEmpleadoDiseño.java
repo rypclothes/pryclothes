@@ -38,7 +38,7 @@ public class JFEmpleadoDiseño extends JFrame {
 	String tipo,cod_emple;
 	
 	
-	public JFEmpleadoDiseño(String cod_emple) throws DatosIntroducidosException {
+	public JFEmpleadoDiseño(String cod_emple) {
 		this.tipo = tipo;
 		this.cod_emple=cod_emple;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
@@ -51,11 +51,31 @@ public class JFEmpleadoDiseño extends JFrame {
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		initialize();
+		try {
+			initialize();
+		} catch (DatosIntroducidosException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public JFEmpleadoDiseño() {
-		// TODO Auto-generated constructor stub
+		this.tipo = tipo;
+		this.cod_emple=cod_emple;
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
+		setTitle("Diseño");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 225, 231);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		try {
+			initialize();
+		} catch (DatosIntroducidosException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void initialize() throws DatosIntroducidosException {		

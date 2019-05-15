@@ -115,6 +115,7 @@ public class JFMenuCatalogoCompras extends JFrame{
 				for(int i=0;i<modelo.size();i++) {
 					contPrendas+=modelo.get(i).getCantidad();
 					ncarrito.add(modelo.get(i));
+					bdd.restarCantidad(modelo.get(i).getCod_diseño(),modelo.get(i).getCantidad());
 				}
 				
 				Compra co=new Compra(precioT,contPrendas,cod_cliente);

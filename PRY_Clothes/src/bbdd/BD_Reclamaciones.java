@@ -14,6 +14,11 @@ import exceptions.DatosIntroducidosException;
 import modelos.Incidencia;
 import modelos.Reclamacion;
 
+/**
+ * 
+ * @author Roberto
+ *
+ */
 public class BD_Reclamaciones extends BD_Conector {
 
 	private static Statement s;
@@ -21,10 +26,13 @@ public class BD_Reclamaciones extends BD_Conector {
 
 	public BD_Reclamaciones() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
-	//Este metodo inserta una reclamaciones 
+	/**
+	 * Añade una reclamacion a la base de datos
+	 * @param re
+	 * @return 1 si se ha añadido con exito, 0 si hay algun dato mal introducido o una excepcion
+	 */
 	public int añadir_Reclamacion(Reclamacion re) {
 		String cadenaSQL = "INSERT INTO reclamaciones VALUES('" + re.getCod_cliente() + "','" + re.getFecha_Rec()
 				+ "','" + re.getDescripcion() + "','" + re.getRespuesta() + "')";
@@ -40,6 +48,12 @@ public class BD_Reclamaciones extends BD_Conector {
 		}
 	}
 
+	/**
+	 * Elimina una reclamacion de la base de datos
+	 * @param cod_cliente
+	 * @param fecha_rec
+	 * @return 1 si se ha borrado con exito, 0 si hay algun dato mal introducido o una excepcion
+	 */
 	public int borrar_Reclamaciones(String cod_cliente, LocalDate fecha_rec) {
 		String cadena = "DELETE FROM reclamaciones WHERE cod_cliente='" + cod_cliente + "' AND fecha_error ' "
 				+ fecha_rec + "'";
@@ -58,6 +72,12 @@ public class BD_Reclamaciones extends BD_Conector {
 		}
 	}
 	
+	/**
+	 * Responde una reclamacion
+	 * @param re
+	 * @return un objeto Reclamacion relleno
+	 * @throws DatosIntroducidosException
+	 */
 	public int responderReclamacion(Reclamacion re) throws DatosIntroducidosException {
 		
 		String cadenaSQL="UPDATE reclamaciones SET respuesta ='" + re.getRespuesta() + "' WHERE cod_cliente='" + re.getCod_cliente() + "' AND fecha_reclamacion='" + re.getFecha_Rec() + "' AND descripcion ='" + re.getDescripcion() + "'";
@@ -77,8 +97,14 @@ public class BD_Reclamaciones extends BD_Conector {
 		
 	}
 
-	// Este metodo es para modificar uno o varios campos en la tabla reclamaciones
-	// buscando por cod_cliente y la fecha hora
+	/**
+	 * Modificar uno o varios campos en la tabla reclamaciones buscando por codigo de cliente y fecha
+	 * @param cod
+	 * @param fechaHora
+	 * @param campos
+	 * @param valor
+	 * @return verdadero si se ha modificado o falso si se ha producido un error
+	 */
 	public boolean modificarCampoReclamaciones(String cod, LocalDate fechaHora, String campos[], String valor[]) {
 		String cadenaSQL = "update reclamaciones ";
 		for (int i = 0; i < campos.length; i++) {
@@ -101,7 +127,10 @@ public class BD_Reclamaciones extends BD_Conector {
 	}
 
 	
-	// Crea un vector en el que se lista todos los campos de la tabla reclamaciones
+	/**
+	 * Se listan todos los campos de la tabla reclamaciones
+	 * @return Vector de reclamaciones
+	 */
 	public Vector<String> listadoCamposReclamaciones() {
 
 		String cadenaSQL = "SHOW COLUMNS FROM RECLAMACIONES";
@@ -124,6 +153,11 @@ public class BD_Reclamaciones extends BD_Conector {
 		}
 	}
 	
+	/**
+	 * Lista las reclamaciones con un codigo de cliente especificado
+	 * @param cod
+	 * @return Vector de Reclamaciones
+	 */
 	public Vector<Reclamacion> listadoMisReclamaciones(String cod) {
 
 		String cadenaSQL = "SELECT * FROM reclamaciones WHERE cod_cliente ='"+cod+"'";
@@ -147,8 +181,10 @@ public class BD_Reclamaciones extends BD_Conector {
 		}
 	}
 
-	// Devuelve un vector con todas las reclamaciones para luego en el date utilizar
-	// dicho vector
+	/**
+	 * Devuelve las reclamaciones sin respuesta
+	 * @return Vector de reclamaciones
+	 */
 	public Vector<Reclamacion> listadoReclamaciones() {
 
 		String cadenaSQL = "SELECT * FROM reclamaciones WHERE respuesta is null";
