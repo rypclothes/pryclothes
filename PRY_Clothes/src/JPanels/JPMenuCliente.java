@@ -25,7 +25,7 @@ public class JPMenuCliente extends JPanel{
 	public JPMenuCliente(String cod_cliente) {
 		this.cod_cliente=cod_cliente;
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Menu", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		setBounds(0, 0, 388, 210);
+		setBounds(0, 0, 205, 140);
 		setLayout(null);
 		
 		initialize();
@@ -47,7 +47,7 @@ public class JPMenuCliente extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(128, 25, 150, 50);
+		btnNewButton.setBounds(22, 25, 165, 25);
 		add(btnNewButton);
 		
 		JButton btnVerCatalogo = new JButton("Ver Catalogo");
@@ -61,7 +61,7 @@ public class JPMenuCliente extends JPanel{
 				
 			}
 		});
-		btnVerCatalogo.setBounds(128, 84, 150, 50);
+		btnVerCatalogo.setBounds(22, 61, 165, 25);
 		add(btnVerCatalogo);
 		
 		JButton btnHacerDevolucion = new JButton("Hacer Devolucion");
@@ -74,7 +74,7 @@ public class JPMenuCliente extends JPanel{
 				
 			}
 		});
-		btnHacerDevolucion.setBounds(128,147, 150, 50);
+		btnHacerDevolucion.setBounds(22,97, 165, 25);
 		add(btnHacerDevolucion);
 		
 	}

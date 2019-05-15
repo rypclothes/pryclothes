@@ -76,12 +76,7 @@ public class JFCrearIncidencia extends JFrame {
 		btnSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				try {
-					JFEmpleadoAdministracion jfea = new JFEmpleadoAdministracion(cod_emple);
-				} catch (DatosIntroducidosException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				JFEmpleadoAdministracion jfea = new JFEmpleadoAdministracion(cod_emple);
 				dispose();
 			}
 		});

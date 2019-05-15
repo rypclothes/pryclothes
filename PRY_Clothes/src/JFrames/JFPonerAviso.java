@@ -62,7 +62,7 @@ public class JFPonerAviso extends JFrame {
 						JOptionPane.showMessageDialog(null, "Algún dato no se ha introducido correctamente!", "AVISO", JOptionPane.INFORMATION_MESSAGE);
 					}
 				} catch (DatosIntroducidosException e) {
-					JOptionPane.showMessageDialog(null, "Error en la BBDD", "ERROR", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No se puede poner dos avisos en un dia al mismo trabajador", "ERROR", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

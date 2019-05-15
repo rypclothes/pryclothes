@@ -10,10 +10,22 @@ import exceptions.DatosIntroducidosException;
 import modelos.Aviso;
 import modelos.Diseño;
 
+/**
+ * 
+ * @author Daniel
+ *
+ */
+
 public class BD_Aviso extends BD_Conector{
 	private static Statement s;	  
 	private static ResultSet reg;
 	
+	/**
+	 * Genera un aviso en la base de datos
+	 * @param av
+	 * @return 1 si se ha añadido con exito, 0 si hay algun dato mal introducido o una excepcion
+	 * @throws DatosIntroducidosException
+	 */
 	public int anotarAviso(Aviso av) throws DatosIntroducidosException {
 		
 		String cadenaSQL = "INSERT INTO avisos VALUES('" + av.getCodEmple() + "','" + av.getMotivo() + "','" + av.getFecha() + "')";
@@ -33,6 +45,11 @@ public class BD_Aviso extends BD_Conector{
 		}
 	}
 	
+	/**
+	 * Muestra todos los avisos de la base de datos
+	 * @return Vector de Avisos
+	 * @throws DatosIntroducidosException
+	 */
 	public Vector<Aviso> mostrarAvisos() throws DatosIntroducidosException{
 		String cadenaSQL = "SELECT * FROM avisos";
 		Vector<Aviso> avisos=new Vector<Aviso>();
@@ -55,6 +72,12 @@ public class BD_Aviso extends BD_Conector{
 		}
 	}
 	
+	/**
+	 * Muestra los avisos de un cliente en concreto
+	 * @param cod_emple
+	 * @return Vector de avisos
+	 * @throws DatosIntroducidosException
+	 */
 	public Vector<Aviso> contarAvisos(String cod_emple) throws DatosIntroducidosException {
 		String cadenaSQL="SELECT * FROM AVISOS WHERE COD_EMPLE ='"+cod_emple+"'";
 		Vector<Aviso>avisos=new Vector<Aviso>();
@@ -77,6 +100,12 @@ public class BD_Aviso extends BD_Conector{
 		
 	}
 
+	/**
+	 * Borra los avisos que haya en una fecha en concreto
+	 * @param fecha
+	 * @return 1 si se ha borrado con exito, 0 si hay algun dato mal introducido o una excepcion
+	 * @throws DatosIntroducidosException
+	 */
 	public int borrarAviso(LocalDate fecha) throws DatosIntroducidosException {
 		String cadenaSQL= "DELETE FROM avisos WHERE fecha_aviso = '" + fecha +"'";
 		

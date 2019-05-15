@@ -37,7 +37,7 @@ public class JFEmpleadoAdministracion extends JFrame {
 	JFLogin jfl = new JFLogin();
 	String tipo,cod_emple;
 
-	public JFEmpleadoAdministracion(String cod_emple) throws DatosIntroducidosException {
+	public JFEmpleadoAdministracion(String cod_emple) {
 		this.tipo = tipo;
 		this.cod_emple=cod_emple;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,7 +51,11 @@ public class JFEmpleadoAdministracion extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		avisos=bda.contarAvisos(cod_emple);
+		try {
+			avisos=bda.contarAvisos(cod_emple);
+		} catch (DatosIntroducidosException e) {
+			e.printStackTrace();
+		}
 		
 		if(avisos.size()==1) {
 			
@@ -66,15 +70,39 @@ public class JFEmpleadoAdministracion extends JFrame {
 					
 					JOptionPane.showMessageDialog(null, "Debido a los avisos consecutivos que ha recibido esta despedido", "AVISO", JOptionPane.INFORMATION_MESSAGE);
 					
-					bde.darBajaEmpleado(cod_emple);
+					try {
+						bde.darBajaEmpleado(cod_emple);
+					} catch (DatosIntroducidosException e) {
+						e.printStackTrace();
+					}
 				}
 		
 		
-		initialize();
+		try {
+			initialize();
+		} catch (DatosIntroducidosException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public JFEmpleadoAdministracion() {
-		// TODO Auto-generated constructor stub
+		this.tipo = tipo;
+		this.cod_emple=cod_emple;
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JFEmpleadoAdministracion.class.getResource("/imagenes/rypclothes.png")));
+		setTitle("Administración");
+		setBounds(100, 100, 269, 279);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setResizable(false);
+		setLocationRelativeTo(null);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		try {
+			initialize();
+		} catch (DatosIntroducidosException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void initialize() throws DatosIntroducidosException {

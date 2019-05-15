@@ -14,6 +14,10 @@ public class BD_Conector {
 		
 	}
 
+	/**
+	 * Inicia la base de datos
+	 * @param bbdd
+	 */
 	public static void BD_Ini(String bbdd){		
 		base=bbdd;
 		usuario="root";
@@ -21,6 +25,9 @@ public class BD_Conector {
 		url="jdbc:mysql://localhost/"+base;
 	}
 	
+	/**
+	 * Abre la base de datos
+	 */
 	public void abrir(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
@@ -37,7 +44,9 @@ public class BD_Conector {
 	
 	}	
 	
-
+	/**
+	 * Cierra la base de datos
+	 */
 	public void cerrar(){
 		try{
 			c.close();

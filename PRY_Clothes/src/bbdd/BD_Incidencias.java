@@ -22,6 +22,12 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	/**
+	 * Añade una incidencia a la base de datos
+	 * @param in
+	 * @return 1 si se ha añadido con exito, 0 si hay algun dato mal introducido o una excepcion
+	 */
 	public  int añadir_Incidencia(Incidencia in) {
 		String cadenaSQL="INSERT INTO reporte_incidencias (tipo_incidencia, cod_emple, fecha_error)VALUES('" + in.getTipoIncidencia()+ "','" +
 				in.getCodEmple()+"','"+in.getFechaError()+"')"; 	
@@ -38,6 +44,10 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 				}
 			}
 
+	/**
+	 * Muestra todas las incidencias de la base de datos
+	 * @return Vector de Incidencias
+	 */
 	public  Vector <Incidencia> listadoIncidencias(){
 		String cadenaSQL="SELECT * from reporte_incidencias ";
 		Vector<Incidencia> listaIncidencias=new Vector<Incidencia>();
@@ -59,6 +69,12 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 		}
 	}
 	
+	/**
+	 * Soluciona una incidencia
+	 * @param numIncidencia
+	 * @return 1 si se ha modificado con exito, 0 si hay algun dato mal introducido o una excepcion
+	 * @throws DatosIntroducidosException
+	 */
 	public int solucionarIncidencia(int numIncidencia) throws DatosIntroducidosException {
 		String cadenaSQL = "delete from reporte_incidencias WHERE num_incidencia='" + numIncidencia +"'";
 		int filas = 0;

@@ -52,7 +52,26 @@ public class JFEmpleadoLogistica extends JFrame {
 		setResizable(false);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		initialize();
+	}
+
+	public JFEmpleadoLogistica() {
+		this.tipo = tipo;
+		this.cod_emple=cod_emple;
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JFEmpleadoLogistica.class.getResource("/imagenes/rypclothes.png")));
+		setTitle("Logística");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 241, 219);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		initialize();
+	}
+	
+	public void initialize() {
 		JButton BTNVerAlmacen = new JButton("Ver Almac\u00E9n");
 		BTNVerAlmacen.addMouseListener(new MouseAdapter() {
 			@Override
@@ -103,7 +122,12 @@ public class JFEmpleadoLogistica extends JFrame {
 		btnSalir.setBounds(48, 151, 137, 23);
 		contentPane.add(btnSalir);
 		
-		avisos=bda.contarAvisos(cod_emple);
+		try {
+			avisos=bda.contarAvisos(cod_emple);
+		} catch (DatosIntroducidosException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if(avisos.size()==1) {
 			
 			JOptionPane.showMessageDialog(null, "Tiene un aviso por: \n "+avisos.get(0).getMotivo(), "AVISO", JOptionPane.INFORMATION_MESSAGE);
@@ -117,15 +141,13 @@ public class JFEmpleadoLogistica extends JFrame {
 					
 					JOptionPane.showMessageDialog(null, "Debido a los avisos consecutivos que ha recibido esta despedido", "AVISO", JOptionPane.INFORMATION_MESSAGE);
 					
-					bde.darBajaEmpleado(cod_emple);
+					try {
+						bde.darBajaEmpleado(cod_emple);
+					} catch (DatosIntroducidosException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 		
 	}
-
-	public JFEmpleadoLogistica() {
-		// TODO Auto-generated constructor stub
-	}
-
-
-		
 }

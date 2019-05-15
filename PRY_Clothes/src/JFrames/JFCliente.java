@@ -38,9 +38,9 @@ public class JFCliente extends JFrame {
 		
 		this.u=u;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFCliente.class.getResource("/imagenes/rypclothes.png")));
-		setTitle("Perfil Cliente");
+		setTitle("Cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 406, 280);
+		setBounds(100, 100, 224, 204);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
@@ -56,12 +56,12 @@ public class JFCliente extends JFrame {
 		cli=bdu.buscarClienteDatos(u.getNombre());
 		
 		pMenuCliente= new JPMenuCliente(cli.getCodigo());
-		pMenuCliente.setSize(388, 210);
+		pMenuCliente.setSize(206, 141);
 		pMenuCliente.setLocation(0, 25);
 		getContentPane().add(pMenuCliente);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 119, 26);
+		menuBar.setBounds(0, 0, 71, 26);
 		contentPane.add(menuBar);
 		
 		JMenu mnNewMenu = new JMenu(u.getNombre());

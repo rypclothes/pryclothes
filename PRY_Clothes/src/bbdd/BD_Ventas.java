@@ -20,6 +20,11 @@ public class BD_Ventas extends BD_Conector{
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * Busca el maximo numero secuencial de las facturas
+	 * @param cod_cliente
+	 * @return Maximo numero encontrado
+	 */
 	public String crearFactura(String cod_cliente)  {
 		int num=0;
 		String cadenaSQL="SELECT MAX(SUBSTRING(factura,4)) FROM COMPRAS";	
@@ -42,7 +47,12 @@ public class BD_Ventas extends BD_Conector{
 		}
 		
 	}
-	
+	/**
+	 * Añade un venta a la base de datos
+	 * @param usu
+	 * @return 1 si se ha añadido con exito, 0 si hay algun dato mal introducido o una excepcion
+	 * @throws DatosIntroducidosException
+	 */
 	public int añadirVenta(Venta ve) throws DatosIntroducidosException {
 		String cadenaSQL="INSERT INTO VENTAS VALUES ('"+ve.getCod_diseño()+"','"+ve.getCantidad()+"','"+ve.getPrecio_venta()+"','"+ve.getFactura()+"')";
 		int filas;
@@ -62,6 +72,12 @@ public class BD_Ventas extends BD_Conector{
 		}
 		
 	}
+	
+	/**
+	 * Lista todas las ventas existentes
+	 * @param factura
+	 * @return Vector de Ventas
+	 */
 	public Vector<Venta> listadoVentas(String factura){
 		
 		String cadenaSQL="SELECT * FROM VENTAS WHERE FACTURA = '"+factura+"'";
@@ -85,6 +101,12 @@ public class BD_Ventas extends BD_Conector{
 		
 	}
 	
+	/**
+	 * Metodo para la devolucion de una compra
+	 * @param factura
+	 * @return 1 si se ha eliminado, 0 si algun dato no esta bien introducido o una excepcion
+	 * @throws DatosIntroducidosException
+	 */
 	public int darBajaVenta(String factura) throws DatosIntroducidosException {
 		String cadenaSQL = "DELETE FROM ventas WHERE factura='" + factura + "'";
 		int filas;
@@ -104,7 +126,11 @@ public class BD_Ventas extends BD_Conector{
 		}
 	}
 	
-	public Vector<String> listadoCamposVnetas() {
+	/**
+	 * Lista todos los campos de ventas
+	 * @return Vector de String
+	 */
+	public Vector<String> listadoCamposVentas() {
 
 		String cadenaSQL = "SHOW COLUMNS FROM VENTAS";
 		Vector<String> listaVentas = new Vector<String>();

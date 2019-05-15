@@ -83,12 +83,7 @@ public class JFContratarEmple extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				JFEmpleadoAdministracion jfe = null;
-				try {
-					jfe = new JFEmpleadoAdministracion(cod_emple);
-				} catch (DatosIntroducidosException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				jfe = new JFEmpleadoAdministracion(cod_emple);
 				jfe.setVisible(true);
 				dispose();
 			}
