@@ -26,6 +26,7 @@ public class JFLogin extends JFrame{
 	private JPBotones panelBotones;
 	private BD_Usuario bdu = new BD_Usuario();
 	private int cont=3;
+	private String cod_emple;
 	public JFLogin() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFLogin.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("PRY CLOTHES");
@@ -53,6 +54,7 @@ public class JFLogin extends JFrame{
 				String tipo;
 				try {
 					tipo=bdu.inicioSesion(u);
+					u=bdu.buscarUsuarioDatos(u.getNombre());
 					if (tipo==null) {
 						cont--;
 						JOptionPane.showMessageDialog(null, "Credenciales invalidas, te quedan "+cont+" intentos", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -71,15 +73,15 @@ public class JFLogin extends JFrame{
 							}
 							else {
 								if(tipo.equals("Administrativo")) {
-									JFEmpleadoAdministracion jempleA = new JFEmpleadoAdministracion();
+									JFEmpleadoAdministracion jempleA = new JFEmpleadoAdministracion(u.getCodigo());
 									jempleA.setVisible(true);
 								}else {
 									if(tipo.equals("Diseño")) {
-										JFEmpleadoDiseño jempleD = new JFEmpleadoDiseño();
+										JFEmpleadoDiseño jempleD = new JFEmpleadoDiseño(u.getCodigo());
 										jempleD.setVisible(true);
 									}else {
 										if(tipo.equals("Logistica")) {
-											JFEmpleadoLogistica jempleL = new JFEmpleadoLogistica();
+											JFEmpleadoLogistica jempleL = new JFEmpleadoLogistica(u.getCodigo());
 											jempleL.setVisible(true);
 										}
 									}

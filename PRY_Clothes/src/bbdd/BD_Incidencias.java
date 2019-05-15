@@ -37,26 +37,9 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 					return -1;
 				}
 			}
-	public int borrar_Incidencias(String cod_emple,LocalDate fecha_error ){
-		String cadena="DELETE FROM reporte_incidencias WHERE cod_emple='" + cod_emple + "' AND fecha_error' "+ fecha_error;	
-		
-		try{
-		this.abrir();
-		s=c.createStatement();
-		int filas=s.executeUpdate(cadena);	
-		s.close();
-		this.cerrar();
-		return filas;
-		
-		}
-		catch ( SQLException e){
-			this.cerrar();
-			return -1;
-		}
-	}
 
 	public  Vector <Incidencia> listadoIncidencias(){
-		String cadenaSQL="SELECT * from reporte_incidencias WHERE solucionado = 0";
+		String cadenaSQL="SELECT * from reporte_incidencias ";
 		Vector<Incidencia> listaIncidencias=new Vector<Incidencia>();
 		try{
 			this.abrir();
@@ -77,7 +60,7 @@ public class BD_Incidencias<incidencia> extends BD_Conector {
 	}
 	
 	public int solucionarIncidencia(int numIncidencia) throws DatosIntroducidosException {
-		String cadenaSQL = "UPDATE reporte_incidencias SET solucionado = 1 WHERE num_incidencia='" + numIncidencia +"'";
+		String cadenaSQL = "delete from reporte_incidencias WHERE num_incidencia='" + numIncidencia +"'";
 		int filas = 0;
 		
 		try {

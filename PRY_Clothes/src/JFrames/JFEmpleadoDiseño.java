@@ -10,10 +10,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import JPanels.JPLogin;
+import bbdd.BD_Aviso;
+import bbdd.BD_Empleado;
+import bbdd.BD_Usuario;
+import exceptions.DatosIntroducidosException;
+import modelos.Aviso;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Vector;
 
 /**
  * 
@@ -22,13 +30,17 @@ import java.awt.event.MouseEvent;
  */
 
 public class JFEmpleadoDiseño extends JFrame {
-
+	private BD_Aviso bda=new BD_Aviso();
+	private BD_Empleado bde=new BD_Empleado();
+	private Vector<Aviso> avisos=new Vector<Aviso>();
 	private JPanel contentPane;
 	JFLogin jfl = new JFLogin();
-	String tipo;
-
-	public JFEmpleadoDiseño() {
+	String tipo,cod_emple;
+	
+	
+	public JFEmpleadoDiseño(String cod_emple) throws DatosIntroducidosException {
 		this.tipo = tipo;
+		this.cod_emple=cod_emple;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Diseño");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,12 +54,16 @@ public class JFEmpleadoDiseño extends JFrame {
 		initialize();
 	}
 	
-	public void initialize() {		
+	public JFEmpleadoDiseño() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void initialize() throws DatosIntroducidosException {		
 		JButton BTNCrearDiseño = new JButton("Crear dise\u00F1o");
 		BTNCrearDiseño.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				JFCrearDiseño newDiseño = new JFCrearDiseño(tipo);
+				JFCrearDiseño newDiseño = new JFCrearDiseño(tipo,cod_emple);
 				newDiseño.setVisible(true);
 				setVisible(false);
 			}
@@ -59,7 +75,7 @@ public class JFEmpleadoDiseño extends JFrame {
 		BTNCrearIncidencia.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				JFCrearIncidencia jfci = new JFCrearIncidencia();
+				JFCrearIncidencia jfci = new JFCrearIncidencia(cod_emple);
 				jfci.setVisible(true);
 			}
 		});
@@ -92,5 +108,23 @@ public class JFEmpleadoDiseño extends JFrame {
 		});
 		btnBorrarDiseo.setBounds(41, 84, 142, 25);
 		contentPane.add(btnBorrarDiseo);
+		
+		avisos=bda.contarAvisos(cod_emple);
+		if(avisos.size()==1) {
+			
+			JOptionPane.showMessageDialog(null, "Tiene un aviso por: \n "+avisos.get(0).getMotivo(), "AVISO", JOptionPane.INFORMATION_MESSAGE);
+			
+		}else
+			if(avisos.size()==2) {
+				JOptionPane.showMessageDialog(null, "Tiene dos avisoa por: \n 1."+avisos.get(0).getMotivo()+"\n2. "+avisos.get(1).getMotivo(), "AVISO", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else
+				if(avisos.size()>=3) {
+					
+					JOptionPane.showMessageDialog(null, "Debido a los avisos consecutivos que ha recibido esta despedido", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+					
+					bde.darBajaEmpleado(cod_emple);
+				}
+		
 	}
 }

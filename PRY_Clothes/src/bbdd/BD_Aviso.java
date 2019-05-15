@@ -54,6 +54,28 @@ public class BD_Aviso extends BD_Conector{
 			throw new DatosIntroducidosException("No se pueden mostrar los datos en este momento.");
 		}
 	}
+	
+	public Vector<Aviso> contarAvisos(String cod_emple) throws DatosIntroducidosException {
+		String cadenaSQL="SELECT * FROM AVISOS WHERE COD_EMPLE ='"+cod_emple+"'";
+		Vector<Aviso>avisos=new Vector<Aviso>();
+		try {
+			this.abrir();
+			
+			s=c.createStatement();
+			reg = s.executeQuery(cadenaSQL);
+			if(reg.next()) {
+				java.sql.Date f=reg.getDate("fecha_aviso");
+				LocalDate fBuena=f.toLocalDate();
+				avisos.add(new Aviso(reg.getString("cod_emple"),fBuena,reg.getString("motivo")));
+			}
+			s.close();
+			return avisos;
+		}catch(SQLException e) {
+			this.cerrar();
+			throw new DatosIntroducidosException("No se pueden mostrar los datos en este momento.");
+		}
+		
+	}
 
 	public int borrarAviso(LocalDate fecha) throws DatosIntroducidosException {
 		String cadenaSQL= "DELETE FROM avisos WHERE fecha_aviso = '" + fecha +"'";

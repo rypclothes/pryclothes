@@ -28,9 +28,11 @@ public class JFContratarEmple extends JFrame {
 	private BD_Empleado bdea=new BD_Empleado();
 	private JPanel contentPane;
 	private Usuario u;
+	private String cod_emple;
 
-	public JFContratarEmple() {
+	public JFContratarEmple(String cod_emple) {
 		this.u = u;
+		this.cod_emple=cod_emple;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Registro Empleado");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -80,7 +82,13 @@ public class JFContratarEmple extends JFrame {
 		btnSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				JFEmpleadoAdministracion jfe = new JFEmpleadoAdministracion();
+				JFEmpleadoAdministracion jfe = null;
+				try {
+					jfe = new JFEmpleadoAdministracion(cod_emple);
+				} catch (DatosIntroducidosException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				jfe.setVisible(true);
 				dispose();
 			}

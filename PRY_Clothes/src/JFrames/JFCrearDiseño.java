@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import JPanels.JPCrearDiseño;
 import bbdd.BD_Diseño;
+import exceptions.DatosIntroducidosException;
 import modelos.Diseño;
 
 import javax.swing.JButton;
@@ -28,10 +29,12 @@ import java.awt.event.ActionEvent;
 public class JFCrearDiseño extends JFrame {
 	private JPanel contentPane;
 	private BD_Diseño bdd = new BD_Diseño();
+	private String cod_emple;
 	String tipo;
 
-	public JFCrearDiseño(String tipo) {
+	public JFCrearDiseño(String tipo,String cod_emple) {
 		this.tipo = tipo;
+		this.cod_emple=cod_emple;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Creación diseño");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -56,7 +59,13 @@ public class JFCrearDiseño extends JFrame {
 		btnCrear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				JFEmpleadoDiseño crear = new JFEmpleadoDiseño();
+				JFEmpleadoDiseño crear = null;
+				try {
+					crear = new JFEmpleadoDiseño(cod_emple);
+				} catch (DatosIntroducidosException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 				if(!jpc.validarDatos()) {
 					JOptionPane.showMessageDialog(null, "Tienen que estar rellenos todos los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -94,7 +103,13 @@ public class JFCrearDiseño extends JFrame {
 		btnSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				JFEmpleadoDiseño jfed = new JFEmpleadoDiseño();
+				JFEmpleadoDiseño jfed = null;
+				try {
+					jfed = new JFEmpleadoDiseño(cod_emple);
+				} catch (DatosIntroducidosException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				jfed.setVisible(true);
 				dispose();
 			}

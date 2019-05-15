@@ -7,12 +7,21 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import bbdd.BD_Aviso;
+import bbdd.BD_Empleado;
+import exceptions.DatosIntroducidosException;
+import modelos.Aviso;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Vector;
 
 /**
  * 
@@ -22,12 +31,17 @@ import java.awt.event.MouseEvent;
 
 public class JFEmpleadoLogistica extends JFrame {
 
+	
+	private BD_Aviso bda=new BD_Aviso();
+	private BD_Empleado bde=new BD_Empleado();
+	private Vector<Aviso> avisos=new Vector<Aviso>();
 	private JPanel contentPane;
-	String tipo;
+	String tipo,cod_emple;
 	JFLogin jfl = new JFLogin();
 	
-	public JFEmpleadoLogistica() {
+	public JFEmpleadoLogistica(String cod_emple) throws DatosIntroducidosException {
 		this.tipo = tipo;
+		this.cod_emple=cod_emple;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFEmpleadoLogistica.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Logística");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,7 +82,7 @@ public class JFEmpleadoLogistica extends JFrame {
 		BTNIncidencia.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				JFCrearIncidencia jfci = new JFCrearIncidencia();
+				JFCrearIncidencia jfci = new JFCrearIncidencia(cod_emple);
 				jfci.setVisible(true);
 			}
 		});
@@ -88,5 +102,30 @@ public class JFEmpleadoLogistica extends JFrame {
 		});
 		btnSalir.setBounds(48, 151, 137, 23);
 		contentPane.add(btnSalir);
+		
+		avisos=bda.contarAvisos(cod_emple);
+		if(avisos.size()==1) {
+			
+			JOptionPane.showMessageDialog(null, "Tiene un aviso por: \n "+avisos.get(0).getMotivo(), "AVISO", JOptionPane.INFORMATION_MESSAGE);
+			
+		}else
+			if(avisos.size()==2) {
+				JOptionPane.showMessageDialog(null, "Tiene dos avisoa por: \n 1."+avisos.get(0).getMotivo()+"\n2. "+avisos.get(1).getMotivo(), "AVISO", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else
+				if(avisos.size()>=3) {
+					
+					JOptionPane.showMessageDialog(null, "Debido a los avisos consecutivos que ha recibido esta despedido", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+					
+					bde.darBajaEmpleado(cod_emple);
+				}
+		
 	}
+
+	public JFEmpleadoLogistica() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+		
 }

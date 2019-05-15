@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import JPanels.JPCrearIncidencia;
 import bbdd.BD_Incidencias;
+import exceptions.DatosIntroducidosException;
 import modelos.Diseño;
 import modelos.Incidencia;
 
@@ -28,8 +29,9 @@ public class JFCrearIncidencia extends JFrame {
 
 	private JPanel contentPane;
 	private BD_Incidencias bdi=new BD_Incidencias();
-
-	public JFCrearIncidencia() {
+	private String cod_emple;
+	public JFCrearIncidencia(String cod_emple) {
+		this.cod_emple=cod_emple;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFContratarEmple.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Crear incidencia");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -74,7 +76,12 @@ public class JFCrearIncidencia extends JFrame {
 		btnSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				JFEmpleadoAdministracion jfea = new JFEmpleadoAdministracion();
+				try {
+					JFEmpleadoAdministracion jfea = new JFEmpleadoAdministracion(cod_emple);
+				} catch (DatosIntroducidosException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				dispose();
 			}
 		});
