@@ -34,8 +34,8 @@ public class BD_Reclamaciones extends BD_Conector {
 	 * @return 1 si se ha añadido con exito, 0 si hay algun dato mal introducido o una excepcion
 	 */
 	public int añadir_Reclamacion(Reclamacion re) {
-		String cadenaSQL = "INSERT INTO reclamaciones VALUES('" + re.getCod_cliente() + "','" + re.getFecha_Rec()
-				+ "','" + re.getDescripcion() + "','" + re.getRespuesta() + "')";
+		String cadenaSQL = "INSERT INTO reclamaciones (cod_cliente,fecha_reclamacion,descripcion) VALUES('" + re.getCod_cliente() + "','" + re.getFecha_Rec()
+				+ "','" + re.getDescripcion() + "')";
 		try {
 			this.abrir();
 			s = c.createStatement();

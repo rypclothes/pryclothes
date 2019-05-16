@@ -107,7 +107,7 @@ public class JFEmpleadoLogistica extends JFrame {
 		});
 		contentPane.add(BTNIncidencia);
 		
-		JLabel LBLBienvenido = new JLabel("Bienvenido!");
+		JLabel LBLBienvenido = new JLabel("Bienvenido " + cod_emple + "!");
 		LBLBienvenido.setBounds(10, 16, 69, 14);
 		contentPane.add(LBLBienvenido);
 		

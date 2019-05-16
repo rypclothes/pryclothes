@@ -16,6 +16,8 @@ import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * 
@@ -54,27 +56,28 @@ public class JFContratarEmple extends JFrame {
 				
 		JButton btnEnviar = new JButton("Enviar");
 		btnEnviar.addMouseListener(new MouseAdapter() {
-		@Override
-		public void mousePressed(MouseEvent arg0)  {
-			Empleado em = jpmea.getDatos();
-			try {
-				if(!jpmea.validarDatos()) {
-					JOptionPane.showMessageDialog(null, "No estan introducidos todos los datos", "AVISO", JOptionPane.INFORMATION_MESSAGE);
-					return;
+			@Override
+			public void mousePressed(MouseEvent arg0)  {
+				Empleado em = jpmea.getDatos();
+				try {
+					if(!jpmea.validarDatos()) {
+						JOptionPane.showMessageDialog(null, "No estan introducidos todos los datos", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+						return;
+					}
+					
+					if(bdea.darAltaEmpleado(em) == 1) {
+						JOptionPane.showMessageDialog(null, "Dado de alta correctamente", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
+						JFEmpleadoAdministracion jfea = new JFEmpleadoAdministracion();
+						jfea.setVisible(true);
+						dispose();
+					}else {
+						JOptionPane.showMessageDialog(null, "Algún dato no se ha introducido correctamente!", "AVISO", JOptionPane.ERROR_MESSAGE);
+					}
+				}catch (DatosIntroducidosException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage(), "AVISO", JOptionPane.INFORMATION_MESSAGE);
 				}
-				
-				if(bdea.darAltaEmpleado(em) == 1) {
-					JOptionPane.showMessageDialog(null, "Dado de alta correctamente", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
-					jpmea.setVisible(true);
-					dispose();
-				}else {
-					JOptionPane.showMessageDialog(null, "Algún dato no se ha introducido correctamente!", "AVISO", JOptionPane.ERROR_MESSAGE);
 				}
-			}catch (DatosIntroducidosException e) {
-				JOptionPane.showMessageDialog(null, e.getMessage(), "AVISO", JOptionPane.INFORMATION_MESSAGE);
-			}
-			}
-		});
+			});
 		btnEnviar.setBounds(10, 231, 89, 23);
 		contentPane.add(btnEnviar);	
 		
