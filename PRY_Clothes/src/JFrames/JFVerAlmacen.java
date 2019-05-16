@@ -42,7 +42,7 @@ public class JFVerAlmacen extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JFVerAlmacen.class.getResource("/imagenes/rypclothes.png")));
 		setTitle("Almacén");
-		setBounds(100, 100, 337, 192);
+		setBounds(100, 100, 313, 192);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
@@ -61,7 +61,7 @@ public class JFVerAlmacen extends JFrame {
 		//Panel lista
 		JPListaAlmacen jpl = new JPListaAlmacen();
 		jpl.setLocation(216, 11);
-		jpl.setSize(102, 141);
+		jpl.setSize(86, 141);
 		//DefaultListModel modelo = new DefaultListModel();
 		Vector<Diseño> v=bdd.listado();
 		
@@ -78,7 +78,7 @@ public class JFVerAlmacen extends JFrame {
                             jpc.setDatos(list.getSelectedValue());
                     }
             });
-		list.setBounds(20, 21, 61, 109);
+		list.setBounds(22, 21, 42, 109);
 		jpl.add(list);
 		
 		JButton btnHacerPedido = new JButton("Hacer pedido");
