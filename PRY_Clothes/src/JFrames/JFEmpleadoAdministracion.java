@@ -160,7 +160,7 @@ public class JFEmpleadoAdministracion extends JFrame {
 		BTNSalir.setBounds(42, 202, 182, 25);
 		contentPane.add(BTNSalir);
 		
-		JButton BTNReportarIncidencia = new JButton("Reportar incidencia");
+		JButton BTNReportarIncidencia = new JButton("Crear incidencia");
 		BTNReportarIncidencia.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
